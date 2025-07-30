@@ -1,0 +1,65 @@
+model:
+  base_model: mistral-7b-instruct
+  lora_r: 8
+  lora_alpha: 16
+  lora_dropout: 0.1
+  
+compute:
+  cluster: a100x2-80gb
+  image: fireworksai/pytorch-jax:cu122-py3.10
+  env:
+    OMP_NUM_THREADS: 16
+    CUDA_VISIBLE_DEVICES: "0,1"
+    WANDB_PROJECT: text2terrain
+    HF_HOME: /tmp/huggingface
+    TOKENIZERS_PARALLELISM: true
+    
+storage:
+  - mount: /mnt/data
+    source: s3://your-bucket/text2terrain/data/processed/
+  - mount: /mnt/models  
+    source: s3://your-bucket/text2terrain/models/
+  - mount: /mnt/checkpoints
+    source: s3://your-bucket/text2terrain/checkpoints/
+
+artifacts:
+  - source: /mnt/models/lora/
+    destination: s3://your-bucket/text2terrain/models/lora/
+  - source: /mnt/checkpoints/
+    destination: s3://your-bucket/text2terrain/checkpoints/
+
+entrypoint: |
+  set -e
+  echo "Setting up Text2Terrain training environment..."
+  
+  # Install with training dependencies
+  pip install -e ".[training]"
+  
+  # Verify JAX/CUDA setup
+  python -c "import jax; print(f'JAX devices: {jax.devices()}')"
+  
+  # Run training
+  python -m src.training.train \
+    --config /mnt/data/configs/base.yaml \
+    --data-path /mnt/data/processed \
+    --output-path /mnt/models \
+    --checkpoint-path /mnt/checkpoints \
+    --wandb-project text2terrain
+
+monitoring:
+  wandb:
+    project: text2terrain
+    entity: your-team
+  
+  tensorboard:
+    log_dir: /mnt/checkpoints/tensorboard
+
+# Resource limits
+limits:
+  time: 24h  # Maximum training time
+  memory: 160GB  # For A100x2 80GB
+  
+# Auto-retry configuration  
+retry:
+  max_attempts: 3
+  backoff_factor: 2
