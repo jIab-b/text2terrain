@@ -14,9 +14,7 @@ import random
 from pathlib import Path
 from typing import Dict, List, Tuple, Any
 import numpy as np
-from PIL import Image
-import base64
-import io
+
 from tqdm import tqdm
 
 from ..procgen import TerrainEngine, ModuleRegistry
@@ -56,12 +54,12 @@ class DatasetGenerator:
             "parameter_ranges": {}
         }
     
-    def sample_parameters(self) -> Tuple[List[int], Dict[str, float], List[int]]:
+    def sample_parameters(self) -> Tuple[List[int], Dict[str, float]]:
         """
         Sample random parameter configuration.
         
         Returns:
-            Tuple of (module_ids, parameters, seeds)
+            Tuple of (module_ids, parameters)
         """
         
         # Sample 1-4 modules (more variety in combinations)
@@ -102,10 +100,7 @@ class DatasetGenerator:
                 # Uniform for most other parameters
                 parameters[param_name] = self.np_rng.uniform(min_val, max_val)
         
-        # Generate per-module seeds
-        seeds = [self.rng.randint(0, 2**31 - 1) for _ in selected_modules]
-        
-        return selected_modules, parameters, seeds
+        return selected_modules, parameters
     
     def generate_sample(self, sample_id: int) -> Dict[str, Any]:
         """
@@ -119,58 +114,83 @@ class DatasetGenerator:
         """
         
         # Sample configuration
-        module_ids, parameters, seeds = self.sample_parameters()
+        module_ids, parameters = self.sample_parameters()
+        # Deterministic seeds derived from sample_id for reproducibility
+        seeds = [((sample_id * 10007 + idx * 1013) % (2**31 - 1)) for idx in range(len(module_ids))]
+        call_sequence = []
+        for mid, seed in zip(module_ids, seeds):
+            name = self.registry.get_module_name(mid)
+            spec = self.registry.get_parameter_spec(mid)
+            module_params = spec.extract_params(parameters)
+            call_sequence.append({"function": name, "parameters": module_params, "seed": seed})
         
         # Generate world coordinates (vary across different regions)
         world_scale = 10  # Creates coordinates from -2,560 to +2,560
         world_x = self.rng.randint(-world_scale, world_scale) * self.tile_size
         world_y = self.rng.randint(-world_scale, world_scale) * self.tile_size
         
-        # Generate terrain
-        global_seed = self.rng.randint(0, 2**31 - 1)
-        heightmap = self.engine.generate_tile(
-            world_x=world_x,
-            world_y=world_y,
-            module_ids=module_ids,
-            parameters=parameters,
-            seeds=seeds,
-            global_seed=global_seed
-        )
-        
-        # Convert to numpy and normalize to [0, 1]
-        heightmap_np = np.array(heightmap)
-        heightmap_np = (heightmap_np - heightmap_np.min()) / (heightmap_np.max() - heightmap_np.min() + 1e-8)
-        
-        # Convert to 16-bit PNG for storage
-        heightmap_16bit = (heightmap_np * 65535).astype(np.uint16)
-        
+        # Prepare global generation parameters (tile will be generated later at inference/render time)
+        global_seed = (sample_id * 48271) % (2**31 - 1)
         # Generate caption
         caption = self.caption_gen.generate_caption(module_ids, parameters)
         
-        # Create sample dictionary
-        sample = {
-            "id": sample_id,
-            "caption": caption,
+        # Function schema for dataset (Fireworks/OpenAI format)
+        tool_schema = {
+            "type": "function",
+            "function": {
+                "name": "generate_heightmap",
+                "description": "Generate a terrain heightmap tile",
+                "parameters": {
+                    "type": "object",
+                    "properties": {
+                        "world_x": {"type": "integer"},
+                        "world_y": {"type": "integer"},
+                        "global_seed": {"type": "integer"},
+                        "module_ids": {"type": "array", "items": {"type": "integer"}},
+                        "parameters": {"type": "object"},
+                        "seeds": {"type": "array", "items": {"type": "integer"}}
+                    },
+                    "required": ["world_x", "world_y", "global_seed", "module_ids", "parameters"]
+                }
+            }
+        }
+
+        arguments_obj = {
+            "world_x": world_x,
+            "world_y": world_y,
+            "global_seed": global_seed,
             "module_ids": module_ids,
             "parameters": parameters,
-            "seeds": seeds,
-            "global_seed": global_seed,
-            "tile_origin": [world_x, world_y],
-            "tile_size": self.tile_size,
-            "heightmap_shape": list(heightmap_np.shape),
-            "heightmap_range": [float(heightmap_np.min()), float(heightmap_np.max())],
+            "seeds": seeds
         }
-        
-        # Save heightmap as PNG file
-        if sample_id % 10 == 0:
-            heightmap_path = self.output_dir / f"heightmap_{sample_id:06d}.png"
-            Image.fromarray(heightmap_16bit, mode='I;16').save(heightmap_path)
-            sample["heightmap_file"] = str(heightmap_path.name)
 
-            # uncomment to save
-            sample['heightmap_file'] = str(heightmap_path.name)
-        else:
-            sample["heightmap_file"] = None
+        # Chat-style sample with tool calling format
+        sample = {
+            "tools": [tool_schema],
+            "messages": [
+                {"role": "system", "content": "You are a terrain generator"},
+                {"role": "user", "content": caption},
+                {
+                    "role": "assistant",
+                    "content": None,
+                    "tool_calls": [
+                        {
+                            "id": "call_0",
+                            "type": "function",
+                            "function": {
+                                "name": "generate_heightmap",
+                                "arguments": json.dumps(arguments_obj)
+                            }
+                        }
+                    ]
+                }
+            ],
+            "metadata": {
+                "id": sample_id,
+                "tile_size": self.tile_size,
+                "call_sequence": call_sequence
+            }
+        }
         
         # Update statistics
         self._update_stats(module_ids, parameters)
@@ -213,7 +233,8 @@ class DatasetGenerator:
         print(f"Generating {num_samples} samples to {self.output_dir}")
         
         # Generate in batches
-        samples = []
+        combined_path = self.output_dir / "dataset_all.jsonl"
+        outfile = open(combined_path, 'w')
         
         with tqdm(total=num_samples, desc="Generating terrain") as pbar:
             for batch_start in range(0, num_samples, batch_size):
@@ -230,22 +251,20 @@ class DatasetGenerator:
                         print(f"Error generating sample {i}: {e}")
                         continue
                 
-                samples.extend(batch_samples)
-                
-                # Save batch to disk
-                batch_file = self.output_dir / f"batch_{batch_start:06d}_{batch_end:06d}.json"
-                with open(batch_file, 'w') as f:
-                    json.dump(batch_samples, f, indent=2)
+                # Write samples to combined JSONL file
+                for sample in batch_samples:
+                    outfile.write(json.dumps(sample, separators=(',', ':')) + "\n")
         
+        outfile.close()
         # Save complete manifest
         manifest = {
             "dataset_info": {
-                "total_samples": len(samples),
+                "total_samples": num_samples,
                 "tile_size": self.tile_size,
                 "output_dir": str(self.output_dir),
                 "generation_stats": self.stats
             },
-            "samples": samples
+            "dataset_file": combined_path.name
         }
         
         manifest_path = self.output_dir / "dataset_manifest.json"
@@ -258,7 +277,7 @@ class DatasetGenerator:
             json.dump(self.stats, f, indent=2)
         
         print(f"\nDataset generated successfully!")
-        print(f"Total samples: {len(samples)}")
+        print(f"Total samples: {num_samples}")
         print(f"Manifest saved to: {manifest_path}")
         print(f"Statistics saved to: {stats_path}")
         

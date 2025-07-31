@@ -14,7 +14,8 @@ from typing import Tuple
 
 def hash_coord(x: jnp.ndarray, y: jnp.ndarray, seed: int = 0) -> jnp.ndarray:
     """Simple hash function for coordinates."""
-    h = (x * 374761393 + y * 668265263 + seed * 1664525) % 2147483647
+    seed_arr = jnp.array(seed, dtype=x.dtype)
+    h = (x * 374761393 + y * 668265263 + seed_arr * 1664525) % 2147483647
     return (h / 2147483647.0) * 2.0 - 1.0
 
 
