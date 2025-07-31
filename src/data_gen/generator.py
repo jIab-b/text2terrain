@@ -162,9 +162,15 @@ class DatasetGenerator:
         }
         
         # Save heightmap as PNG file
-        heightmap_path = self.output_dir / f"heightmap_{sample_id:06d}.png"
-        Image.fromarray(heightmap_16bit, mode='I;16').save(heightmap_path)
-        sample["heightmap_file"] = str(heightmap_path.name)
+        if sample_id % 10 == 0:
+            heightmap_path = self.output_dir / f"heightmap_{sample_id:06d}.png"
+            Image.fromarray(heightmap_16bit, mode='I;16').save(heightmap_path)
+            sample["heightmap_file"] = str(heightmap_path.name)
+
+            # uncomment to save
+            sample['heightmap_file'] = str(heightmap_path.name)
+        else:
+            sample["heightmap_file"] = None
         
         # Update statistics
         self._update_stats(module_ids, parameters)
