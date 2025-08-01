@@ -7,6 +7,7 @@ import jax.numpy as jnp
 from typing import Dict, Any, List, Optional, Tuple
 from .grammar import ModuleRegistry, ParameterSpec
 from .modules import noise, warp, erosion
+from .jax_backend import generate as fast_generate
 
 
 class TerrainEngine:
@@ -82,7 +83,8 @@ class TerrainEngine:
         module_ids: List[int],
         parameters: Dict[str, float],
         seeds: List[int],
-        global_seed: int = 42
+        global_seed: int = 42,
+        use_fast: bool = True
     ) -> jnp.ndarray:
         """
         Generate a terrain tile at world coordinates.
@@ -99,7 +101,13 @@ class TerrainEngine:
             jnp.ndarray: Height map of shape (tile_size, tile_size)
         """
         
-        # Create coordinate grids in world space
+        # Fast deterministic path
+        if use_fast and "height_scale" in parameters:
+            p = dict(parameters)
+            p.setdefault("seed", int(global_seed & 0xFFFFFFFF))
+            return fast_generate(p)
+        
+        # Legacy module chain
         x_coords = jnp.linspace(
             world_x, world_x + self.tile_size,
             self.tile_size, endpoint=False

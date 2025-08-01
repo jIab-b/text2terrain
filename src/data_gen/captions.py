@@ -20,6 +20,7 @@ class CaptionGenerator:
     def __init__(self, seed: int = 42):
         self.rng = random.Random(seed)
         self._setup_templates()
+        self._setup_deterministic_mappings()
     
     def _setup_templates(self):
         """Initialize caption templates and vocabulary."""
@@ -75,11 +76,36 @@ class CaptionGenerator:
             "sandstone", "basalt", "quartzite", "shale", "marble"
         ]
     
+    def _setup_deterministic_mappings(self):
+        """Setup deterministic parameter-to-word mappings."""
+        self.frequency_map = {
+            0.0025: "broad",
+            0.01: "rolling", 
+            0.04: "sharp"
+        }
+        
+        self.persistence_map = {
+            0.2: "subtle",
+            0.5: "moderate",
+            0.8: "dramatic"
+        }
+        
+        self.terrain_base = {
+            "gentle_plains": "plains",
+            "rolling_hills": "hills", 
+            "steep_terrain": "slopes",
+            "sharp_peaks": "peaks",
+            "eroded_mountains": "ridges",
+            "weathered_plains": "meadows",
+            "flowing_hills": "undulating hills",
+            "twisted_valleys": "winding valleys"
+        }
+    
     def generate_caption(
         self, 
         module_ids: List[int], 
         parameters: Dict[str, float],
-        module_names: List[str] = None
+        archetype: str = None
     ) -> str:
         """
         Generate a natural language caption for given parameters.
@@ -87,12 +113,64 @@ class CaptionGenerator:
         Args:
             module_ids: List of terrain module IDs
             parameters: Parameter values
-            module_names: Optional module names (for debugging)
+            archetype: Optional terrain archetype for deterministic mode
             
         Returns:
             Natural language description
         """
         
+        # If archetype provided, use deterministic generation
+        if archetype:
+            return self._generate_deterministic_caption(module_ids, parameters, archetype)
+        else:
+            return self._generate_random_caption(module_ids, parameters)
+    
+    def _generate_deterministic_caption(self, module_ids: List[int], parameters: Dict[str, float], archetype: str) -> str:
+        """Generate deterministic caption based on exact parameter values."""
+        
+        # Map parameters to descriptor words
+        freq = parameters.get("frequency", 0.01)
+        persistence = parameters.get("persistence", 0.5)
+        
+        freq_word = self._get_closest_mapping(freq, self.frequency_map)
+        amp_word = self._get_closest_mapping(persistence, self.persistence_map)
+        
+        # Determine base terrain from archetype
+        if archetype in self.terrain_base:
+            terrain_word = self.terrain_base[archetype]
+        else:
+            terrain_word = "terrain"
+        
+        # Build caption deterministically
+        parts = [freq_word, amp_word, terrain_word]
+        
+        # Add modifiers based on modules
+        has_erosion = 3 in module_ids
+        has_warp = 2 in module_ids
+        
+        if has_erosion:
+            erosion_strength = parameters.get("erosion_speed", 0.0)
+            if erosion_strength > 0.2:
+                parts.append("with deep erosion")
+            else:
+                parts.append("with weathering")
+        
+        if has_warp:
+            warp_strength = parameters.get("warp_amplitude", 0.0)
+            if warp_strength > 200:
+                parts.append("heavily twisted")
+            else:
+                parts.append("gently curved")
+        
+        return " ".join(parts)
+    
+    def _get_closest_mapping(self, value: float, mapping_dict: Dict[float, str]) -> str:
+        """Get deterministic mapping for parameter value."""
+        closest_key = min(mapping_dict.keys(), key=lambda k: abs(k - value))
+        return mapping_dict[closest_key]
+    
+    def _generate_random_caption(self, module_ids: List[int], parameters: Dict[str, float]) -> str:
+        """Original random caption generation."""
         # Determine primary terrain characteristics
         freq = parameters.get("frequency", 0.01)
         amplitude = self._estimate_amplitude(parameters)

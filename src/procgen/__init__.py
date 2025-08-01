@@ -11,6 +11,7 @@ This module provides the core terrain generation functionality with:
 from .core import TerrainEngine
 from .grammar import ModuleRegistry, ParameterSpec
 from .modules import noise, warp, erosion
+from .jax_backend import generate as jax_generate
 
 __all__ = [
     "TerrainEngine",
@@ -18,5 +19,6 @@ __all__ = [
     "ParameterSpec",
     "noise",
     "warp", 
-    "erosion"
+    "erosion",
+    "jax_generate"
 ]

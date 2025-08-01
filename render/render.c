@@ -17,10 +17,19 @@ static long count_lines(const char* path){
     fclose(f);
     return n;
 }
-
+/*
 static inline float clampf(float v, float lo, float hi){
     return v < lo ? lo : (v > hi ? hi : v);
 }
+*/
+static inline float clampf(float v, float min, float max) {
+    if (v < min)
+        return min;
+    if (v > max)
+        return max;
+    return v;
+}
+
 
 typedef struct OrbitCamera {
     Camera3D camera;
@@ -61,8 +70,26 @@ static void update_camera_position(OrbitCamera *c) {
     c->camera.position = Vector3Add(c->camera.target, offset);
 }
 
+static void player_movement(OrbitCamera *client){
+    float speed = 0.1f * client->camera_distance;
+    if(IsKeyDown(KEY_LEFT_SHIFT)) speed *= 10.0f;
+    Vector3 move = {0};
+    Vector3 forward = Vector3Subtract(client->camera.target, client->camera.position);
+    forward.y = 0;
+    if(Vector3LengthSqr(forward) < 0.000001f) forward = (Vector3){0,0,-1};
+    forward = Vector3Normalize(forward);
+    Vector3 right = Vector3Normalize(Vector3CrossProduct(forward, (Vector3){0,1,0}));
+    if(IsKeyDown(KEY_W)) move = Vector3Add(move, Vector3Scale(forward, speed));
+    if(IsKeyDown(KEY_S)) move = Vector3Add(move, Vector3Scale(forward, -speed));
+    if(IsKeyDown(KEY_D)) move = Vector3Add(move, Vector3Scale(right, speed));
+    if(IsKeyDown(KEY_A)) move = Vector3Add(move, Vector3Scale(right, -speed));
+    client->camera.target = Vector3Add(client->camera.target, move);
+    if(Vector3LengthSqr(move) > 0.0f) update_camera_position(client);
+}
+
 void handle_camera_controls(OrbitCamera *client) {
     Vector2 mouse_pos = GetMousePosition();
+    player_movement(client);
 
     if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
         client->is_dragging = true;
@@ -103,6 +130,23 @@ void handle_camera_controls(OrbitCamera *client) {
         Vector2 mouse_delta = {mouse_pos.x - client->last_mouse_pos.x,
                                mouse_pos.y - client->last_mouse_pos.y};
         float ps = client->pan_sensitivity * client->camera_distance;
+
+
+   
+        Vector3 forward = Vector3Normalize(Vector3Subtract(client->camera.target, client->camera.position));
+        Vector3 worldUp = (Vector3){0, 1, 0};
+        Vector3 right = Vector3CrossProduct(forward, worldUp);
+        if (Vector3LengthSqr(right) < 0.000001f) right = Vector3CrossProduct(forward, (Vector3){1, 0, 0});
+        right = Vector3Normalize(right);
+        Vector3 up = Vector3Normalize(Vector3CrossProduct(right, forward));
+
+        Vector3 pan_offset = Vector3Add(
+            Vector3Scale(right, -mouse_delta.x * ps),
+            Vector3Scale(up, mouse_delta.y * ps)
+        );
+        client->camera.target = Vector3Add(client->camera.target, pan_offset);
+   
+        /*
         
         float forward_x = -cosf(client->camera_azimuth);
         float forward_y = -sinf(client->camera_azimuth);
@@ -111,8 +155,10 @@ void handle_camera_controls(OrbitCamera *client) {
         
         client->camera.target.x += (-mouse_delta.x * ps) * right_x + (mouse_delta.y * ps) * forward_x;
         client->camera.target.y += (-mouse_delta.x * ps) * right_y + (mouse_delta.y * ps) * forward_y;
-        
+ 
+        */
         client->last_mouse_pos = mouse_pos;
+        
         update_camera_position(client);
     }
 
