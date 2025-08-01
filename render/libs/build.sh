@@ -11,7 +11,13 @@ SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 cd "$SCRIPT_DIR"
 
 SRC_DIR="../"
-BINARY_OUT="../../$ENV"
+# Output inside repository root (two levels up)
+PROJECT_ROOT="$(cd "$SCRIPT_DIR/../.." && pwd)"
+BINARY_OUT="$PROJECT_ROOT/${ENV}"
+# Ensure not overwriting dir with same name
+if [ -d "$BINARY_OUT" ]; then
+    BINARY_OUT="${BINARY_OUT}.out"
+fi
 WEB_OUTPUT_DIR="build_web/$ENV"
 RAYLIB_NAME='raylib-5.5_macos'
 BOX2D_NAME='box2d-macos-arm64'

@@ -166,9 +166,12 @@ class DatasetGenerator:
 
         # Chat-style sample with tool calling format
         sample = {
-            "tools": [tool_schema],
             "messages": [
-                {"role": "system", "content": "You are a terrain generator"},
+                {"role": "system", "content": "You are a being supplied a function \
+                list of commands to generate heightmaps using procedural functions. you \
+                will be given a matching caption for the command trace, your goal \
+                is to learn to match captions -> command traces, and accurately \
+                regenerate heightmaps by tool calling functions from text descriptions"},
                 {"role": "user", "content": caption},
                 {
                     "role": "assistant",
@@ -184,12 +187,7 @@ class DatasetGenerator:
                         }
                     ]
                 }
-            ],
-            "metadata": {
-                "id": sample_id,
-                "tile_size": self.tile_size,
-                "call_sequence": call_sequence
-            }
+            ]
         }
         
         # Update statistics
