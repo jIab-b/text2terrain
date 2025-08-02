@@ -17,11 +17,7 @@ static long count_lines(const char* path){
     fclose(f);
     return n;
 }
-/*
-static inline float clampf(float v, float lo, float hi){
-    return v < lo ? lo : (v > hi ? hi : v);
-}
-*/
+
 static inline float clampf(float v, float min, float max) {
     if (v < min)
         return min;
@@ -30,18 +26,6 @@ static inline float clampf(float v, float min, float max) {
     return v;
 }
 
-
-typedef struct OrbitCamera {
-    Camera3D camera;
-    float camera_distance;
-    float camera_azimuth;
-    float camera_elevation;
-    bool is_dragging;
-    bool is_panning;
-    float rotation_sensitivity;
-    float pan_sensitivity;
-    Vector2 last_mouse_pos;
-} OrbitCamera;
 
 static float* load_heightmap(const char* dataset,long idx){
     char cmd[1024];
@@ -58,97 +42,55 @@ static float* load_heightmap(const char* dataset,long idx){
 
 
 
-static void update_camera_position(OrbitCamera *c) {
-    float r = c->camera_distance;
-    float az = c->camera_azimuth;
-    float el = c->camera_elevation;
-
-        float offsetX = r * cosf(el) * cosf(az);
-    float offsetY = r * cosf(el) * sinf(az);
-    float offsetZ = r * sinf(el);
-
-    Vector3 offset = {offsetX, offsetY, offsetZ};
-    c->camera.position = Vector3Add(c->camera.target, offset);
+static void first_person_control(Camera *camera) {
+    static float camera_azimuth = 0.0f;
+    static float camera_elevation = 0.0f;
+    static bool initialized = false;
+    
+    if (!initialized) {
+        Vector3 dir = Vector3Subtract(camera->target, camera->position);
+        dir = Vector3Normalize(dir);
+        camera_azimuth = atan2f(dir.z, dir.x);
+        camera_elevation = asinf(dir.y);
+        initialized = true;
+    }
+    
+    Vector2 center = {GetScreenWidth() / 2.0f, GetScreenHeight() / 2.0f};
+    SetMousePosition(center.x, center.y);
+    Vector2 current = GetMousePosition();
+    Vector2 md = Vector2Subtract(current, center);
+    if (Vector2LengthSqr(md) > 0.01f) {
+        float sens = 0.000002f;
+        camera_azimuth += md.x * sens;
+        camera_elevation -= md.y * sens;
+        camera_elevation = clampf(camera_elevation, -PI/2.0f + 0.1f, PI/2.0f - 0.1f);
+    }
+    Vector3 front = {cosf(camera_elevation) * cosf(camera_azimuth), sinf(camera_elevation), cosf(camera_elevation) * sinf(camera_azimuth)};
+    front = Vector3Normalize(front);
+    float speed = 0.1f;
+    if (IsKeyDown(KEY_LEFT_SHIFT)) speed *= 10.0f;
+    if (IsKeyDown(KEY_W)) camera->position = Vector3Add(camera->position, Vector3Scale(front, speed));
+    if (IsKeyDown(KEY_S)) camera->position = Vector3Subtract(camera->position, Vector3Scale(front, speed));
+    Vector3 right = Vector3Normalize(Vector3CrossProduct(front, (Vector3){0,1,0}));
+    if (IsKeyDown(KEY_D)) camera->position = Vector3Add(camera->position, Vector3Scale(right, speed));
+    if (IsKeyDown(KEY_A)) camera->position = Vector3Subtract(camera->position, Vector3Scale(right, speed));
+    if (IsKeyDown(KEY_SPACE)) camera->position.y += speed;
+    if (IsMouseButtonDown(MOUSE_BUTTON_RIGHT)) camera->position.y -= speed;
+    camera->target = Vector3Add(camera->position, front);
 }
 
-static void player_movement(OrbitCamera *c){
-    float speed = 0.1f * c->camera_distance;
-    if(IsKeyDown(KEY_LEFT_SHIFT)) speed *= 10.0f;
 
-    Vector3 move = {0};
-    Vector3 forward = Vector3Subtract(c->camera.target, c->camera.position);
-    forward.y = 0;
-    if(Vector3LengthSqr(forward) < 0.000001f) forward = (Vector3){0,0,-1};
-    forward = Vector3Normalize(forward);
-    Vector3 right = Vector3Normalize(Vector3CrossProduct(forward, (Vector3){0,1,0}));
 
-    if(IsKeyDown(KEY_W)) move = Vector3Add(move, Vector3Scale(forward, speed));
-    if(IsKeyDown(KEY_S)) move = Vector3Add(move, Vector3Scale(forward, -speed));
-    if(IsKeyDown(KEY_D)) move = Vector3Add(move, Vector3Scale(right, speed));
-    if(IsKeyDown(KEY_A)) move = Vector3Add(move, Vector3Scale(right, -speed));
 
-    if(IsKeyDown(KEY_SPACE)) move.y += speed;
-    if(IsMouseButtonDown(MOUSE_BUTTON_RIGHT)) move.y -= speed;
 
-    c->camera.target = Vector3Add(c->camera.target, move);
-    if(Vector3LengthSqr(move) > 0.0f) update_camera_position(c);
-}
+void init_camera(Camera* camera) {
 
-void handle_camera_controls(OrbitCamera *client) {
-    Vector2 mouse_pos = GetMousePosition();
-    player_movement(client);
+    camera->position = (Vector3){ 0.2f, 0.4f, 0.2f };    // Camera position
+    camera->target = (Vector3){ 0.185f, 0.4f, 0.0f };    // Camera looking at point
+    camera->up = (Vector3){ 0.0f, 1.0f, 0.0f };          // Camera up vector (rotation towards target)
+    camera->fovy = 45.0f;                                // Camera field-of-view Y
+    camera->projection = CAMERA_PERSPECTIVE;             // Camera projection type
 
-    if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
-        client->is_dragging = true;
-        client->last_mouse_pos = mouse_pos;
-    }
-    if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT)) {
-        client->is_dragging = false;
-    }
-    if (client->is_dragging && IsMouseButtonDown(MOUSE_BUTTON_LEFT)) {
-        Vector2 mouse_delta = { mouse_pos.x - client->last_mouse_pos.x, mouse_pos.y - client->last_mouse_pos.y };
-        float sensitivity = client->rotation_sensitivity;
-        client->camera_azimuth -= mouse_delta.x * sensitivity;
-        client->camera_elevation += mouse_delta.y * sensitivity;
-        client->camera_elevation = clampf(client->camera_elevation, -PI/2.0f + 0.1f, PI/2.0f - 0.1f);
-        client->last_mouse_pos = mouse_pos;
-        update_camera_position(client);
-    }
-
-    // Right mouse button panning
-    if (IsMouseButtonPressed(MOUSE_BUTTON_RIGHT)) {
-        client->is_panning = true;
-        client->last_mouse_pos = mouse_pos;
-    }
-    if (IsMouseButtonReleased(MOUSE_BUTTON_RIGHT)) {
-        client->is_panning = false;
-    }
-    if (client->is_panning && IsMouseButtonDown(MOUSE_BUTTON_RIGHT)) {
-        Vector2 mouse_delta = { mouse_pos.x - client->last_mouse_pos.x, mouse_pos.y - client->last_mouse_pos.y };
-        float ps = client->pan_sensitivity * client->camera_distance;
-
-        Vector3 forward = Vector3Normalize(Vector3Subtract(client->camera.target, client->camera.position));
-        Vector3 worldUp = (Vector3){ 0, 1, 0 };
-        Vector3 right = Vector3CrossProduct(forward, worldUp);
-        if (Vector3LengthSqr(right) < 0.000001f) right = Vector3CrossProduct(forward, (Vector3){1, 0, 0});
-        right = Vector3Normalize(right);
-        Vector3 up = Vector3Normalize(Vector3CrossProduct(right, forward));
-
-        Vector3 pan_offset = Vector3Add(
-            Vector3Scale(right, -mouse_delta.x * ps),
-            Vector3Scale(up, mouse_delta.y * ps)
-        );
-        client->camera.target = Vector3Add(client->camera.target, pan_offset);
-        client->last_mouse_pos = mouse_pos;
-        update_camera_position(client);
-    }
-
-    float wheel = GetMouseWheelMove();
-    if (wheel != 0) {
-        client->camera_distance -= wheel * 2.0f;
-        client->camera_distance = clampf(client->camera_distance, 5.0f, 50.0f);
-        update_camera_position(client);
-    }
 }
 
 
@@ -176,37 +118,28 @@ int main(int argc,char** argv){
     SetConfigFlags(FLAG_MSAA_4X_HINT|FLAG_VSYNC_HINT);
     InitWindow(1280,720,"text2terrain");
     SetTargetFPS(60);
-    OrbitCamera cam={0};
-        cam.camera_distance = 30.0f;
-    cam.camera_azimuth = 0.0f;
-    cam.camera_elevation = 0.3f;
-        cam.is_dragging = false;
-    cam.is_panning = false;
-    cam.rotation_sensitivity = 0.0000005f;
-    cam.pan_sensitivity = 0.000005f;
-    cam.camera.up = (Vector3){0,1,0};
-    cam.camera.fovy = 45;
-    cam.camera.projection = CAMERA_PERSPECTIVE;
-    update_camera_position(&cam);
-    printf("Debug: camera pos x=%f y=%f z=%f distance=%f\n", cam.camera.position.x, cam.camera.position.y, cam.camera.position.z, cam.camera_distance);
-    printf("Debug: camera target x=%f y=%f z=%f\n", cam.camera.target.x, cam.camera.target.y, cam.camera.target.z);
+
+    Camera cam = {0};
+    init_camera(&cam);
     DisableCursor();
+    
     float minh = height[0], maxh = height[0];
     for(int i = 1; i < RES*RES; i++){
         if(height[i] < minh) minh = height[i];
         if(height[i] > maxh) maxh = height[i];
     }
     float rangeh = (maxh - minh) > 1e-6f ? (maxh - minh) : 1.0f;
-    printf("Debug: height range min=%f max=%f range=%f\n", minh, maxh, rangeh);
     float centerY = minh + rangeh * 0.5f;
-    cam.camera.target.y = centerY;
-    update_camera_position(&cam);
-    printf("Debug: camera target adjusted to y=%f\n", centerY);
+
     while(!WindowShouldClose()){
-        handle_camera_controls(&cam);
+
+
+        Vector3 oldCamPos = cam.position;
+        //UpdateCamera(&cam, CAMERA_FIRST_PERSON);
         BeginDrawing();
         ClearBackground(BLACK);
-        BeginMode3D(cam.camera);
+        first_person_control(&cam);
+        BeginMode3D(cam);
         for(int y = 0; y < RES; y++){
             for(int x = 0; x < RES; x++){
                 int k = y*RES + x;
