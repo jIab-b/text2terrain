@@ -43,39 +43,33 @@ static float* load_heightmap(const char* dataset,long idx){
 
 
 static void first_person_control(Camera *camera) {
-    static float camera_azimuth = 0.0f;
-    static float camera_elevation = 0.0f;
+    static float yaw = 0.0f;
+    static float pitch = 0.0f;
     static bool initialized = false;
-    
     if (!initialized) {
-        Vector3 dir = Vector3Subtract(camera->target, camera->position);
-        dir = Vector3Normalize(dir);
-        camera_azimuth = atan2f(dir.z, dir.x);
-        camera_elevation = asinf(dir.y);
+        //DisableCursor();
+        HideCursor();
+        Vector3 dir = Vector3Normalize(Vector3Subtract(camera->target, camera->position));
+        yaw = atan2f(dir.z, dir.x);
+        pitch = asinf(dir.y);
         initialized = true;
     }
-    
-    Vector2 center = {GetScreenWidth() / 2.0f, GetScreenHeight() / 2.0f};
-    Vector2 current = GetMousePosition();
-    Vector2 md = Vector2Subtract(current, center);
-    if (Vector2LengthSqr(md) > 0.01f) {
-        float sens = 0.0002f;
-        camera_azimuth += md.x * sens;
-        camera_elevation -= md.y * sens;
-        camera_elevation = clampf(camera_elevation, -PI/2.0f + 0.1f, PI/2.0f - 0.1f);
-    }
-    SetMousePosition(center.x, center.y);
-    Vector3 front = {cosf(camera_elevation) * cosf(camera_azimuth), sinf(camera_elevation), cosf(camera_elevation) * sinf(camera_azimuth)};
-    front = Vector3Normalize(front);
-    float speed = 0.1f;
-    if (IsKeyDown(KEY_LEFT_SHIFT)) speed *= 10.0f;
+    float dt = GetFrameTime();
+    Vector2 md = GetMouseDelta();
+    float sens = 0.002f;
+    yaw += md.x * sens;
+    pitch -= md.y * sens;
+    pitch = clampf(pitch, -PI/2.0f + 0.1f, PI/2.0f - 0.1f);
+    Vector3 front = {cosf(pitch) * cosf(yaw), sinf(pitch), cosf(pitch) * sinf(yaw)};
+    Vector3 right = Vector3Normalize(Vector3CrossProduct(front, (Vector3){0,1,0}));
+    float baseSpeed = 4.0f;
+    float speed = baseSpeed * dt * (IsKeyDown(KEY_LEFT_SHIFT) ? 10.0f : 1.0f);
     if (IsKeyDown(KEY_W)) camera->position = Vector3Add(camera->position, Vector3Scale(front, speed));
     if (IsKeyDown(KEY_S)) camera->position = Vector3Subtract(camera->position, Vector3Scale(front, speed));
-    Vector3 right = Vector3Normalize(Vector3CrossProduct(front, (Vector3){0,1,0}));
     if (IsKeyDown(KEY_D)) camera->position = Vector3Add(camera->position, Vector3Scale(right, speed));
     if (IsKeyDown(KEY_A)) camera->position = Vector3Subtract(camera->position, Vector3Scale(right, speed));
     if (IsKeyDown(KEY_SPACE)) camera->position.y += speed;
-    if (IsMouseButtonDown(MOUSE_BUTTON_RIGHT)) camera->position.y -= speed;
+    if (IsKeyDown(KEY_LEFT_CONTROL) || IsMouseButtonDown(MOUSE_BUTTON_RIGHT)) camera->position.y -= speed;
     camera->target = Vector3Add(camera->position, front);
 }
 
@@ -115,7 +109,7 @@ int main(int argc,char** argv){
     }
     float* height=load_heightmap(dataset,idx);
     if(!height) return 1;
-    SetConfigFlags(FLAG_MSAA_4X_HINT|FLAG_VSYNC_HINT);
+    SetConfigFlags(FLAG_MSAA_4X_HINT);
     InitWindow(1280,720,"text2terrain");
     SetTargetFPS(60);
 
