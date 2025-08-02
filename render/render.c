@@ -56,15 +56,15 @@ static void first_person_control(Camera *camera) {
     }
     
     Vector2 center = {GetScreenWidth() / 2.0f, GetScreenHeight() / 2.0f};
-    SetMousePosition(center.x, center.y);
     Vector2 current = GetMousePosition();
     Vector2 md = Vector2Subtract(current, center);
     if (Vector2LengthSqr(md) > 0.01f) {
-        float sens = 0.000002f;
+        float sens = 0.0002f;
         camera_azimuth += md.x * sens;
         camera_elevation -= md.y * sens;
         camera_elevation = clampf(camera_elevation, -PI/2.0f + 0.1f, PI/2.0f - 0.1f);
     }
+    SetMousePosition(center.x, center.y);
     Vector3 front = {cosf(camera_elevation) * cosf(camera_azimuth), sinf(camera_elevation), cosf(camera_elevation) * sinf(camera_azimuth)};
     front = Vector3Normalize(front);
     float speed = 0.1f;
@@ -121,7 +121,7 @@ int main(int argc,char** argv){
 
     Camera cam = {0};
     init_camera(&cam);
-    DisableCursor();
+    //DisableCursor();
     
     float minh = height[0], maxh = height[0];
     for(int i = 1; i < RES*RES; i++){
