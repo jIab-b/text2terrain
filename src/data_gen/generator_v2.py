@@ -63,9 +63,11 @@ class DatasetGeneratorV2:
             cfg = {}
         self.skip_validation = cfg.get('skip_validation', True)
         self.use_llm_captions = cfg.get('use_llm_captions', True)
-        self.caption_generator = FeatureCaptionGenerator(seed=seed)
+        self.base_caption_generator = FeatureCaptionGenerator(seed=seed)
         if self.use_llm_captions:
-            self.caption_generator = LLMCaptionGenerator(self.caption_generator)
+            self.caption_generator = LLMCaptionGenerator(self.base_caption_generator)
+        else:
+            self.caption_generator = self.base_caption_generator
         self.terrain_validator = TerrainValidator()
         self.quality_metrics = QualityMetrics()
         self.legacy_adapter = LegacyAdapter()
@@ -292,31 +294,34 @@ class DatasetGeneratorV2:
             terrain_analysis = self.heightmap_analyzer.analyze(heightmap)
             calls.append({"id":"call_4","type":"function","function":{"name":"analyze_heightmap","arguments":json.dumps({"terrain_analysis":terrain_analysis})}})
             
-            # 6. Generate caption
-            caption = self.caption_generator.generate_from_analysis(
-                terrain_analysis, features, parameters
-            )
+            # 5a. Cheap caption for validation
+            short_caption = self.base_caption_generator.generate_from_analysis(terrain_analysis, features, parameters)
             calls.append({"id":"call_5","type":"function","function":{"name":"generate_caption","arguments":json.dumps({"terrain_analysis":terrain_analysis,"features":features,"parameters":parameters})}})
             
-            # 7. Validate terrain-caption consistency
+            # 5b. Validate terrain-caption consistency
             if not self.skip_validation:
-                validation_result = self.terrain_validator.validate_consistency(
-                    heightmap, caption, features, terrain_analysis
-                )
-                calls.append({"id":"call_6","type":"function","function":{"name":"validate_consistency","arguments":json.dumps({"caption":caption,"features":features,"terrain_analysis":terrain_analysis})},"result":validation_result})
+                validation_result = self.terrain_validator.validate_consistency(heightmap, short_caption, features, terrain_analysis)
+                calls.append({"id":"call_6","type":"function","function":{"name":"validate_consistency","arguments":json.dumps({"caption":short_caption,"features":features,"terrain_analysis":terrain_analysis})},"result":validation_result})
                 if not validation_result["is_valid"] or validation_result["score"] < 0.6:
                     self.stats["validation_failures"] += 1
                     return None
             else:
                 validation_result = {"is_valid": True, "score": 1.0}
             
-            # 8. Convert to legacy format for compatibility
+            # 6. Final caption for output
+            if self.use_llm_captions:
+                caption = self.caption_generator.generate_from_analysis(terrain_analysis, features, parameters)
+                calls.append({"id":"call_7","type":"function","function":{"name":"generate_caption_llm","arguments":json.dumps({"terrain_analysis":terrain_analysis,"features":features,"parameters":parameters})}})
+            else:
+                caption = short_caption
+            
+            # 7. Convert to legacy format for compatibility
             legacy_data = self.legacy_adapter.convert_to_legacy_format(
                 features, parameters, world_x, world_y, seeds, global_seed, self.tile_size
             )
             calls.append({"id":"call_7","type":"function","function":{"name":"convert_to_legacy_format","arguments":json.dumps({"features":features,"parameters":parameters,"world_x":world_x,"world_y":world_y,"seeds":seeds,"global_seed":global_seed,"tile_size":self.tile_size})},"result":legacy_data})
             
-            # 9. Create grid continuity info
+            # 8. Create grid continuity info
             grid_continuity = {
                 "blend_edges": True,
                 "overlap_size": 16,
@@ -324,20 +329,20 @@ class DatasetGeneratorV2:
             }
             calls.append({"id":"call_8","type":"function","function":{"name":"compute_grid_continuity","arguments":json.dumps(grid_continuity)}})
             
-            # 10. Create enhanced JSON with backward compatibility
+            # 9. Create enhanced JSON with backward compatibility
             enhanced_json = self.legacy_adapter.create_enhanced_json(
                 legacy_data, features, terrain_analysis, grid_continuity
             )
             calls.append({"id":"call_3","type":"function","function":{"name":"generate_heightmap","arguments":json.dumps(enhanced_json)}})
             
-            # 11. Validate JSON format
+            # 10. Validate JSON format
             is_valid, validation_errors = self.json_validator.validate_enhanced_format(enhanced_json)
             calls.append({"id":"call_10","type":"function","function":{"name":"validate_enhanced_format","arguments":json.dumps({"is_valid":is_valid,"errors":validation_errors})}})
             if not is_valid:
                 print(f"JSON validation failed for sample {sample_id}: {validation_errors}")
                 return None
             
-            # 12. Create final sample structure
+            # 11. Create final sample structure
             generation_time = time.time() - start_time
             heightmap_hash = self._hash_heightmap(heightmap)
             

@@ -28,16 +28,16 @@
         "valleys": 3
       },
       "generation_times": [
-        1.4336128234863281,
-        1.1107497215270996,
-        0.9521565437316895,
-        0.9162468910217285,
-        1.0146441459655762,
-        1.0561532974243164,
-        0.9946479797363281,
-        1.0979559421539307,
-        1.0255117416381836,
-        0.9293766021728516
+        4.5193445682525635,
+        0.9889943599700928,
+        1.1219420433044434,
+        1.2215526103973389,
+        1.2848279476165771,
+        1.1202828884124756,
+        1.107043981552124,
+        1.0794274806976318,
+        0.9549977779388428,
+        1.1267590522766113
       ],
       "validation_scores": [
         1.0,
@@ -51,7 +51,7 @@
         1.0,
         1.0
       ],
-      "avg_generation_time": 1.0531055688858033,
+      "avg_generation_time": 1.4525172710418701,
       "avg_validation_score": 1.0,
       "success_rate": 1.0,
       "most_common_features": [
@@ -177,12 +177,12 @@
       }
     },
     "performance_metrics": {
-      "average_generation_time": 1.053,
-      "generation_time_std": 0.141,
-      "min_generation_time": 0.916,
-      "max_generation_time": 1.434,
-      "samples_per_second": 0.95,
-      "estimated_time_per_1k_samples": 17.6
+      "average_generation_time": 1.453,
+      "generation_time_std": 1.026,
+      "min_generation_time": 0.955,
+      "max_generation_time": 4.519,
+      "samples_per_second": 0.69,
+      "estimated_time_per_1k_samples": 24.2
     }
   }
 }
