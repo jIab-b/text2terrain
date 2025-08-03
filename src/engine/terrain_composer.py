@@ -78,7 +78,7 @@ class TerrainComposer:
         """
         
         if legacy_mode and module_ids is not None:
-            return self._generate_legacy(world_x, world_y, module_ids, parameters, seeds, global_seed)
+            return self._generate_legacy(world_x, world_y, module_ids, parameters, seeds, global_seed, features)
         elif features is not None:
             return self._generate_feature_based(world_x, world_y, features, parameters, seeds, global_seed)
         else:
@@ -91,7 +91,8 @@ class TerrainComposer:
         module_ids: List[int],
         parameters: Dict[str, float],
         seeds: List[int],
-        global_seed: int
+        global_seed: int,
+        features: Dict = None
     ) -> np.ndarray:
         """Generate using legacy module-based approach for compatibility."""
         
@@ -123,10 +124,57 @@ class TerrainComposer:
                     generator = self.feature_generators[feature_name]
                     heightmap = generator.apply(heightmap, X, Y, parameters, seed)
         
-        # Normalize and scale
+        # Realistic terrain-type-aware scaling
         heightmap = np.clip(heightmap, 0, None)
-        height_scale = parameters.get("height_scale", 1000.0)
-        heightmap = (heightmap / (heightmap.max() + 1e-6)) * height_scale
+        
+        # Get terrain type from features
+        terrain_type = "plains"  # default
+        if features and "terrain_type" in features:
+            terrain_type = features["terrain_type"]
+        
+        # Define realistic height scales (in meters)
+        terrain_scales = {
+            "plains": 50,      # 0-50m elevation
+            "hills": 300,      # 0-300m elevation  
+            "valleys": 200,    # 0-200m with valley depth
+            "mountains": 1200  # 0-1200m elevation
+        }
+        
+        # Base elevations (sea level reference)
+        base_elevations = {
+            "plains": 5,       # slightly above sea level
+            "hills": 20,       # rolling hills start higher
+            "valleys": 0,      # valleys can be at sea level
+            "mountains": 100   # mountains start on elevated terrain
+        }
+        
+        # Get appropriate scaling
+        max_height = terrain_scales.get(terrain_type, 200)
+        base_elevation = base_elevations.get(terrain_type, 10)
+        
+        # Frequency-based height adjustment 
+        frequency = parameters.get("frequency", 0.01)
+        if frequency > 0.02:  # High frequency = small features = lower heights
+            max_height *= 0.6
+        elif frequency < 0.005:  # Low frequency = large features = can be taller
+            max_height *= 1.4
+        
+        # Complexity-based adjustment
+        if features and "complexity" in features:
+            complexity = features["complexity"]
+            if complexity > 0.7:  # High complexity = more dramatic terrain
+                max_height *= 1.3
+            elif complexity < 0.3:  # Low complexity = gentler terrain
+                max_height *= 0.7
+        
+        # Apply realistic scaling
+        if heightmap.max() > 1e-6:
+            # Normalize to 0-1, then scale to realistic heights
+            normalized = heightmap / heightmap.max()
+            heightmap = base_elevation + (normalized * max_height)
+        else:
+            # Flat terrain
+            heightmap = np.full_like(heightmap, base_elevation)
         
         return heightmap
     
@@ -145,37 +193,49 @@ class TerrainComposer:
         y_coords = np.linspace(world_y, world_y + self.tile_size, self.tile_size, endpoint=False)
         X, Y = np.meshgrid(x_coords, y_coords, indexing='ij')
         
-        # Generate base terrain
-        heightmap = self.feature_generators["base"].generate(X, Y, parameters, global_seed)
+        # Initialize heightmap
+        heightmap = np.zeros_like(X)
         
-        # Apply primary features
-        seed_idx = 0
-        for feature_name in features.get("primary_features", []):
-            if feature_name in self.feature_generators:
-                seed = seeds[seed_idx] if seed_idx < len(seeds) else global_seed + seed_idx
-                generator = self.feature_generators[feature_name]
-                heightmap = generator.apply(heightmap, X, Y, parameters, seed)
-                seed_idx += 1
-        
-        # Apply secondary features
-        for feature_name in features.get("secondary_features", []):
-            if feature_name in self.feature_generators:
-                seed = seeds[seed_idx] if seed_idx < len(seeds) else global_seed + seed_idx
-                generator = self.feature_generators[feature_name]
-                heightmap = generator.enhance(heightmap, parameters, seed)
-                seed_idx += 1
-        
-        # Apply grid continuity if specified
-        if features.get("grid_continuity", {}).get("blend_edges", False):
-            heightmap = self.grid_manager.apply_boundary_smoothing(
-                heightmap, world_x, world_y, features["grid_continuity"]
+        # Apply base terrain
+        if "base" in self.feature_generators:
+            base_seed = seeds[0] if seeds else global_seed
+            heightmap = self.feature_generators["base"].apply(
+                heightmap, X, Y, parameters, base_seed
             )
         
-        # Normalize and scale (same as legacy method)
+        # Apply primary features
+        primary_features = features.get("primary_features", [])
+        for i, feature_name in enumerate(primary_features):
+            if feature_name in self.feature_generators:
+                seed = seeds[i + 1] if i + 1 < len(seeds) else global_seed + i + 1
+                heightmap = self.feature_generators[feature_name].apply(
+                    heightmap, X, Y, parameters, seed
+                )
+        
+        # Apply secondary features  
+        secondary_features = features.get("secondary_features", [])
+        for i, feature_name in enumerate(secondary_features):
+            if feature_name in self.feature_generators:
+                seed = seeds[len(primary_features) + i + 1] if len(primary_features) + i + 1 < len(seeds) else global_seed + len(primary_features) + i + 1
+                heightmap = self.feature_generators[feature_name].apply(
+                    heightmap, X, Y, parameters, seed
+                )
+        
+        # Apply realistic scaling (same as legacy)
         heightmap = np.clip(heightmap, 0, None)
-        height_scale = parameters.get("height_scale", 1000.0)
+        terrain_type = features.get("terrain_type", "plains")
+        
+        terrain_scales = {"plains": 50, "hills": 300, "valleys": 200, "mountains": 1200}
+        base_elevations = {"plains": 5, "hills": 20, "valleys": 0, "mountains": 100}
+        
+        max_height = terrain_scales.get(terrain_type, 200)
+        base_elevation = base_elevations.get(terrain_type, 10)
+        
         if heightmap.max() > 1e-6:
-            heightmap = (heightmap / heightmap.max()) * height_scale
+            normalized = heightmap / heightmap.max()
+            heightmap = base_elevation + (normalized * max_height)
+        else:
+            heightmap = np.full_like(heightmap, base_elevation)
         
         return heightmap
     
@@ -185,18 +245,21 @@ class TerrainComposer:
         parameters: Dict[str, float],
         global_seed: int
     ) -> np.ndarray:
-        """Simple fallback generation."""
+        """Generate simple noise for fallback."""
         
         x_coords = np.linspace(world_x, world_x + self.tile_size, self.tile_size, endpoint=False)
         y_coords = np.linspace(world_y, world_y + self.tile_size, self.tile_size, endpoint=False)
         X, Y = np.meshgrid(x_coords, y_coords, indexing='ij')
         
-        # Simple Perlin noise
         heightmap = self._simple_perlin(X, Y, global_seed, parameters)
-        height_scale = parameters.get("height_scale", 1000.0)
+        heightmap = np.clip(heightmap, 0, None)
         
-        return heightmap * height_scale
-    
+        # Simple scaling
+        if heightmap.max() > 1e-6:
+            heightmap = (heightmap / heightmap.max()) * 100  # 0-100m
+        
+        return heightmap
+
     def _simple_perlin(
         self,
         X: np.ndarray, Y: np.ndarray,
@@ -249,22 +312,21 @@ class TerrainComposer:
         u = fx * fx * (3 - 2 * fx)
         v = fy * fy * (3 - 2 * fy)
         
-        # Hash function for random values
-        def hash2d(ix, iy):
-            h = (ix * 374761393 + iy * 668265263 + seed * 1664525) % 2147483647
-            return (h / 2147483647.0) * 2.0 - 1.0
+        # Random gradients (simplified)
+        np.random.seed(seed)
+        rand_vals = np.random.random((x.shape[0] + 2, x.shape[1] + 2))
         
-        # Get corner values
-        c00 = hash2d(x0, y0)
-        c10 = hash2d(x1, y0) 
-        c01 = hash2d(x0, y1)
-        c11 = hash2d(x1, y1)
+        # Sample noise at grid corners
+        n00 = rand_vals[x0 % rand_vals.shape[0], y0 % rand_vals.shape[1]]
+        n10 = rand_vals[x1 % rand_vals.shape[0], y0 % rand_vals.shape[1]]
+        n01 = rand_vals[x0 % rand_vals.shape[0], y1 % rand_vals.shape[1]]
+        n11 = rand_vals[x1 % rand_vals.shape[0], y1 % rand_vals.shape[1]]
         
-        # Bilinear interpolation
-        top = c00 + u * (c10 - c00)
-        bottom = c01 + u * (c11 - c01)
+        # Interpolate
+        nx0 = n00 * (1 - u) + n10 * u
+        nx1 = n01 * (1 - u) + n11 * u
         
-        return top + v * (bottom - top)
+        return nx0 * (1 - v) + nx1 * v
     
     def _ridged_noise(
         self,
@@ -272,43 +334,43 @@ class TerrainComposer:
         seed: int,
         parameters: Dict[str, float]
     ) -> np.ndarray:
-        """Ridged multifractal noise for mountain ridges."""
+        """Ridged multifractal noise."""
         
-        base_noise = self._simple_perlin(X, Y, seed, parameters)
-        ridge_sharpness = parameters.get("ridge_sharpness", 1.0)
-        
-        # Create ridges by inverting absolute values
-        ridged = 1.0 - np.abs(base_noise)
-        ridged = np.power(ridged, ridge_sharpness)
-        
+        noise = self._simple_perlin(X, Y, seed, parameters)
+        # Create ridges by taking absolute value and inverting
+        ridged = 1.0 - np.abs(noise)
         return ridged
     
     def _domain_warp(
         self,
         heightmap: np.ndarray,
-        parameters: Dict[str, float], 
+        parameters: Dict[str, float],
         seed: int
     ) -> np.ndarray:
-        """Simple domain warping."""
+        """Simple domain warping effect."""
         
-        warp_amplitude = parameters.get("warp_amplitude", 100.0)
+        warp_strength = parameters.get("warp_amplitude", 10.0)
         
-        if warp_amplitude == 0:
-            return heightmap
+        # Create coordinate grids
+        h, w = heightmap.shape
+        x_coords = np.arange(w)
+        y_coords = np.arange(h)
+        X, Y = np.meshgrid(x_coords, y_coords, indexing='ij')
         
-        # Use heightmap values to create displacement
-        rows, cols = heightmap.shape
-        y_indices, x_indices = np.ogrid[:rows, :cols]
+        # Generate warp offsets
+        np.random.seed(seed)
+        warp_x = np.random.random(heightmap.shape) * warp_strength - warp_strength/2
+        warp_y = np.random.random(heightmap.shape) * warp_strength - warp_strength/2
         
-        # Simple displacement based on heightmap values
-        dx = (heightmap - 0.5) * warp_amplitude * 0.01
-        dy = (heightmap - 0.5) * warp_amplitude * 0.01
+        # Apply warping (simplified)
+        warped = np.copy(heightmap)
+        for i in range(h):
+            for j in range(w):
+                src_i = int(np.clip(i + warp_y[i, j], 0, h-1))
+                src_j = int(np.clip(j + warp_x[i, j], 0, w-1))
+                warped[i, j] = heightmap[src_i, src_j]
         
-        # Apply displacement with bounds checking
-        new_x = np.clip(x_indices + dx, 0, cols - 1).astype(int)
-        new_y = np.clip(y_indices + dy, 0, rows - 1).astype(int)
-        
-        return heightmap[new_y, new_x]
+        return warped
     
     def _simple_erosion(
         self,
@@ -316,41 +378,29 @@ class TerrainComposer:
         parameters: Dict[str, float],
         seed: int
     ) -> np.ndarray:
-        """Simple hydraulic erosion simulation."""
+        """Simple erosion simulation."""
         
-        erosion_speed = parameters.get("erosion_speed", 0.1)
-        iterations = int(parameters.get("iterations", 50))
+        erosion_strength = parameters.get("erosion_speed", 0.1)
+        iterations = int(parameters.get("iterations", 10))
         
-        if erosion_speed == 0 or iterations == 0:
-            return heightmap
+        eroded = np.copy(heightmap)
         
-        result = heightmap.copy()
-        
-        # Simple erosion: smooth high areas, deepen low areas
         for _ in range(iterations):
-            # Calculate gradients
-            grad_x = np.gradient(result, axis=1)
-            grad_y = np.gradient(result, axis=0)
-            gradient_magnitude = np.sqrt(grad_x**2 + grad_y**2)
-            
-            # Erode steep areas
-            erosion_mask = gradient_magnitude > np.percentile(gradient_magnitude, 70)
-            result[erosion_mask] -= erosion_speed * 0.1
-            
-            # Deposit in flat areas
-            deposition_mask = gradient_magnitude < np.percentile(gradient_magnitude, 30)
-            result[deposition_mask] += erosion_speed * 0.05
+            # Simple smoothing-based erosion
+            smoothed = self._smooth_heightmap(eroded)
+            eroded = eroded * (1 - erosion_strength) + smoothed * erosion_strength
         
-        return result
+        return eroded
     
-    def generate_seamless_region(
-        self,
-        center_x: int, center_y: int,
-        grid_size: int = 3,
-        **kwargs
-    ) -> Dict[tuple, np.ndarray]:
-        """Generate seamless grid of terrain tiles."""
+    def _smooth_heightmap(self, heightmap: np.ndarray) -> np.ndarray:
+        """Apply smoothing filter to heightmap."""
         
-        return self.grid_manager.generate_seamless_region(
-            center_x, center_y, grid_size, self, **kwargs
-        )
+        h, w = heightmap.shape
+        smoothed = np.copy(heightmap)
+        
+        # Simple 3x3 averaging
+        for i in range(1, h-1):
+            for j in range(1, w-1):
+                smoothed[i, j] = np.mean(heightmap[i-1:i+2, j-1:j+2])
+        
+        return smoothed

@@ -44,6 +44,7 @@ def main():
         parameters = args.get("parameters", {})
         global_seed = args.get("global_seed", 42)
         seeds = args.get("seeds", [])
+        features = args.get("features", {})
         
         if len(seeds) < len(module_ids):
             seeds.extend([(global_seed + i) & 0xFFFFFFFF for i in range(len(seeds), len(module_ids))])
@@ -56,6 +57,7 @@ def main():
             parameters=parameters,
             seeds=seeds,
             global_seed=global_seed,
+            features=features,
             legacy_mode=True
         )
         
