@@ -1,15 +1,28 @@
 """
-Data generation pipeline for Text2Terrain.
+Enhanced data generation pipeline for Text2Terrain.
 
-Generates synthetic training data by:
-1. Sampling random terrain parameters
-2. Generating heightmaps using procgen engine
-3. Creating natural language captions
-4. Saving as structured JSON traces
+Generates high-quality training data by:
+1. Sampling feature-based terrain configurations
+2. Generating actual heightmaps using terrain composer
+3. Analyzing terrain features for validation
+4. Creating natural language captions from analysis
+5. Validating terrain-caption consistency
+6. Saving as enhanced JSON with legacy compatibility
 """
 
-from .generator import DatasetGenerator, main
-from .captions import CaptionGenerator
+from .generator_v2 import DatasetGeneratorV2, main
+from .feature_captions import FeatureCaptionGenerator
+from .terrain_validator import TerrainValidator
+from .quality_metrics import QualityMetrics
 from .preprocessing import preprocess_dataset
 
-__all__ = ["DatasetGenerator", "CaptionGenerator", "preprocess_dataset", "main"]
+# Backward compatibility aliases
+DatasetGenerator = DatasetGeneratorV2
+CaptionGenerator = FeatureCaptionGenerator
+
+__all__ = [
+    "DatasetGeneratorV2", "DatasetGenerator",  # New and legacy names
+    "FeatureCaptionGenerator", "CaptionGenerator",  # New and legacy names
+    "TerrainValidator", "QualityMetrics",
+    "preprocess_dataset", "main"
+]

@@ -1,24 +1,24 @@
 """
-Procedural terrain generation engine using JAX for differentiable operations.
+Feature-based terrain generation engine.
 
-This module provides the core terrain generation functionality with:
-- Differentiable noise functions (Perlin, OpenSimplex, Worley)
-- Domain warping operations
-- Hydraulic erosion simulation
-- Module registry and parameter management
+This module provides terrain generation functionality with:
+- Feature-based terrain composition (mountains, valleys, caves, etc.)
+- Seamless grid generation for infinite worlds
+- Terrain analysis and validation
+- Legacy compatibility with existing renderer
 """
 
-from .core import TerrainEngine
+from ..engine import TerrainComposer, GridManager, HeightmapAnalyzer
 from .grammar import ModuleRegistry, ParameterSpec
-from .modules import noise, warp, erosion
-from .jax_backend import generate as jax_generate
+
+# Backward compatibility alias
+TerrainEngine = TerrainComposer
 
 __all__ = [
-    "TerrainEngine",
+    "TerrainComposer",
+    "TerrainEngine",  # Legacy alias
+    "GridManager",
+    "HeightmapAnalyzer", 
     "ModuleRegistry", 
-    "ParameterSpec",
-    "noise",
-    "warp", 
-    "erosion",
-    "jax_generate"
+    "ParameterSpec"
 ]
