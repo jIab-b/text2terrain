@@ -179,7 +179,8 @@ int main(int argc,char** argv){
                 
                 // Scale terrain for better visibility
                 float terrain_scale = 1.0f;
-                float height_scale = rangeh > 1000.0f ? 0.001f : 0.01f;
+                //float height_scale = rangeh > 1000.0f ? 0.001f : 0.01f;
+                float height_scale = 1.f;
                 
                 Vector3 p = { 
                     ((float)x - RES/2.0f) * terrain_scale / RES, 
