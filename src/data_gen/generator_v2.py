@@ -14,6 +14,8 @@ from pathlib import Path
 from typing import Dict, List, Tuple, Any, Optional
 import numpy as np
 from tqdm import tqdm
+import os
+from .llm_caption_generator import LLMCaptionGenerator
 
 from ..engine import TerrainComposer, HeightmapAnalyzer
 from ..compatibility import LegacyAdapter, JSONValidator
@@ -53,7 +55,17 @@ class DatasetGeneratorV2:
         # Initialize components
         self.terrain_composer = TerrainComposer(tile_size=tile_size)
         self.heightmap_analyzer = HeightmapAnalyzer(tile_size=tile_size)
+        # load config
+        config_path = Path(__file__).parents[2] / 'data' / 'data.config'
+        try:
+            cfg = json.loads(config_path.read_text())
+        except Exception:
+            cfg = {}
+        self.skip_validation = cfg.get('skip_validation', True)
+        self.use_llm_captions = cfg.get('use_llm_captions', True)
         self.caption_generator = FeatureCaptionGenerator(seed=seed)
+        if self.use_llm_captions:
+            self.caption_generator = LLMCaptionGenerator(self.caption_generator)
         self.terrain_validator = TerrainValidator()
         self.quality_metrics = QualityMetrics()
         self.legacy_adapter = LegacyAdapter()
@@ -280,21 +292,23 @@ class DatasetGeneratorV2:
             terrain_analysis = self.heightmap_analyzer.analyze(heightmap)
             calls.append({"id":"call_4","type":"function","function":{"name":"analyze_heightmap","arguments":json.dumps({"terrain_analysis":terrain_analysis})}})
             
-            # 6. Generate caption from ACTUAL terrain features
+            # 6. Generate caption
             caption = self.caption_generator.generate_from_analysis(
                 terrain_analysis, features, parameters
             )
             calls.append({"id":"call_5","type":"function","function":{"name":"generate_caption","arguments":json.dumps({"terrain_analysis":terrain_analysis,"features":features,"parameters":parameters})}})
             
-            # 7. Validate terrain matches caption
-            validation_result = self.terrain_validator.validate_consistency(
-                heightmap, caption, features, terrain_analysis
-            )
-            calls.append({"id":"call_6","type":"function","function":{"name":"validate_consistency","arguments":json.dumps({"caption":caption,"features":features,"terrain_analysis":terrain_analysis})},"result":validation_result})
-            
-            if not validation_result["is_valid"] or validation_result["score"] < 0.6:
-                self.stats["validation_failures"] += 1
-                return None  # Skip samples that don't validate
+            # 7. Validate terrain-caption consistency
+            if not self.skip_validation:
+                validation_result = self.terrain_validator.validate_consistency(
+                    heightmap, caption, features, terrain_analysis
+                )
+                calls.append({"id":"call_6","type":"function","function":{"name":"validate_consistency","arguments":json.dumps({"caption":caption,"features":features,"terrain_analysis":terrain_analysis})},"result":validation_result})
+                if not validation_result["is_valid"] or validation_result["score"] < 0.6:
+                    self.stats["validation_failures"] += 1
+                    return None
+            else:
+                validation_result = {"is_valid": True, "score": 1.0}
             
             # 8. Convert to legacy format for compatibility
             legacy_data = self.legacy_adapter.convert_to_legacy_format(

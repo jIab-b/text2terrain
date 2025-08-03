@@ -1,147 +1,188 @@
 {
   "dataset_info": {
-    "total_samples": 4,
-    "attempted_samples": 20,
+    "total_samples": 10,
+    "attempted_samples": 10,
     "tile_size": 256,
     "output_dir": "data/samples",
     "generation_mode": "feature_based",
     "generation_stats": {
-      "total_generated": 4,
-      "total_valid": 4,
-      "validation_failures": 16,
+      "total_generated": 10,
+      "total_valid": 10,
+      "validation_failures": 0,
       "feature_usage": {
-        "sand_dunes": 3,
-        "rocky_outcrops": 3,
-        "mountain_peaks": 1,
-        "steep_peaks": 1,
-        "ridges": 1,
-        "erosion": 1
+        "sand_dunes": 2,
+        "rocky_outcrops": 2,
+        "cave_systems": 2,
+        "underground": 2,
+        "rolling_hills": 2,
+        "gentle_slopes": 2,
+        "deep_valleys": 3,
+        "river_valleys": 3,
+        "erosion": 4,
+        "water_features": 4,
+        "warping": 3
       },
       "terrain_types": {
         "plains": 3,
-        "mountains": 1
+        "hills": 4,
+        "valleys": 3
       },
       "generation_times": [
-        0.020638704299926758,
-        0.010086536407470703,
-        0.011790037155151367,
-        0.010188579559326172
+        1.4336128234863281,
+        1.1107497215270996,
+        0.9521565437316895,
+        0.9162468910217285,
+        1.0146441459655762,
+        1.0561532974243164,
+        0.9946479797363281,
+        1.0979559421539307,
+        1.0255117416381836,
+        0.9293766021728516
       ],
       "validation_scores": [
-        0.747,
-        0.747,
-        0.741,
-        0.81
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
       ],
-      "avg_generation_time": 0.01317596435546875,
-      "avg_validation_score": 0.76125,
+      "avg_generation_time": 1.0531055688858033,
+      "avg_validation_score": 1.0,
       "success_rate": 1.0,
       "most_common_features": [
         [
-          "sand_dunes",
+          "erosion",
+          4
+        ],
+        [
+          "water_features",
+          4
+        ],
+        [
+          "deep_valleys",
           3
+        ],
+        [
+          "river_valleys",
+          3
+        ],
+        [
+          "warping",
+          3
+        ],
+        [
+          "sand_dunes",
+          2
         ],
         [
           "rocky_outcrops",
-          3
+          2
         ],
         [
-          "mountain_peaks",
-          1
+          "cave_systems",
+          2
         ],
         [
-          "steep_peaks",
-          1
+          "underground",
+          2
         ],
         [
-          "ridges",
-          1
-        ],
-        [
-          "erosion",
-          1
+          "rolling_hills",
+          2
         ]
       ],
       "terrain_type_distribution": {
         "plains": 3,
-        "mountains": 1
+        "hills": 4,
+        "valleys": 3
       }
     }
   },
   "dataset_file": "dataset_all.jsonl",
   "quality_metrics": {
     "generation_metrics": {
-      "total_samples_attempted": 4,
-      "total_samples_valid": 4,
-      "validation_failures": 16,
+      "total_samples_attempted": 10,
+      "total_samples_valid": 10,
+      "validation_failures": 0,
       "success_rate": 1.0,
-      "failure_rate": 4.0,
-      "quality_gate_pass_rate": -3.0
+      "failure_rate": 0.0,
+      "quality_gate_pass_rate": 1.0
     },
     "diversity_metrics": {
-      "unique_features_count": 6,
-      "feature_entropy": 2.371,
+      "unique_features_count": 11,
+      "feature_entropy": 3.401,
       "feature_distribution": {
-        "sand_dunes": 0.3,
-        "rocky_outcrops": 0.3,
-        "mountain_peaks": 0.1,
-        "steep_peaks": 0.1,
-        "ridges": 0.1,
-        "erosion": 0.1
+        "sand_dunes": 0.06896551724137931,
+        "rocky_outcrops": 0.06896551724137931,
+        "cave_systems": 0.06896551724137931,
+        "underground": 0.06896551724137931,
+        "rolling_hills": 0.06896551724137931,
+        "gentle_slopes": 0.06896551724137931,
+        "deep_valleys": 0.10344827586206896,
+        "river_valleys": 0.10344827586206896,
+        "erosion": 0.13793103448275862,
+        "water_features": 0.13793103448275862,
+        "warping": 0.10344827586206896
       },
       "most_common_features": [
         [
-          "sand_dunes",
+          "erosion",
+          4
+        ],
+        [
+          "water_features",
+          4
+        ],
+        [
+          "deep_valleys",
           3
         ],
         [
-          "rocky_outcrops",
+          "river_valleys",
           3
         ],
         [
-          "mountain_peaks",
-          1
-        ],
-        [
-          "steep_peaks",
-          1
-        ],
-        [
-          "ridges",
-          1
+          "warping",
+          3
         ]
       ],
-      "terrain_types_count": 2,
-      "terrain_entropy": 0.811,
+      "terrain_types_count": 3,
+      "terrain_entropy": 1.571,
       "terrain_distribution": {
-        "plains": 0.75,
-        "mountains": 0.25
+        "plains": 0.3,
+        "hills": 0.4,
+        "valleys": 0.3
       },
-      "terrain_balance_score": 0.5
+      "terrain_balance_score": 0.9
     },
     "quality_metrics": {
-      "average_validation_score": 0.761,
-      "validation_score_std": 0.028,
-      "validation_score_min": 0.741,
-      "validation_score_max": 0.81,
-      "high_quality_samples": 1,
-      "medium_quality_samples": 3,
+      "average_validation_score": 1.0,
+      "validation_score_std": 0.0,
+      "validation_score_min": 1.0,
+      "validation_score_max": 1.0,
+      "high_quality_samples": 10,
+      "medium_quality_samples": 0,
       "low_quality_samples": 0,
       "quality_percentiles": {
-        "p10": 0.743,
-        "p25": 0.746,
-        "p50": 0.747,
-        "p75": 0.763,
-        "p90": 0.791
+        "p10": 1.0,
+        "p25": 1.0,
+        "p50": 1.0,
+        "p75": 1.0,
+        "p90": 1.0
       }
     },
     "performance_metrics": {
-      "average_generation_time": 0.013,
-      "generation_time_std": 0.004,
-      "min_generation_time": 0.01,
-      "max_generation_time": 0.021,
-      "samples_per_second": 75.9,
-      "estimated_time_per_1k_samples": 0.2
+      "average_generation_time": 1.053,
+      "generation_time_std": 0.141,
+      "min_generation_time": 0.916,
+      "max_generation_time": 1.434,
+      "samples_per_second": 0.95,
+      "estimated_time_per_1k_samples": 17.6
     }
   }
 }

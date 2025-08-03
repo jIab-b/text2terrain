@@ -7,7 +7,7 @@
       },
       {
         "role": "user",
-        "content": "sedimentary open, flats with several peaks displaying complex terrain variations"
+        "content": "This landscape features expansive sedimentary plains characterized by broad, open flatlands interspersed with multiple prominent peaks. These peaks rise sharply from the surrounding flats, creating a striking contrast and contributing to a diverse and intricate terrain. The area exhibits a variety of"
       },
       {
         "role": "assistant",
@@ -59,63 +59,6 @@
             "function": {
               "name": "generate_caption",
               "arguments": "{\"terrain_analysis\": {\"elevation_stats\": {\"min\": 0.0, \"max\": 1950.3891286189491, \"mean\": 291.6900632495747, \"median\": 0.0, \"std\": 454.5128374153729, \"range\": 1950.3891286189491, \"elevation_variance\": 206581.91937537323}, \"slope_analysis\": {\"max_slope\": 56.940971152305806, \"mean_slope\": 7.8669239991354365, \"median_slope\": 0.0, \"slope_std\": 10.701586368748584, \"steep_area_fraction\": 0.1999969482421875, \"slope_variance\": 114.52395080778552, \"dominant_aspect\": 0.12092006653179026, \"slope_gradients\": {\"grad_x_mean\": 4.111508483091246, \"grad_y_mean\": 0.970085240598378}}, \"feature_detection\": {\"peaks_detected\": 2, \"peak_height_mean\": 1574.1657764550432, \"peak_height_max\": 1950.3891286189491, \"peak_locations\": [[150, 255], [255, 144]], \"peak_prominence\": 1282.4757132054685, \"valleys_detected\": 0, \"valley_depth_mean\": 0.0, \"valley_depth_min\": 0.0, \"valley_locations\": [], \"valley_depth_relative\": 0.0, \"ridge_lines\": 0.0950164794921875, \"ridge_strength_mean\": 0.9892242480853266, \"ridge_area_fraction\": 0.0950164794921875, \"flat_area_fraction\": 0.0, \"flat_regions_count\": 0, \"largest_flat_region\": 0, \"average_flat_region_size\": 0.0, \"water_body_fraction\": 0.0, \"water_bodies_count\": 0, \"largest_water_body\": 0, \"average_water_depth\": 0.0, \"caves_detected\": 0, \"cave_depth_mean\": 0.0, \"cave_depth_max\": 0.0, \"cave_area_fraction\": 0.0}, \"terrain_classification\": {\"primary_type\": \"plains\", \"confidence\": 0.5, \"characteristics\": [], \"complexity_score\": 206696.64332618102}, \"analysis_metadata\": {\"tile_size\": 256, \"heightmap_shape\": [256, 256], \"analysis_version\": \"1.0\"}}, \"features\": {\"terrain_type\": \"plains\", \"primary_features\": [\"sand_dunes\"], \"secondary_features\": [\"rocky_outcrops\"], \"biome\": \"desert\", \"complexity\": 0.4}, \"parameters\": {\"biome_type\": \"desert\", \"biome_strength\": 0.6333993204497042, \"base_frequency\": 0.008673377807052143, \"detail_octaves\": 4, \"detail_persistence\": 0.6209413642492037, \"height_scale\": 1950.3891286189491}}"
-            }
-          },
-          {
-            "id": "call_6",
-            "type": "function",
-            "function": {
-              "name": "validate_consistency",
-              "arguments": "{\"caption\": \"sedimentary open, flats with several peaks displaying complex terrain variations\", \"features\": {\"terrain_type\": \"plains\", \"primary_features\": [\"sand_dunes\"], \"secondary_features\": [\"rocky_outcrops\"], \"biome\": \"desert\", \"complexity\": 0.4}, \"terrain_analysis\": {\"elevation_stats\": {\"min\": 0.0, \"max\": 1950.3891286189491, \"mean\": 291.6900632495747, \"median\": 0.0, \"std\": 454.5128374153729, \"range\": 1950.3891286189491, \"elevation_variance\": 206581.91937537323}, \"slope_analysis\": {\"max_slope\": 56.940971152305806, \"mean_slope\": 7.8669239991354365, \"median_slope\": 0.0, \"slope_std\": 10.701586368748584, \"steep_area_fraction\": 0.1999969482421875, \"slope_variance\": 114.52395080778552, \"dominant_aspect\": 0.12092006653179026, \"slope_gradients\": {\"grad_x_mean\": 4.111508483091246, \"grad_y_mean\": 0.970085240598378}}, \"feature_detection\": {\"peaks_detected\": 2, \"peak_height_mean\": 1574.1657764550432, \"peak_height_max\": 1950.3891286189491, \"peak_locations\": [[150, 255], [255, 144]], \"peak_prominence\": 1282.4757132054685, \"valleys_detected\": 0, \"valley_depth_mean\": 0.0, \"valley_depth_min\": 0.0, \"valley_locations\": [], \"valley_depth_relative\": 0.0, \"ridge_lines\": 0.0950164794921875, \"ridge_strength_mean\": 0.9892242480853266, \"ridge_area_fraction\": 0.0950164794921875, \"flat_area_fraction\": 0.0, \"flat_regions_count\": 0, \"largest_flat_region\": 0, \"average_flat_region_size\": 0.0, \"water_body_fraction\": 0.0, \"water_bodies_count\": 0, \"largest_water_body\": 0, \"average_water_depth\": 0.0, \"caves_detected\": 0, \"cave_depth_mean\": 0.0, \"cave_depth_max\": 0.0, \"cave_area_fraction\": 0.0}, \"terrain_classification\": {\"primary_type\": \"plains\", \"confidence\": 0.5, \"characteristics\": [], \"complexity_score\": 206696.64332618102}, \"analysis_metadata\": {\"tile_size\": 256, \"heightmap_shape\": [256, 256], \"analysis_version\": \"1.0\"}}}"
-            },
-            "result": {
-              "is_valid": true,
-              "score": 0.747,
-              "feature_score": 0.5,
-              "caption_score": 0.99,
-              "quality_score": 0.8,
-              "cross_score": 0.7,
-              "details": {
-                "features": {
-                  "score": 0.5,
-                  "details": "No features to validate"
-                },
-                "caption": {
-                  "score": 0.99,
-                  "details": [
-                    [
-                      "peak",
-                      1.0
-                    ],
-                    [
-                      "flat",
-                      0.7
-                    ]
-                  ],
-                  "keyword_count": 2,
-                  "word_count": 10
-                },
-                "quality": {
-                  "score": 0.8,
-                  "issues": [
-                    "Extremely steep slopes"
-                  ],
-                  "elevation_range": 1950.3891286189491,
-                  "max_slope": 56.940971152305806,
-                  "complexity": 206696.64332618102
-                },
-                "cross": {
-                  "score": 0.7,
-                  "caption_indicators": [
-                    "mountain",
-                    "plain"
-                  ],
-                  "expected_indicators": [],
-                  "matches": 0,
-                  "mismatches": 2
-                }
-              },
-              "recommendations": []
             }
           },
           {
@@ -178,9 +121,9 @@
     ],
     "training_metadata": {
       "sample_id": 0,
-      "validation_score": 0.747,
+      "validation_score": 1.0,
       "heightmap_hash": "a8e0009d8127e7fb",
-      "generation_time_ms": 20,
+      "generation_time_ms": 1433,
       "terrain_template": "plains",
       "feature_count": 2,
       "complexity_score": 0.4
@@ -194,7 +137,146 @@
       },
       {
         "role": "user",
-        "content": "limestone open, flats with several peaks displaying complex terrain variations"
+        "content": "Expansive Arctic plains characterized by a broad, open landscape interspersed with numerous peaks that create a striking contrast against the flat terrain. These peaks exhibit intricate geological formations and varied elevations, resulting in a complex mosaic of ridges, valleys, and"
+      },
+      {
+        "role": "assistant",
+        "content": null,
+        "tool_calls": [
+          {
+            "id": "call_0",
+            "type": "function",
+            "function": {
+              "name": "sample_terrain_config",
+              "arguments": "{\"features\": {\"terrain_type\": \"hills\", \"primary_features\": [\"cave_systems\"], \"secondary_features\": [\"underground\"], \"biome\": \"temperate\", \"complexity\": 0.7}, \"parameters\": {\"cave_density\": 0.3127130717927134, \"cave_size\": 0.437478095944637, \"tunnel_width\": 0.2697982680172219, \"cave_depth\": 0.4806056187149941, \"base_frequency\": 0.013418675944079195, \"detail_octaves\": 6, \"detail_persistence\": 0.466132186612209, \"height_scale\": 1801.7516625890448}}"
+            }
+          },
+          {
+            "id": "call_1",
+            "type": "function",
+            "function": {
+              "name": "sample_world_coordinates",
+              "arguments": "{\"world_x\": -5120, \"world_y\": -2560}"
+            }
+          },
+          {
+            "id": "call_2",
+            "type": "function",
+            "function": {
+              "name": "generate_seeds",
+              "arguments": "{\"sample_id\": 1, \"num_features\": 2, \"seeds\": [10007, 11020]}"
+            }
+          },
+          {
+            "id": "call_3",
+            "type": "function",
+            "function": {
+              "name": "generate_heightmap",
+              "arguments": "{\"world_x\": -5120, \"world_y\": -2560, \"parameters\": {\"cave_density\": 0.3127130717927134, \"cave_size\": 0.437478095944637, \"tunnel_width\": 0.2697982680172219, \"cave_depth\": 0.4806056187149941, \"base_frequency\": 0.013418675944079195, \"detail_octaves\": 6, \"detail_persistence\": 0.466132186612209, \"height_scale\": 1801.7516625890448}, \"seeds\": [10007, 11020], \"global_seed\": 48271}"
+            }
+          },
+          {
+            "id": "call_4",
+            "type": "function",
+            "function": {
+              "name": "analyze_heightmap",
+              "arguments": "{\"terrain_analysis\": {\"elevation_stats\": {\"min\": 0.0, \"max\": 1801.7516625890448, \"mean\": 399.8299360734288, \"median\": 107.00889436243995, \"std\": 501.9970911058815, \"range\": 1801.7516625890448, \"elevation_variance\": 252001.0794787667}, \"slope_analysis\": {\"max_slope\": 63.9540434837508, \"mean_slope\": 14.361928388941042, \"median_slope\": 10.147466635881706, \"slope_std\": 16.853137527977832, \"steep_area_fraction\": 0.1999969482421875, \"slope_variance\": 284.0282445369347, \"dominant_aspect\": 0.20345952712076332, \"slope_gradients\": {\"grad_x_mean\": -0.07535168780357762, \"grad_y_mean\": -0.5768023365527777}}, \"feature_detection\": {\"peaks_detected\": 4, \"peak_height_mean\": 1518.646692385884, \"peak_height_max\": 1801.7516625890448, \"peak_locations\": [[52, 26], [52, 250], [201, 175], [255, 101]], \"peak_prominence\": 1118.8167563124553, \"valleys_detected\": 0, \"valley_depth_mean\": 0.0, \"valley_depth_min\": 0.0, \"valley_locations\": [], \"valley_depth_relative\": 0.0, \"ridge_lines\": 0.09423828125, \"ridge_strength_mean\": 2.2430622686403043, \"ridge_area_fraction\": 0.09423828125, \"flat_area_fraction\": 0.0, \"flat_regions_count\": 0, \"largest_flat_region\": 0, \"average_flat_region_size\": 0.0, \"water_body_fraction\": 0.0, \"water_bodies_count\": 0, \"largest_water_body\": 0, \"average_water_depth\": 0.0, \"caves_detected\": 0, \"cave_depth_mean\": 0.0, \"cave_depth_max\": 0.0, \"cave_area_fraction\": 0.0}, \"terrain_classification\": {\"primary_type\": \"plains\", \"confidence\": 0.5, \"characteristics\": [], \"complexity_score\": 252285.50772330363}, \"analysis_metadata\": {\"tile_size\": 256, \"heightmap_shape\": [256, 256], \"analysis_version\": \"1.0\"}}}"
+            }
+          },
+          {
+            "id": "call_5",
+            "type": "function",
+            "function": {
+              "name": "generate_caption",
+              "arguments": "{\"terrain_analysis\": {\"elevation_stats\": {\"min\": 0.0, \"max\": 1801.7516625890448, \"mean\": 399.8299360734288, \"median\": 107.00889436243995, \"std\": 501.9970911058815, \"range\": 1801.7516625890448, \"elevation_variance\": 252001.0794787667}, \"slope_analysis\": {\"max_slope\": 63.9540434837508, \"mean_slope\": 14.361928388941042, \"median_slope\": 10.147466635881706, \"slope_std\": 16.853137527977832, \"steep_area_fraction\": 0.1999969482421875, \"slope_variance\": 284.0282445369347, \"dominant_aspect\": 0.20345952712076332, \"slope_gradients\": {\"grad_x_mean\": -0.07535168780357762, \"grad_y_mean\": -0.5768023365527777}}, \"feature_detection\": {\"peaks_detected\": 4, \"peak_height_mean\": 1518.646692385884, \"peak_height_max\": 1801.7516625890448, \"peak_locations\": [[52, 26], [52, 250], [201, 175], [255, 101]], \"peak_prominence\": 1118.8167563124553, \"valleys_detected\": 0, \"valley_depth_mean\": 0.0, \"valley_depth_min\": 0.0, \"valley_locations\": [], \"valley_depth_relative\": 0.0, \"ridge_lines\": 0.09423828125, \"ridge_strength_mean\": 2.2430622686403043, \"ridge_area_fraction\": 0.09423828125, \"flat_area_fraction\": 0.0, \"flat_regions_count\": 0, \"largest_flat_region\": 0, \"average_flat_region_size\": 0.0, \"water_body_fraction\": 0.0, \"water_bodies_count\": 0, \"largest_water_body\": 0, \"average_water_depth\": 0.0, \"caves_detected\": 0, \"cave_depth_mean\": 0.0, \"cave_depth_max\": 0.0, \"cave_area_fraction\": 0.0}, \"terrain_classification\": {\"primary_type\": \"plains\", \"confidence\": 0.5, \"characteristics\": [], \"complexity_score\": 252285.50772330363}, \"analysis_metadata\": {\"tile_size\": 256, \"heightmap_shape\": [256, 256], \"analysis_version\": \"1.0\"}}, \"features\": {\"terrain_type\": \"hills\", \"primary_features\": [\"cave_systems\"], \"secondary_features\": [\"underground\"], \"biome\": \"temperate\", \"complexity\": 0.7}, \"parameters\": {\"cave_density\": 0.3127130717927134, \"cave_size\": 0.437478095944637, \"tunnel_width\": 0.2697982680172219, \"cave_depth\": 0.4806056187149941, \"base_frequency\": 0.013418675944079195, \"detail_octaves\": 6, \"detail_persistence\": 0.466132186612209, \"height_scale\": 1801.7516625890448}}"
+            }
+          },
+          {
+            "id": "call_7",
+            "type": "function",
+            "function": {
+              "name": "convert_to_legacy_format",
+              "arguments": "{\"features\": {\"terrain_type\": \"hills\", \"primary_features\": [\"cave_systems\"], \"secondary_features\": [\"underground\"], \"biome\": \"temperate\", \"complexity\": 0.7}, \"parameters\": {\"cave_density\": 0.3127130717927134, \"cave_size\": 0.437478095944637, \"tunnel_width\": 0.2697982680172219, \"cave_depth\": 0.4806056187149941, \"base_frequency\": 0.013418675944079195, \"detail_octaves\": 6, \"detail_persistence\": 0.466132186612209, \"height_scale\": 1801.7516625890448}, \"world_x\": -5120, \"world_y\": -2560, \"seeds\": [10007, 11020, 48273], \"global_seed\": 48271, \"tile_size\": 256}"
+            },
+            "result": {
+              "tile_u": -20,
+              "tile_v": -10,
+              "world_x": -5120,
+              "world_y": -2560,
+              "global_seed": 48271,
+              "module_ids": [
+                0,
+                6,
+                8
+              ],
+              "parameters": {
+                "frequency": 0.013418675944079195,
+                "octaves": 6,
+                "persistence": 0.466132186612209,
+                "lacunarity": 2.0,
+                "height_scale": 1801.7516625890448,
+                "erosion_speed": 0.06254261435854268,
+                "iterations": 93,
+                "warp_amplitude": 140.0,
+                "warp_frequency": 0.005,
+                "warp_octaves": 2,
+                "rain_amount": 0.5,
+                "evaporation": 0.05,
+                "capacity": 0.3
+              },
+              "seeds": [
+                10007,
+                11020,
+                48273
+              ]
+            }
+          },
+          {
+            "id": "call_8",
+            "type": "function",
+            "function": {
+              "name": "compute_grid_continuity",
+              "arguments": "{\"blend_edges\": true, \"overlap_size\": 16, \"tile_coordinates\": [-20, -10]}"
+            }
+          },
+          {
+            "id": "call_3",
+            "type": "function",
+            "function": {
+              "name": "generate_heightmap",
+              "arguments": "{\"tile_u\": -20, \"tile_v\": -10, \"world_x\": -5120, \"world_y\": -2560, \"global_seed\": 48271, \"module_ids\": [0, 6, 8], \"parameters\": {\"frequency\": 0.013418675944079195, \"octaves\": 6, \"persistence\": 0.466132186612209, \"lacunarity\": 2.0, \"height_scale\": 1801.7516625890448, \"erosion_speed\": 0.06254261435854268, \"iterations\": 93, \"warp_amplitude\": 140.0, \"warp_frequency\": 0.005, \"warp_octaves\": 2, \"rain_amount\": 0.5, \"evaporation\": 0.05, \"capacity\": 0.3}, \"seeds\": [10007, 11020, 48273], \"features\": {\"terrain_type\": \"hills\", \"primary_features\": [\"cave_systems\"], \"secondary_features\": [\"underground\"], \"biome\": \"temperate\", \"complexity\": 0.7}, \"terrain_analysis\": {\"elevation_stats\": {\"min\": 0.0, \"max\": 1801.7516625890448, \"mean\": 399.8299360734288, \"median\": 107.00889436243995, \"std\": 501.9970911058815, \"range\": 1801.7516625890448, \"elevation_variance\": 252001.0794787667}, \"slope_analysis\": {\"max_slope\": 63.9540434837508, \"mean_slope\": 14.361928388941042, \"median_slope\": 10.147466635881706, \"slope_std\": 16.853137527977832, \"steep_area_fraction\": 0.1999969482421875, \"slope_variance\": 284.0282445369347, \"dominant_aspect\": 0.20345952712076332, \"slope_gradients\": {\"grad_x_mean\": -0.07535168780357762, \"grad_y_mean\": -0.5768023365527777}}, \"feature_detection\": {\"peaks_detected\": 4, \"peak_height_mean\": 1518.646692385884, \"peak_height_max\": 1801.7516625890448, \"peak_locations\": [[52, 26], [52, 250], [201, 175], [255, 101]], \"peak_prominence\": 1118.8167563124553, \"valleys_detected\": 0, \"valley_depth_mean\": 0.0, \"valley_depth_min\": 0.0, \"valley_locations\": [], \"valley_depth_relative\": 0.0, \"ridge_lines\": 0.09423828125, \"ridge_strength_mean\": 2.2430622686403043, \"ridge_area_fraction\": 0.09423828125, \"flat_area_fraction\": 0.0, \"flat_regions_count\": 0, \"largest_flat_region\": 0, \"average_flat_region_size\": 0.0, \"water_body_fraction\": 0.0, \"water_bodies_count\": 0, \"largest_water_body\": 0, \"average_water_depth\": 0.0, \"caves_detected\": 0, \"cave_depth_mean\": 0.0, \"cave_depth_max\": 0.0, \"cave_area_fraction\": 0.0}, \"terrain_classification\": {\"primary_type\": \"plains\", \"confidence\": 0.5, \"characteristics\": [], \"complexity_score\": 252285.50772330363}, \"analysis_metadata\": {\"tile_size\": 256, \"heightmap_shape\": [256, 256], \"analysis_version\": \"1.0\"}}, \"grid_continuity\": {\"blend_edges\": true, \"overlap_size\": 16, \"tile_coordinates\": [-20, -10]}}"
+            }
+          },
+          {
+            "id": "call_10",
+            "type": "function",
+            "function": {
+              "name": "validate_enhanced_format",
+              "arguments": "{\"is_valid\": true, \"errors\": []}"
+            }
+          }
+        ]
+      }
+    ],
+    "training_metadata": {
+      "sample_id": 1,
+      "validation_score": 1.0,
+      "heightmap_hash": "868342f9ae81b437",
+      "generation_time_ms": 1110,
+      "terrain_template": "hills",
+      "feature_count": 2,
+      "complexity_score": 0.7
+    }
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are a terrain generator"
+      },
+      {
+        "role": "user",
+        "content": "Exposed limestone formations dominate the open flats, characterized by multiple peaks that exhibit intricate and varied terrain features. The landscape reveals a dynamic mosaic of rugged ridges, sharp escarpments, and gently sloping areas, creating a richly textured environment shaped by"
       },
       {
         "role": "assistant",
@@ -246,63 +328,6 @@
             "function": {
               "name": "generate_caption",
               "arguments": "{\"terrain_analysis\": {\"elevation_stats\": {\"min\": 0.0, \"max\": 1445.8764110834736, \"mean\": 314.3321141176411, \"median\": 90.22251552854675, \"std\": 387.2393898482804, \"range\": 1445.8764110834736, \"elevation_variance\": 149954.34505006846}, \"slope_analysis\": {\"max_slope\": 38.89945448144901, \"mean_slope\": 8.331747698542129, \"median_slope\": 4.688035072118381, \"slope_std\": 10.121716038396762, \"steep_area_fraction\": 0.1999969482421875, \"slope_variance\": 102.44913556193826, \"dominant_aspect\": -0.003194368942170858, \"slope_gradients\": {\"grad_x_mean\": -0.7799239631403689, \"grad_y_mean\": -1.9446810738544835}}, \"feature_detection\": {\"peaks_detected\": 3, \"peak_height_mean\": 1222.1395976417866, \"peak_height_max\": 1445.8764110834736, \"peak_locations\": [[0, 252], [95, 131], [255, 9]], \"peak_prominence\": 907.8074835241455, \"valleys_detected\": 0, \"valley_depth_mean\": 0.0, \"valley_depth_min\": 0.0, \"valley_locations\": [], \"valley_depth_relative\": 0.0, \"ridge_lines\": 0.091217041015625, \"ridge_strength_mean\": 0.8377970345749174, \"ridge_area_fraction\": 0.091217041015625, \"flat_area_fraction\": 0.0, \"flat_regions_count\": 0, \"largest_flat_region\": 0, \"average_flat_region_size\": 0.0, \"water_body_fraction\": 0.0, \"water_bodies_count\": 0, \"largest_water_body\": 0, \"average_water_depth\": 0.0, \"caves_detected\": 0, \"cave_depth_mean\": 0.0, \"cave_depth_max\": 0.0, \"cave_area_fraction\": 0.0}, \"terrain_classification\": {\"primary_type\": \"plains\", \"confidence\": 0.5, \"characteristics\": [], \"complexity_score\": 150057.09418563038}, \"analysis_metadata\": {\"tile_size\": 256, \"heightmap_shape\": [256, 256], \"analysis_version\": \"1.0\"}}, \"features\": {\"terrain_type\": \"plains\", \"primary_features\": [\"sand_dunes\"], \"secondary_features\": [\"rocky_outcrops\"], \"biome\": \"desert\", \"complexity\": 0.4}, \"parameters\": {\"biome_type\": \"desert\", \"biome_strength\": 0.7267843194460508, \"base_frequency\": 0.008229706431613831, \"detail_octaves\": 5, \"detail_persistence\": 0.4306630829559546, \"height_scale\": 1445.8764110834736}}"
-            }
-          },
-          {
-            "id": "call_6",
-            "type": "function",
-            "function": {
-              "name": "validate_consistency",
-              "arguments": "{\"caption\": \"limestone open, flats with several peaks displaying complex terrain variations\", \"features\": {\"terrain_type\": \"plains\", \"primary_features\": [\"sand_dunes\"], \"secondary_features\": [\"rocky_outcrops\"], \"biome\": \"desert\", \"complexity\": 0.4}, \"terrain_analysis\": {\"elevation_stats\": {\"min\": 0.0, \"max\": 1445.8764110834736, \"mean\": 314.3321141176411, \"median\": 90.22251552854675, \"std\": 387.2393898482804, \"range\": 1445.8764110834736, \"elevation_variance\": 149954.34505006846}, \"slope_analysis\": {\"max_slope\": 38.89945448144901, \"mean_slope\": 8.331747698542129, \"median_slope\": 4.688035072118381, \"slope_std\": 10.121716038396762, \"steep_area_fraction\": 0.1999969482421875, \"slope_variance\": 102.44913556193826, \"dominant_aspect\": -0.003194368942170858, \"slope_gradients\": {\"grad_x_mean\": -0.7799239631403689, \"grad_y_mean\": -1.9446810738544835}}, \"feature_detection\": {\"peaks_detected\": 3, \"peak_height_mean\": 1222.1395976417866, \"peak_height_max\": 1445.8764110834736, \"peak_locations\": [[0, 252], [95, 131], [255, 9]], \"peak_prominence\": 907.8074835241455, \"valleys_detected\": 0, \"valley_depth_mean\": 0.0, \"valley_depth_min\": 0.0, \"valley_locations\": [], \"valley_depth_relative\": 0.0, \"ridge_lines\": 0.091217041015625, \"ridge_strength_mean\": 0.8377970345749174, \"ridge_area_fraction\": 0.091217041015625, \"flat_area_fraction\": 0.0, \"flat_regions_count\": 0, \"largest_flat_region\": 0, \"average_flat_region_size\": 0.0, \"water_body_fraction\": 0.0, \"water_bodies_count\": 0, \"largest_water_body\": 0, \"average_water_depth\": 0.0, \"caves_detected\": 0, \"cave_depth_mean\": 0.0, \"cave_depth_max\": 0.0, \"cave_area_fraction\": 0.0}, \"terrain_classification\": {\"primary_type\": \"plains\", \"confidence\": 0.5, \"characteristics\": [], \"complexity_score\": 150057.09418563038}, \"analysis_metadata\": {\"tile_size\": 256, \"heightmap_shape\": [256, 256], \"analysis_version\": \"1.0\"}}}"
-            },
-            "result": {
-              "is_valid": true,
-              "score": 0.747,
-              "feature_score": 0.5,
-              "caption_score": 0.99,
-              "quality_score": 0.8,
-              "cross_score": 0.7,
-              "details": {
-                "features": {
-                  "score": 0.5,
-                  "details": "No features to validate"
-                },
-                "caption": {
-                  "score": 0.99,
-                  "details": [
-                    [
-                      "peak",
-                      1.0
-                    ],
-                    [
-                      "flat",
-                      0.7
-                    ]
-                  ],
-                  "keyword_count": 2,
-                  "word_count": 10
-                },
-                "quality": {
-                  "score": 0.8,
-                  "issues": [
-                    "Extremely steep slopes"
-                  ],
-                  "elevation_range": 1445.8764110834736,
-                  "max_slope": 38.89945448144901,
-                  "complexity": 150057.09418563038
-                },
-                "cross": {
-                  "score": 0.7,
-                  "caption_indicators": [
-                    "mountain",
-                    "plain"
-                  ],
-                  "expected_indicators": [],
-                  "matches": 0,
-                  "mismatches": 2
-                }
-              },
-              "recommendations": []
             }
           },
           {
@@ -365,9 +390,9 @@
     ],
     "training_metadata": {
       "sample_id": 2,
-      "validation_score": 0.747,
+      "validation_score": 1.0,
       "heightmap_hash": "1c0401dc96b9ad7d",
-      "generation_time_ms": 10,
+      "generation_time_ms": 952,
       "terrain_template": "plains",
       "feature_count": 2,
       "complexity_score": 0.4
@@ -381,7 +406,7 @@
       },
       {
         "role": "user",
-        "content": "flat steppes with multiple peaks displaying complex terrain variations"
+        "content": "Expansive volcanic landscapes stretch across the horizon, characterized by sweeping prairies that undulate gently beneath a sky. Rising prominently within this vast terrain are multiple peaks, each showcasing intricate geological formations and diverse textures. The complex topography reveals a dynamic"
       },
       {
         "role": "assistant",
@@ -392,7 +417,7 @@
             "type": "function",
             "function": {
               "name": "sample_terrain_config",
-              "arguments": "{\"features\": {\"terrain_type\": \"plains\", \"primary_features\": [\"sand_dunes\"], \"secondary_features\": [\"rocky_outcrops\"], \"biome\": \"desert\", \"complexity\": 0.4}, \"parameters\": {\"biome_type\": \"desert\", \"biome_strength\": 0.8654365350387327, \"base_frequency\": 0.016528980989861688, \"detail_octaves\": 5, \"detail_persistence\": 0.433465652078763, \"height_scale\": 1539.1009261374784}}"
+              "arguments": "{\"features\": {\"terrain_type\": \"hills\", \"primary_features\": [\"rolling_hills\"], \"secondary_features\": [\"gentle_slopes\"], \"biome\": \"grassland\", \"complexity\": 0.4}, \"parameters\": {\"mountain_height\": 0.5421384819823141, \"mountain_steepness\": 0.41891953600814535, \"base_frequency\": 0.01959673645969056, \"detail_octaves\": 6, \"detail_persistence\": 0.42364005942353744, \"height_scale\": 1298.403078392058}}"
             }
           },
           {
@@ -400,7 +425,7 @@
             "type": "function",
             "function": {
               "name": "sample_world_coordinates",
-              "arguments": "{\"world_x\": -1024, \"world_y\": 3072}"
+              "arguments": "{\"world_x\": 768, \"world_y\": 4096}"
             }
           },
           {
@@ -408,7 +433,7 @@
             "type": "function",
             "function": {
               "name": "generate_seeds",
-              "arguments": "{\"sample_id\": 10, \"num_features\": 2, \"seeds\": [100070, 101083]}"
+              "arguments": "{\"sample_id\": 3, \"num_features\": 2, \"seeds\": [30021, 31034]}"
             }
           },
           {
@@ -416,7 +441,7 @@
             "type": "function",
             "function": {
               "name": "generate_heightmap",
-              "arguments": "{\"world_x\": -1024, \"world_y\": 3072, \"parameters\": {\"biome_type\": \"desert\", \"biome_strength\": 0.8654365350387327, \"base_frequency\": 0.016528980989861688, \"detail_octaves\": 5, \"detail_persistence\": 0.433465652078763, \"height_scale\": 1539.1009261374784}, \"seeds\": [100070, 101083], \"global_seed\": 482710}"
+              "arguments": "{\"world_x\": 768, \"world_y\": 4096, \"parameters\": {\"mountain_height\": 0.5421384819823141, \"mountain_steepness\": 0.41891953600814535, \"base_frequency\": 0.01959673645969056, \"detail_octaves\": 6, \"detail_persistence\": 0.42364005942353744, \"height_scale\": 1298.403078392058}, \"seeds\": [30021, 31034], \"global_seed\": 144813}"
             }
           },
           {
@@ -424,7 +449,7 @@
             "type": "function",
             "function": {
               "name": "analyze_heightmap",
-              "arguments": "{\"terrain_analysis\": {\"elevation_stats\": {\"min\": 0.0, \"max\": 1539.1009261374784, \"mean\": 258.5715040057469, \"median\": 0.0, \"std\": 355.9563429815311, \"range\": 1539.1009261374784, \"elevation_variance\": 126704.91810878544}, \"slope_analysis\": {\"max_slope\": 63.3168398378805, \"mean_slope\": 11.608225412367052, \"median_slope\": 0.5764060802421616, \"slope_std\": 14.73064553339056, \"steep_area_fraction\": 0.1999969482421875, \"slope_variance\": 216.99191783039925, \"dominant_aspect\": 0.12050523152862773, \"slope_gradients\": {\"grad_x_mean\": 1.8413414773856152, \"grad_y_mean\": -0.19878551887978713}}, \"feature_detection\": {\"peaks_detected\": 5, \"peak_height_mean\": 1238.6870537518903, \"peak_height_max\": 1539.1009261374784, \"peak_locations\": [[0, 195], [56, 134], [177, 74], [237, 255], [255, 13]], \"peak_prominence\": 980.1155497461434, \"valleys_detected\": 0, \"valley_depth_mean\": 0.0, \"valley_depth_min\": 0.0, \"valley_locations\": [], \"valley_depth_relative\": 0.0, \"ridge_lines\": 0.0943450927734375, \"ridge_strength_mean\": 2.502462086646702, \"ridge_area_fraction\": 0.0943450927734375, \"flat_area_fraction\": 0.0, \"flat_regions_count\": 0, \"largest_flat_region\": 0, \"average_flat_region_size\": 0.0, \"water_body_fraction\": 0.0, \"water_bodies_count\": 0, \"largest_water_body\": 0, \"average_water_depth\": 0.0, \"caves_detected\": 0, \"cave_depth_mean\": 0.0, \"cave_depth_max\": 0.0, \"cave_area_fraction\": 0.0}, \"terrain_classification\": {\"primary_type\": \"plains\", \"confidence\": 0.5, \"characteristics\": [], \"complexity_score\": 126922.41002661583}, \"analysis_metadata\": {\"tile_size\": 256, \"heightmap_shape\": [256, 256], \"analysis_version\": \"1.0\"}}}"
+              "arguments": "{\"terrain_analysis\": {\"elevation_stats\": {\"min\": 0.0, \"max\": 1298.403078392058, \"mean\": 218.0289199431498, \"median\": 0.0, \"std\": 312.1996401672076, \"range\": 1298.403078392058, \"elevation_variance\": 97468.61532053389}, \"slope_analysis\": {\"max_slope\": 70.87691135318589, \"mean_slope\": 12.980111512754057, \"median_slope\": 0.0, \"slope_std\": 17.01140271046139, \"steep_area_fraction\": 0.1999969482421875, \"slope_variance\": 289.3878221774931, \"dominant_aspect\": 0.31421003309041745, \"slope_gradients\": {\"grad_x_mean\": -0.04328673192396337, \"grad_y_mean\": 1.4408794911987055}}, \"feature_detection\": {\"peaks_detected\": 6, \"peak_height_mean\": 1094.6828654913277, \"peak_height_max\": 1298.403078392058, \"peak_locations\": [[48, 0], [48, 139], [150, 88], [150, 241], [252, 37], [252, 190]], \"peak_prominence\": 876.653945548178, \"valleys_detected\": 0, \"valley_depth_mean\": 0.0, \"valley_depth_min\": 0.0, \"valley_locations\": [], \"valley_depth_relative\": 0.0, \"ridge_lines\": 0.0964202880859375, \"ridge_strength_mean\": 3.394516124562105, \"ridge_area_fraction\": 0.0964202880859375, \"flat_area_fraction\": 0.0, \"flat_regions_count\": 0, \"largest_flat_region\": 0, \"average_flat_region_size\": 0.0, \"water_body_fraction\": 0.0, \"water_bodies_count\": 0, \"largest_water_body\": 0, \"average_water_depth\": 0.0, \"caves_detected\": 0, \"cave_depth_mean\": 0.0, \"cave_depth_max\": 0.0, \"cave_area_fraction\": 0.0}, \"terrain_classification\": {\"primary_type\": \"plains\", \"confidence\": 0.5, \"characteristics\": [], \"complexity_score\": 97758.60314271139}, \"analysis_metadata\": {\"tile_size\": 256, \"heightmap_shape\": [256, 256], \"analysis_version\": \"1.0\"}}}"
             }
           },
           {
@@ -432,64 +457,7 @@
             "type": "function",
             "function": {
               "name": "generate_caption",
-              "arguments": "{\"terrain_analysis\": {\"elevation_stats\": {\"min\": 0.0, \"max\": 1539.1009261374784, \"mean\": 258.5715040057469, \"median\": 0.0, \"std\": 355.9563429815311, \"range\": 1539.1009261374784, \"elevation_variance\": 126704.91810878544}, \"slope_analysis\": {\"max_slope\": 63.3168398378805, \"mean_slope\": 11.608225412367052, \"median_slope\": 0.5764060802421616, \"slope_std\": 14.73064553339056, \"steep_area_fraction\": 0.1999969482421875, \"slope_variance\": 216.99191783039925, \"dominant_aspect\": 0.12050523152862773, \"slope_gradients\": {\"grad_x_mean\": 1.8413414773856152, \"grad_y_mean\": -0.19878551887978713}}, \"feature_detection\": {\"peaks_detected\": 5, \"peak_height_mean\": 1238.6870537518903, \"peak_height_max\": 1539.1009261374784, \"peak_locations\": [[0, 195], [56, 134], [177, 74], [237, 255], [255, 13]], \"peak_prominence\": 980.1155497461434, \"valleys_detected\": 0, \"valley_depth_mean\": 0.0, \"valley_depth_min\": 0.0, \"valley_locations\": [], \"valley_depth_relative\": 0.0, \"ridge_lines\": 0.0943450927734375, \"ridge_strength_mean\": 2.502462086646702, \"ridge_area_fraction\": 0.0943450927734375, \"flat_area_fraction\": 0.0, \"flat_regions_count\": 0, \"largest_flat_region\": 0, \"average_flat_region_size\": 0.0, \"water_body_fraction\": 0.0, \"water_bodies_count\": 0, \"largest_water_body\": 0, \"average_water_depth\": 0.0, \"caves_detected\": 0, \"cave_depth_mean\": 0.0, \"cave_depth_max\": 0.0, \"cave_area_fraction\": 0.0}, \"terrain_classification\": {\"primary_type\": \"plains\", \"confidence\": 0.5, \"characteristics\": [], \"complexity_score\": 126922.41002661583}, \"analysis_metadata\": {\"tile_size\": 256, \"heightmap_shape\": [256, 256], \"analysis_version\": \"1.0\"}}, \"features\": {\"terrain_type\": \"plains\", \"primary_features\": [\"sand_dunes\"], \"secondary_features\": [\"rocky_outcrops\"], \"biome\": \"desert\", \"complexity\": 0.4}, \"parameters\": {\"biome_type\": \"desert\", \"biome_strength\": 0.8654365350387327, \"base_frequency\": 0.016528980989861688, \"detail_octaves\": 5, \"detail_persistence\": 0.433465652078763, \"height_scale\": 1539.1009261374784}}"
-            }
-          },
-          {
-            "id": "call_6",
-            "type": "function",
-            "function": {
-              "name": "validate_consistency",
-              "arguments": "{\"caption\": \"flat steppes with multiple peaks displaying complex terrain variations\", \"features\": {\"terrain_type\": \"plains\", \"primary_features\": [\"sand_dunes\"], \"secondary_features\": [\"rocky_outcrops\"], \"biome\": \"desert\", \"complexity\": 0.4}, \"terrain_analysis\": {\"elevation_stats\": {\"min\": 0.0, \"max\": 1539.1009261374784, \"mean\": 258.5715040057469, \"median\": 0.0, \"std\": 355.9563429815311, \"range\": 1539.1009261374784, \"elevation_variance\": 126704.91810878544}, \"slope_analysis\": {\"max_slope\": 63.3168398378805, \"mean_slope\": 11.608225412367052, \"median_slope\": 0.5764060802421616, \"slope_std\": 14.73064553339056, \"steep_area_fraction\": 0.1999969482421875, \"slope_variance\": 216.99191783039925, \"dominant_aspect\": 0.12050523152862773, \"slope_gradients\": {\"grad_x_mean\": 1.8413414773856152, \"grad_y_mean\": -0.19878551887978713}}, \"feature_detection\": {\"peaks_detected\": 5, \"peak_height_mean\": 1238.6870537518903, \"peak_height_max\": 1539.1009261374784, \"peak_locations\": [[0, 195], [56, 134], [177, 74], [237, 255], [255, 13]], \"peak_prominence\": 980.1155497461434, \"valleys_detected\": 0, \"valley_depth_mean\": 0.0, \"valley_depth_min\": 0.0, \"valley_locations\": [], \"valley_depth_relative\": 0.0, \"ridge_lines\": 0.0943450927734375, \"ridge_strength_mean\": 2.502462086646702, \"ridge_area_fraction\": 0.0943450927734375, \"flat_area_fraction\": 0.0, \"flat_regions_count\": 0, \"largest_flat_region\": 0, \"average_flat_region_size\": 0.0, \"water_body_fraction\": 0.0, \"water_bodies_count\": 0, \"largest_water_body\": 0, \"average_water_depth\": 0.0, \"caves_detected\": 0, \"cave_depth_mean\": 0.0, \"cave_depth_max\": 0.0, \"cave_area_fraction\": 0.0}, \"terrain_classification\": {\"primary_type\": \"plains\", \"confidence\": 0.5, \"characteristics\": [], \"complexity_score\": 126922.41002661583}, \"analysis_metadata\": {\"tile_size\": 256, \"heightmap_shape\": [256, 256], \"analysis_version\": \"1.0\"}}}"
-            },
-            "result": {
-              "is_valid": true,
-              "score": 0.741,
-              "feature_score": 0.5,
-              "caption_score": 0.97,
-              "quality_score": 0.8,
-              "cross_score": 0.7,
-              "details": {
-                "features": {
-                  "score": 0.5,
-                  "details": "No features to validate"
-                },
-                "caption": {
-                  "score": 0.97,
-                  "details": [
-                    [
-                      "peak",
-                      1.0
-                    ],
-                    [
-                      "flat",
-                      0.7
-                    ]
-                  ],
-                  "keyword_count": 2,
-                  "word_count": 9
-                },
-                "quality": {
-                  "score": 0.8,
-                  "issues": [
-                    "Extremely steep slopes"
-                  ],
-                  "elevation_range": 1539.1009261374784,
-                  "max_slope": 63.3168398378805,
-                  "complexity": 126922.41002661583
-                },
-                "cross": {
-                  "score": 0.7,
-                  "caption_indicators": [
-                    "mountain",
-                    "plain"
-                  ],
-                  "expected_indicators": [],
-                  "matches": 0,
-                  "mismatches": 2
-                }
-              },
-              "recommendations": []
+              "arguments": "{\"terrain_analysis\": {\"elevation_stats\": {\"min\": 0.0, \"max\": 1298.403078392058, \"mean\": 218.0289199431498, \"median\": 0.0, \"std\": 312.1996401672076, \"range\": 1298.403078392058, \"elevation_variance\": 97468.61532053389}, \"slope_analysis\": {\"max_slope\": 70.87691135318589, \"mean_slope\": 12.980111512754057, \"median_slope\": 0.0, \"slope_std\": 17.01140271046139, \"steep_area_fraction\": 0.1999969482421875, \"slope_variance\": 289.3878221774931, \"dominant_aspect\": 0.31421003309041745, \"slope_gradients\": {\"grad_x_mean\": -0.04328673192396337, \"grad_y_mean\": 1.4408794911987055}}, \"feature_detection\": {\"peaks_detected\": 6, \"peak_height_mean\": 1094.6828654913277, \"peak_height_max\": 1298.403078392058, \"peak_locations\": [[48, 0], [48, 139], [150, 88], [150, 241], [252, 37], [252, 190]], \"peak_prominence\": 876.653945548178, \"valleys_detected\": 0, \"valley_depth_mean\": 0.0, \"valley_depth_min\": 0.0, \"valley_locations\": [], \"valley_depth_relative\": 0.0, \"ridge_lines\": 0.0964202880859375, \"ridge_strength_mean\": 3.394516124562105, \"ridge_area_fraction\": 0.0964202880859375, \"flat_area_fraction\": 0.0, \"flat_regions_count\": 0, \"largest_flat_region\": 0, \"average_flat_region_size\": 0.0, \"water_body_fraction\": 0.0, \"water_bodies_count\": 0, \"largest_water_body\": 0, \"average_water_depth\": 0.0, \"caves_detected\": 0, \"cave_depth_mean\": 0.0, \"cave_depth_max\": 0.0, \"cave_area_fraction\": 0.0}, \"terrain_classification\": {\"primary_type\": \"plains\", \"confidence\": 0.5, \"characteristics\": [], \"complexity_score\": 97758.60314271139}, \"analysis_metadata\": {\"tile_size\": 256, \"heightmap_shape\": [256, 256], \"analysis_version\": \"1.0\"}}, \"features\": {\"terrain_type\": \"hills\", \"primary_features\": [\"rolling_hills\"], \"secondary_features\": [\"gentle_slopes\"], \"biome\": \"grassland\", \"complexity\": 0.4}, \"parameters\": {\"mountain_height\": 0.5421384819823141, \"mountain_steepness\": 0.41891953600814535, \"base_frequency\": 0.01959673645969056, \"detail_octaves\": 6, \"detail_persistence\": 0.42364005942353744, \"height_scale\": 1298.403078392058}}"
             }
           },
           {
@@ -497,29 +465,31 @@
             "type": "function",
             "function": {
               "name": "convert_to_legacy_format",
-              "arguments": "{\"features\": {\"terrain_type\": \"plains\", \"primary_features\": [\"sand_dunes\"], \"secondary_features\": [\"rocky_outcrops\"], \"biome\": \"desert\", \"complexity\": 0.4}, \"parameters\": {\"biome_type\": \"desert\", \"biome_strength\": 0.8654365350387327, \"base_frequency\": 0.016528980989861688, \"detail_octaves\": 5, \"detail_persistence\": 0.433465652078763, \"height_scale\": 1539.1009261374784}, \"world_x\": -1024, \"world_y\": 3072, \"seeds\": [100070, 101083], \"global_seed\": 482710, \"tile_size\": 256}"
+              "arguments": "{\"features\": {\"terrain_type\": \"hills\", \"primary_features\": [\"rolling_hills\"], \"secondary_features\": [\"gentle_slopes\"], \"biome\": \"grassland\", \"complexity\": 0.4}, \"parameters\": {\"mountain_height\": 0.5421384819823141, \"mountain_steepness\": 0.41891953600814535, \"base_frequency\": 0.01959673645969056, \"detail_octaves\": 6, \"detail_persistence\": 0.42364005942353744, \"height_scale\": 1298.403078392058}, \"world_x\": 768, \"world_y\": 4096, \"seeds\": [30021, 31034, 144815], \"global_seed\": 144813, \"tile_size\": 256}"
             },
             "result": {
-              "tile_u": -4,
-              "tile_v": 12,
-              "world_x": -1024,
-              "world_y": 3072,
-              "global_seed": 482710,
+              "tile_u": 3,
+              "tile_v": 16,
+              "world_x": 768,
+              "world_y": 4096,
+              "global_seed": 144813,
               "module_ids": [
                 0,
+                4,
                 8
               ],
               "parameters": {
-                "frequency": 0.02479347148479253,
-                "octaves": 5,
-                "persistence": 0.433465652078763,
+                "frequency": 0.01959673645969056,
+                "octaves": 6,
+                "persistence": 0.42364005942353744,
                 "lacunarity": 2.0,
-                "height_scale": 1539.1009261374784,
-                "erosion_speed": 0.0
+                "height_scale": 1298.403078392058,
+                "ridge_sharpness": 0.41891953600814535
               },
               "seeds": [
-                100070,
-                101083
+                30021,
+                31034,
+                144815
               ]
             }
           },
@@ -528,7 +498,7 @@
             "type": "function",
             "function": {
               "name": "compute_grid_continuity",
-              "arguments": "{\"blend_edges\": true, \"overlap_size\": 16, \"tile_coordinates\": [-4, 12]}"
+              "arguments": "{\"blend_edges\": true, \"overlap_size\": 16, \"tile_coordinates\": [3, 16]}"
             }
           },
           {
@@ -536,7 +506,7 @@
             "type": "function",
             "function": {
               "name": "generate_heightmap",
-              "arguments": "{\"tile_u\": -4, \"tile_v\": 12, \"world_x\": -1024, \"world_y\": 3072, \"global_seed\": 482710, \"module_ids\": [0, 8], \"parameters\": {\"frequency\": 0.02479347148479253, \"octaves\": 5, \"persistence\": 0.433465652078763, \"lacunarity\": 2.0, \"height_scale\": 1539.1009261374784, \"erosion_speed\": 0.0}, \"seeds\": [100070, 101083], \"features\": {\"terrain_type\": \"plains\", \"primary_features\": [\"sand_dunes\"], \"secondary_features\": [\"rocky_outcrops\"], \"biome\": \"desert\", \"complexity\": 0.4}, \"terrain_analysis\": {\"elevation_stats\": {\"min\": 0.0, \"max\": 1539.1009261374784, \"mean\": 258.5715040057469, \"median\": 0.0, \"std\": 355.9563429815311, \"range\": 1539.1009261374784, \"elevation_variance\": 126704.91810878544}, \"slope_analysis\": {\"max_slope\": 63.3168398378805, \"mean_slope\": 11.608225412367052, \"median_slope\": 0.5764060802421616, \"slope_std\": 14.73064553339056, \"steep_area_fraction\": 0.1999969482421875, \"slope_variance\": 216.99191783039925, \"dominant_aspect\": 0.12050523152862773, \"slope_gradients\": {\"grad_x_mean\": 1.8413414773856152, \"grad_y_mean\": -0.19878551887978713}}, \"feature_detection\": {\"peaks_detected\": 5, \"peak_height_mean\": 1238.6870537518903, \"peak_height_max\": 1539.1009261374784, \"peak_locations\": [[0, 195], [56, 134], [177, 74], [237, 255], [255, 13]], \"peak_prominence\": 980.1155497461434, \"valleys_detected\": 0, \"valley_depth_mean\": 0.0, \"valley_depth_min\": 0.0, \"valley_locations\": [], \"valley_depth_relative\": 0.0, \"ridge_lines\": 0.0943450927734375, \"ridge_strength_mean\": 2.502462086646702, \"ridge_area_fraction\": 0.0943450927734375, \"flat_area_fraction\": 0.0, \"flat_regions_count\": 0, \"largest_flat_region\": 0, \"average_flat_region_size\": 0.0, \"water_body_fraction\": 0.0, \"water_bodies_count\": 0, \"largest_water_body\": 0, \"average_water_depth\": 0.0, \"caves_detected\": 0, \"cave_depth_mean\": 0.0, \"cave_depth_max\": 0.0, \"cave_area_fraction\": 0.0}, \"terrain_classification\": {\"primary_type\": \"plains\", \"confidence\": 0.5, \"characteristics\": [], \"complexity_score\": 126922.41002661583}, \"analysis_metadata\": {\"tile_size\": 256, \"heightmap_shape\": [256, 256], \"analysis_version\": \"1.0\"}}, \"grid_continuity\": {\"blend_edges\": true, \"overlap_size\": 16, \"tile_coordinates\": [-4, 12]}}"
+              "arguments": "{\"tile_u\": 3, \"tile_v\": 16, \"world_x\": 768, \"world_y\": 4096, \"global_seed\": 144813, \"module_ids\": [0, 4, 8], \"parameters\": {\"frequency\": 0.01959673645969056, \"octaves\": 6, \"persistence\": 0.42364005942353744, \"lacunarity\": 2.0, \"height_scale\": 1298.403078392058, \"ridge_sharpness\": 0.41891953600814535}, \"seeds\": [30021, 31034, 144815], \"features\": {\"terrain_type\": \"hills\", \"primary_features\": [\"rolling_hills\"], \"secondary_features\": [\"gentle_slopes\"], \"biome\": \"grassland\", \"complexity\": 0.4}, \"terrain_analysis\": {\"elevation_stats\": {\"min\": 0.0, \"max\": 1298.403078392058, \"mean\": 218.0289199431498, \"median\": 0.0, \"std\": 312.1996401672076, \"range\": 1298.403078392058, \"elevation_variance\": 97468.61532053389}, \"slope_analysis\": {\"max_slope\": 70.87691135318589, \"mean_slope\": 12.980111512754057, \"median_slope\": 0.0, \"slope_std\": 17.01140271046139, \"steep_area_fraction\": 0.1999969482421875, \"slope_variance\": 289.3878221774931, \"dominant_aspect\": 0.31421003309041745, \"slope_gradients\": {\"grad_x_mean\": -0.04328673192396337, \"grad_y_mean\": 1.4408794911987055}}, \"feature_detection\": {\"peaks_detected\": 6, \"peak_height_mean\": 1094.6828654913277, \"peak_height_max\": 1298.403078392058, \"peak_locations\": [[48, 0], [48, 139], [150, 88], [150, 241], [252, 37], [252, 190]], \"peak_prominence\": 876.653945548178, \"valleys_detected\": 0, \"valley_depth_mean\": 0.0, \"valley_depth_min\": 0.0, \"valley_locations\": [], \"valley_depth_relative\": 0.0, \"ridge_lines\": 0.0964202880859375, \"ridge_strength_mean\": 3.394516124562105, \"ridge_area_fraction\": 0.0964202880859375, \"flat_area_fraction\": 0.0, \"flat_regions_count\": 0, \"largest_flat_region\": 0, \"average_flat_region_size\": 0.0, \"water_body_fraction\": 0.0, \"water_bodies_count\": 0, \"largest_water_body\": 0, \"average_water_depth\": 0.0, \"caves_detected\": 0, \"cave_depth_mean\": 0.0, \"cave_depth_max\": 0.0, \"cave_area_fraction\": 0.0}, \"terrain_classification\": {\"primary_type\": \"plains\", \"confidence\": 0.5, \"characteristics\": [], \"complexity_score\": 97758.60314271139}, \"analysis_metadata\": {\"tile_size\": 256, \"heightmap_shape\": [256, 256], \"analysis_version\": \"1.0\"}}, \"grid_continuity\": {\"blend_edges\": true, \"overlap_size\": 16, \"tile_coordinates\": [3, 16]}}"
             }
           },
           {
@@ -551,11 +521,11 @@
       }
     ],
     "training_metadata": {
-      "sample_id": 10,
-      "validation_score": 0.741,
-      "heightmap_hash": "11fe29d0ab62fc97",
-      "generation_time_ms": 11,
-      "terrain_template": "plains",
+      "sample_id": 3,
+      "validation_score": 1.0,
+      "heightmap_hash": "f782c83157878db0",
+      "generation_time_ms": 916,
+      "terrain_template": "hills",
       "feature_count": 2,
       "complexity_score": 0.4
     }
@@ -568,7 +538,7 @@
       },
       {
         "role": "user",
-        "content": "open steppes with a prominent peak displaying complex terrain variations"
+        "content": "Vast and open steppes stretch endlessly across the landscape, punctuated by numerous towering peaks that rise dramatically from the plains. These mountains exhibit a diverse and intricate array of terrain features, including rugged ridges, steep slopes, and deep valleys, creating"
       },
       {
         "role": "assistant",
@@ -579,7 +549,7 @@
             "type": "function",
             "function": {
               "name": "sample_terrain_config",
-              "arguments": "{\"features\": {\"terrain_type\": \"mountains\", \"primary_features\": [\"mountain_peaks\", \"steep_peaks\"], \"secondary_features\": [\"ridges\", \"erosion\"], \"biome\": \"alpine\", \"complexity\": 0.8}, \"parameters\": {\"mountain_height\": 0.628397234403613, \"mountain_steepness\": 0.7893308871810296, \"peak_count\": 3, \"ridge_prominence\": 0.5202200984330922, \"base_frequency\": 0.0054711943707952725, \"detail_octaves\": 5, \"detail_persistence\": 0.421257204966596, \"height_scale\": 1204.6078784272918}}"
+              "arguments": "{\"features\": {\"terrain_type\": \"valleys\", \"primary_features\": [\"deep_valleys\", \"river_valleys\"], \"secondary_features\": [\"erosion\", \"water_features\"], \"biome\": \"temperate\", \"complexity\": 0.6}, \"parameters\": {\"valley_depth\": 0.6818287344859695, \"valley_width\": 0.3137473150966987, \"valley_count\": 1, \"river_depth\": 0.3546136681577384, \"base_frequency\": 0.019778322809911365, \"detail_octaves\": 4, \"detail_persistence\": 0.6599451000265808, \"height_scale\": 1446.2145825665825}}"
             }
           },
           {
@@ -587,7 +557,7 @@
             "type": "function",
             "function": {
               "name": "sample_world_coordinates",
-              "arguments": "{\"world_x\": -1792, \"world_y\": 3584}"
+              "arguments": "{\"world_x\": 768, \"world_y\": -2560}"
             }
           },
           {
@@ -595,7 +565,7 @@
             "type": "function",
             "function": {
               "name": "generate_seeds",
-              "arguments": "{\"sample_id\": 15, \"num_features\": 4, \"seeds\": [150105, 151118, 152131, 153144]}"
+              "arguments": "{\"sample_id\": 4, \"num_features\": 4, \"seeds\": [40028, 41041, 42054, 43067]}"
             }
           },
           {
@@ -603,7 +573,7 @@
             "type": "function",
             "function": {
               "name": "generate_heightmap",
-              "arguments": "{\"world_x\": -1792, \"world_y\": 3584, \"parameters\": {\"mountain_height\": 0.628397234403613, \"mountain_steepness\": 0.7893308871810296, \"peak_count\": 3, \"ridge_prominence\": 0.5202200984330922, \"base_frequency\": 0.0054711943707952725, \"detail_octaves\": 5, \"detail_persistence\": 0.421257204966596, \"height_scale\": 1204.6078784272918}, \"seeds\": [150105, 151118, 152131, 153144], \"global_seed\": 724065}"
+              "arguments": "{\"world_x\": 768, \"world_y\": -2560, \"parameters\": {\"valley_depth\": 0.6818287344859695, \"valley_width\": 0.3137473150966987, \"valley_count\": 1, \"river_depth\": 0.3546136681577384, \"base_frequency\": 0.019778322809911365, \"detail_octaves\": 4, \"detail_persistence\": 0.6599451000265808, \"height_scale\": 1446.2145825665825}, \"seeds\": [40028, 41041, 42054, 43067], \"global_seed\": 193084}"
             }
           },
           {
@@ -611,7 +581,7 @@
             "type": "function",
             "function": {
               "name": "analyze_heightmap",
-              "arguments": "{\"terrain_analysis\": {\"elevation_stats\": {\"min\": 0.0, \"max\": 1204.6078784272918, \"mean\": 384.89867194387693, \"median\": 194.26624942416865, \"std\": 418.97489063306534, \"range\": 1204.6078784272918, \"elevation_variance\": 175539.95898098906}, \"slope_analysis\": {\"max_slope\": 21.40326242024441, \"mean_slope\": 6.307895733153671, \"median_slope\": 4.707033306185855, \"slope_std\": 6.778410119416681, \"steep_area_fraction\": 0.1999969482421875, \"slope_variance\": 45.94684374701047, \"dominant_aspect\": 0.2661303647548448, \"slope_gradients\": {\"grad_x_mean\": -2.275930754133794, \"grad_y_mean\": -1.11407746714967}}, \"feature_detection\": {\"peaks_detected\": 1, \"peak_height_mean\": 1204.6078784272918, \"peak_height_max\": 1204.6078784272918, \"peak_locations\": [[147, 71]], \"peak_prominence\": 819.7092064834148, \"valleys_detected\": 0, \"valley_depth_mean\": 0.0, \"valley_depth_min\": 0.0, \"valley_locations\": [], \"valley_depth_relative\": 0.0, \"ridge_lines\": 0.0932464599609375, \"ridge_strength_mean\": 0.3577473185315311, \"ridge_area_fraction\": 0.0932464599609375, \"flat_area_fraction\": 0.0, \"flat_regions_count\": 0, \"largest_flat_region\": 0, \"average_flat_region_size\": 0.0, \"water_body_fraction\": 0.0, \"water_bodies_count\": 0, \"largest_water_body\": 0, \"average_water_depth\": 0.0, \"caves_detected\": 0, \"cave_depth_mean\": 0.0, \"cave_depth_max\": 0.0, \"cave_area_fraction\": 0.0}, \"terrain_classification\": {\"primary_type\": \"plains\", \"confidence\": 0.5, \"characteristics\": [], \"complexity_score\": 175586.0058247361}, \"analysis_metadata\": {\"tile_size\": 256, \"heightmap_shape\": [256, 256], \"analysis_version\": \"1.0\"}}}"
+              "arguments": "{\"terrain_analysis\": {\"elevation_stats\": {\"min\": 0.0, \"max\": 1446.2145825665825, \"mean\": 250.71108987300204, \"median\": 0.0, \"std\": 368.2912810552787, \"range\": 1446.2145825665825, \"elevation_variance\": 135638.4677013383}, \"slope_analysis\": {\"max_slope\": 87.9574271999715, \"mean_slope\": 15.681947235027627, \"median_slope\": 0.0, \"slope_std\": 21.270992893539486, \"steep_area_fraction\": 0.1999969482421875, \"slope_variance\": 452.45513867700737, \"dominant_aspect\": 0.14775184025670807, \"slope_gradients\": {\"grad_x_mean\": 0.10135148283781215, \"grad_y_mean\": -0.2747120983754058}}, \"feature_detection\": {\"peaks_detected\": 8, \"peak_height_mean\": 1215.2824381432706, \"peak_height_max\": 1446.2145825665825, \"peak_locations\": [[0, 234], [41, 32], [41, 184], [142, 0], [142, 133], [193, 255], [243, 82], [243, 234]], \"peak_prominence\": 964.5713482702686, \"valleys_detected\": 0, \"valley_depth_mean\": 0.0, \"valley_depth_min\": 0.0, \"valley_locations\": [], \"valley_depth_relative\": 0.0, \"ridge_lines\": 0.097137451171875, \"ridge_strength_mean\": 4.295849076440194, \"ridge_area_fraction\": 0.097137451171875, \"flat_area_fraction\": 0.0, \"flat_regions_count\": 0, \"largest_flat_region\": 0, \"average_flat_region_size\": 0.0, \"water_body_fraction\": 0.0, \"water_bodies_count\": 0, \"largest_water_body\": 0, \"average_water_depth\": 0.0, \"caves_detected\": 0, \"cave_depth_mean\": 0.0, \"cave_depth_max\": 0.0, \"cave_area_fraction\": 0.0}, \"terrain_classification\": {\"primary_type\": \"plains\", \"confidence\": 0.5, \"characteristics\": [], \"complexity_score\": 136091.72284001528}, \"analysis_metadata\": {\"tile_size\": 256, \"heightmap_shape\": [256, 256], \"analysis_version\": \"1.0\"}}}"
             }
           },
           {
@@ -619,72 +589,7 @@
             "type": "function",
             "function": {
               "name": "generate_caption",
-              "arguments": "{\"terrain_analysis\": {\"elevation_stats\": {\"min\": 0.0, \"max\": 1204.6078784272918, \"mean\": 384.89867194387693, \"median\": 194.26624942416865, \"std\": 418.97489063306534, \"range\": 1204.6078784272918, \"elevation_variance\": 175539.95898098906}, \"slope_analysis\": {\"max_slope\": 21.40326242024441, \"mean_slope\": 6.307895733153671, \"median_slope\": 4.707033306185855, \"slope_std\": 6.778410119416681, \"steep_area_fraction\": 0.1999969482421875, \"slope_variance\": 45.94684374701047, \"dominant_aspect\": 0.2661303647548448, \"slope_gradients\": {\"grad_x_mean\": -2.275930754133794, \"grad_y_mean\": -1.11407746714967}}, \"feature_detection\": {\"peaks_detected\": 1, \"peak_height_mean\": 1204.6078784272918, \"peak_height_max\": 1204.6078784272918, \"peak_locations\": [[147, 71]], \"peak_prominence\": 819.7092064834148, \"valleys_detected\": 0, \"valley_depth_mean\": 0.0, \"valley_depth_min\": 0.0, \"valley_locations\": [], \"valley_depth_relative\": 0.0, \"ridge_lines\": 0.0932464599609375, \"ridge_strength_mean\": 0.3577473185315311, \"ridge_area_fraction\": 0.0932464599609375, \"flat_area_fraction\": 0.0, \"flat_regions_count\": 0, \"largest_flat_region\": 0, \"average_flat_region_size\": 0.0, \"water_body_fraction\": 0.0, \"water_bodies_count\": 0, \"largest_water_body\": 0, \"average_water_depth\": 0.0, \"caves_detected\": 0, \"cave_depth_mean\": 0.0, \"cave_depth_max\": 0.0, \"cave_area_fraction\": 0.0}, \"terrain_classification\": {\"primary_type\": \"plains\", \"confidence\": 0.5, \"characteristics\": [], \"complexity_score\": 175586.0058247361}, \"analysis_metadata\": {\"tile_size\": 256, \"heightmap_shape\": [256, 256], \"analysis_version\": \"1.0\"}}, \"features\": {\"terrain_type\": \"mountains\", \"primary_features\": [\"mountain_peaks\", \"steep_peaks\"], \"secondary_features\": [\"ridges\", \"erosion\"], \"biome\": \"alpine\", \"complexity\": 0.8}, \"parameters\": {\"mountain_height\": 0.628397234403613, \"mountain_steepness\": 0.7893308871810296, \"peak_count\": 3, \"ridge_prominence\": 0.5202200984330922, \"base_frequency\": 0.0054711943707952725, \"detail_octaves\": 5, \"detail_persistence\": 0.421257204966596, \"height_scale\": 1204.6078784272918}}"
-            }
-          },
-          {
-            "id": "call_6",
-            "type": "function",
-            "function": {
-              "name": "validate_consistency",
-              "arguments": "{\"caption\": \"open steppes with a prominent peak displaying complex terrain variations\", \"features\": {\"terrain_type\": \"mountains\", \"primary_features\": [\"mountain_peaks\", \"steep_peaks\"], \"secondary_features\": [\"ridges\", \"erosion\"], \"biome\": \"alpine\", \"complexity\": 0.8}, \"terrain_analysis\": {\"elevation_stats\": {\"min\": 0.0, \"max\": 1204.6078784272918, \"mean\": 384.89867194387693, \"median\": 194.26624942416865, \"std\": 418.97489063306534, \"range\": 1204.6078784272918, \"elevation_variance\": 175539.95898098906}, \"slope_analysis\": {\"max_slope\": 21.40326242024441, \"mean_slope\": 6.307895733153671, \"median_slope\": 4.707033306185855, \"slope_std\": 6.778410119416681, \"steep_area_fraction\": 0.1999969482421875, \"slope_variance\": 45.94684374701047, \"dominant_aspect\": 0.2661303647548448, \"slope_gradients\": {\"grad_x_mean\": -2.275930754133794, \"grad_y_mean\": -1.11407746714967}}, \"feature_detection\": {\"peaks_detected\": 1, \"peak_height_mean\": 1204.6078784272918, \"peak_height_max\": 1204.6078784272918, \"peak_locations\": [[147, 71]], \"peak_prominence\": 819.7092064834148, \"valleys_detected\": 0, \"valley_depth_mean\": 0.0, \"valley_depth_min\": 0.0, \"valley_locations\": [], \"valley_depth_relative\": 0.0, \"ridge_lines\": 0.0932464599609375, \"ridge_strength_mean\": 0.3577473185315311, \"ridge_area_fraction\": 0.0932464599609375, \"flat_area_fraction\": 0.0, \"flat_regions_count\": 0, \"largest_flat_region\": 0, \"average_flat_region_size\": 0.0, \"water_body_fraction\": 0.0, \"water_bodies_count\": 0, \"largest_water_body\": 0, \"average_water_depth\": 0.0, \"caves_detected\": 0, \"cave_depth_mean\": 0.0, \"cave_depth_max\": 0.0, \"cave_area_fraction\": 0.0}, \"terrain_classification\": {\"primary_type\": \"plains\", \"confidence\": 0.5, \"characteristics\": [], \"complexity_score\": 175586.0058247361}, \"analysis_metadata\": {\"tile_size\": 256, \"heightmap_shape\": [256, 256], \"analysis_version\": \"1.0\"}}}"
-            },
-            "result": {
-              "is_valid": true,
-              "score": 0.81,
-              "feature_score": 0.5,
-              "caption_score": 1.0,
-              "quality_score": 0.8,
-              "cross_score": 1.0,
-              "details": {
-                "features": {
-                  "score": 0.5,
-                  "details": [
-                    [
-                      "mountain_peaks",
-                      0.5
-                    ],
-                    [
-                      "steep_peaks",
-                      0.5
-                    ]
-                  ],
-                  "feature_count": 2
-                },
-                "caption": {
-                  "score": 1.0,
-                  "details": [
-                    [
-                      "peak",
-                      1.0
-                    ]
-                  ],
-                  "keyword_count": 1,
-                  "word_count": 10
-                },
-                "quality": {
-                  "score": 0.8,
-                  "issues": [
-                    "Extremely steep slopes"
-                  ],
-                  "elevation_range": 1204.6078784272918,
-                  "max_slope": 21.40326242024441,
-                  "complexity": 175586.0058247361
-                },
-                "cross": {
-                  "score": 1.0,
-                  "caption_indicators": [
-                    "mountain"
-                  ],
-                  "expected_indicators": [
-                    "mountain",
-                    "mountain"
-                  ],
-                  "matches": 1,
-                  "mismatches": 0
-                }
-              },
-              "recommendations": []
+              "arguments": "{\"terrain_analysis\": {\"elevation_stats\": {\"min\": 0.0, \"max\": 1446.2145825665825, \"mean\": 250.71108987300204, \"median\": 0.0, \"std\": 368.2912810552787, \"range\": 1446.2145825665825, \"elevation_variance\": 135638.4677013383}, \"slope_analysis\": {\"max_slope\": 87.9574271999715, \"mean_slope\": 15.681947235027627, \"median_slope\": 0.0, \"slope_std\": 21.270992893539486, \"steep_area_fraction\": 0.1999969482421875, \"slope_variance\": 452.45513867700737, \"dominant_aspect\": 0.14775184025670807, \"slope_gradients\": {\"grad_x_mean\": 0.10135148283781215, \"grad_y_mean\": -0.2747120983754058}}, \"feature_detection\": {\"peaks_detected\": 8, \"peak_height_mean\": 1215.2824381432706, \"peak_height_max\": 1446.2145825665825, \"peak_locations\": [[0, 234], [41, 32], [41, 184], [142, 0], [142, 133], [193, 255], [243, 82], [243, 234]], \"peak_prominence\": 964.5713482702686, \"valleys_detected\": 0, \"valley_depth_mean\": 0.0, \"valley_depth_min\": 0.0, \"valley_locations\": [], \"valley_depth_relative\": 0.0, \"ridge_lines\": 0.097137451171875, \"ridge_strength_mean\": 4.295849076440194, \"ridge_area_fraction\": 0.097137451171875, \"flat_area_fraction\": 0.0, \"flat_regions_count\": 0, \"largest_flat_region\": 0, \"average_flat_region_size\": 0.0, \"water_body_fraction\": 0.0, \"water_bodies_count\": 0, \"largest_water_body\": 0, \"average_water_depth\": 0.0, \"caves_detected\": 0, \"cave_depth_mean\": 0.0, \"cave_depth_max\": 0.0, \"cave_area_fraction\": 0.0}, \"terrain_classification\": {\"primary_type\": \"plains\", \"confidence\": 0.5, \"characteristics\": [], \"complexity_score\": 136091.72284001528}, \"analysis_metadata\": {\"tile_size\": 256, \"heightmap_shape\": [256, 256], \"analysis_version\": \"1.0\"}}, \"features\": {\"terrain_type\": \"valleys\", \"primary_features\": [\"deep_valleys\", \"river_valleys\"], \"secondary_features\": [\"erosion\", \"water_features\"], \"biome\": \"temperate\", \"complexity\": 0.6}, \"parameters\": {\"valley_depth\": 0.6818287344859695, \"valley_width\": 0.3137473150966987, \"valley_count\": 1, \"river_depth\": 0.3546136681577384, \"base_frequency\": 0.019778322809911365, \"detail_octaves\": 4, \"detail_persistence\": 0.6599451000265808, \"height_scale\": 1446.2145825665825}}"
             }
           },
           {
@@ -692,38 +597,39 @@
             "type": "function",
             "function": {
               "name": "convert_to_legacy_format",
-              "arguments": "{\"features\": {\"terrain_type\": \"mountains\", \"primary_features\": [\"mountain_peaks\", \"steep_peaks\"], \"secondary_features\": [\"ridges\", \"erosion\"], \"biome\": \"alpine\", \"complexity\": 0.8}, \"parameters\": {\"mountain_height\": 0.628397234403613, \"mountain_steepness\": 0.7893308871810296, \"peak_count\": 3, \"ridge_prominence\": 0.5202200984330922, \"base_frequency\": 0.0054711943707952725, \"detail_octaves\": 5, \"detail_persistence\": 0.421257204966596, \"height_scale\": 1204.6078784272918}, \"world_x\": -1792, \"world_y\": 3584, \"seeds\": [150105, 151118, 152131, 153144, 724069], \"global_seed\": 724065, \"tile_size\": 256}"
+              "arguments": "{\"features\": {\"terrain_type\": \"valleys\", \"primary_features\": [\"deep_valleys\", \"river_valleys\"], \"secondary_features\": [\"erosion\", \"water_features\"], \"biome\": \"temperate\", \"complexity\": 0.6}, \"parameters\": {\"valley_depth\": 0.6818287344859695, \"valley_width\": 0.3137473150966987, \"valley_count\": 1, \"river_depth\": 0.3546136681577384, \"base_frequency\": 0.019778322809911365, \"detail_octaves\": 4, \"detail_persistence\": 0.6599451000265808, \"height_scale\": 1446.2145825665825}, \"world_x\": 768, \"world_y\": -2560, \"seeds\": [40028, 41041, 42054, 43067, 193088], \"global_seed\": 193084, \"tile_size\": 256}"
             },
             "result": {
-              "tile_u": -7,
-              "tile_v": 14,
-              "world_x": -1792,
-              "world_y": 3584,
-              "global_seed": 724065,
+              "tile_u": 3,
+              "tile_v": -10,
+              "world_x": 768,
+              "world_y": -2560,
+              "global_seed": 193084,
               "module_ids": [
                 0,
-                1,
-                4,
+                5,
+                7,
                 3,
                 8
               ],
               "parameters": {
-                "frequency": 0.005,
-                "octaves": 5,
-                "persistence": 0.421257204966596,
+                "frequency": 0.019778322809911365,
+                "octaves": 4,
+                "persistence": 0.6599451000265808,
                 "lacunarity": 2.0,
-                "height_scale": 1204.6078784272918,
-                "ridge_sharpness": 0.7893308871810296,
-                "warp_amplitude": 160.0,
-                "warp_frequency": 0.005,
-                "warp_octaves": 2
+                "height_scale": 1446.2145825665825,
+                "erosion_speed": 0.20454862034579083,
+                "rain_amount": 0.36,
+                "evaporation": 0.05,
+                "capacity": 0.3,
+                "iterations": 100
               },
               "seeds": [
-                150105,
-                151118,
-                152131,
-                153144,
-                724069
+                40028,
+                41041,
+                42054,
+                43067,
+                193088
               ]
             }
           },
@@ -732,7 +638,7 @@
             "type": "function",
             "function": {
               "name": "compute_grid_continuity",
-              "arguments": "{\"blend_edges\": true, \"overlap_size\": 16, \"tile_coordinates\": [-7, 14]}"
+              "arguments": "{\"blend_edges\": true, \"overlap_size\": 16, \"tile_coordinates\": [3, -10]}"
             }
           },
           {
@@ -740,7 +646,7 @@
             "type": "function",
             "function": {
               "name": "generate_heightmap",
-              "arguments": "{\"tile_u\": -7, \"tile_v\": 14, \"world_x\": -1792, \"world_y\": 3584, \"global_seed\": 724065, \"module_ids\": [0, 1, 4, 3, 8], \"parameters\": {\"frequency\": 0.005, \"octaves\": 5, \"persistence\": 0.421257204966596, \"lacunarity\": 2.0, \"height_scale\": 1204.6078784272918, \"ridge_sharpness\": 0.7893308871810296, \"warp_amplitude\": 160.0, \"warp_frequency\": 0.005, \"warp_octaves\": 2}, \"seeds\": [150105, 151118, 152131, 153144, 724069], \"features\": {\"terrain_type\": \"mountains\", \"primary_features\": [\"mountain_peaks\", \"steep_peaks\"], \"secondary_features\": [\"ridges\", \"erosion\"], \"biome\": \"alpine\", \"complexity\": 0.8}, \"terrain_analysis\": {\"elevation_stats\": {\"min\": 0.0, \"max\": 1204.6078784272918, \"mean\": 384.89867194387693, \"median\": 194.26624942416865, \"std\": 418.97489063306534, \"range\": 1204.6078784272918, \"elevation_variance\": 175539.95898098906}, \"slope_analysis\": {\"max_slope\": 21.40326242024441, \"mean_slope\": 6.307895733153671, \"median_slope\": 4.707033306185855, \"slope_std\": 6.778410119416681, \"steep_area_fraction\": 0.1999969482421875, \"slope_variance\": 45.94684374701047, \"dominant_aspect\": 0.2661303647548448, \"slope_gradients\": {\"grad_x_mean\": -2.275930754133794, \"grad_y_mean\": -1.11407746714967}}, \"feature_detection\": {\"peaks_detected\": 1, \"peak_height_mean\": 1204.6078784272918, \"peak_height_max\": 1204.6078784272918, \"peak_locations\": [[147, 71]], \"peak_prominence\": 819.7092064834148, \"valleys_detected\": 0, \"valley_depth_mean\": 0.0, \"valley_depth_min\": 0.0, \"valley_locations\": [], \"valley_depth_relative\": 0.0, \"ridge_lines\": 0.0932464599609375, \"ridge_strength_mean\": 0.3577473185315311, \"ridge_area_fraction\": 0.0932464599609375, \"flat_area_fraction\": 0.0, \"flat_regions_count\": 0, \"largest_flat_region\": 0, \"average_flat_region_size\": 0.0, \"water_body_fraction\": 0.0, \"water_bodies_count\": 0, \"largest_water_body\": 0, \"average_water_depth\": 0.0, \"caves_detected\": 0, \"cave_depth_mean\": 0.0, \"cave_depth_max\": 0.0, \"cave_area_fraction\": 0.0}, \"terrain_classification\": {\"primary_type\": \"plains\", \"confidence\": 0.5, \"characteristics\": [], \"complexity_score\": 175586.0058247361}, \"analysis_metadata\": {\"tile_size\": 256, \"heightmap_shape\": [256, 256], \"analysis_version\": \"1.0\"}}, \"grid_continuity\": {\"blend_edges\": true, \"overlap_size\": 16, \"tile_coordinates\": [-7, 14]}}"
+              "arguments": "{\"tile_u\": 3, \"tile_v\": -10, \"world_x\": 768, \"world_y\": -2560, \"global_seed\": 193084, \"module_ids\": [0, 5, 7, 3, 8], \"parameters\": {\"frequency\": 0.019778322809911365, \"octaves\": 4, \"persistence\": 0.6599451000265808, \"lacunarity\": 2.0, \"height_scale\": 1446.2145825665825, \"erosion_speed\": 0.20454862034579083, \"rain_amount\": 0.36, \"evaporation\": 0.05, \"capacity\": 0.3, \"iterations\": 100}, \"seeds\": [40028, 41041, 42054, 43067, 193088], \"features\": {\"terrain_type\": \"valleys\", \"primary_features\": [\"deep_valleys\", \"river_valleys\"], \"secondary_features\": [\"erosion\", \"water_features\"], \"biome\": \"temperate\", \"complexity\": 0.6}, \"terrain_analysis\": {\"elevation_stats\": {\"min\": 0.0, \"max\": 1446.2145825665825, \"mean\": 250.71108987300204, \"median\": 0.0, \"std\": 368.2912810552787, \"range\": 1446.2145825665825, \"elevation_variance\": 135638.4677013383}, \"slope_analysis\": {\"max_slope\": 87.9574271999715, \"mean_slope\": 15.681947235027627, \"median_slope\": 0.0, \"slope_std\": 21.270992893539486, \"steep_area_fraction\": 0.1999969482421875, \"slope_variance\": 452.45513867700737, \"dominant_aspect\": 0.14775184025670807, \"slope_gradients\": {\"grad_x_mean\": 0.10135148283781215, \"grad_y_mean\": -0.2747120983754058}}, \"feature_detection\": {\"peaks_detected\": 8, \"peak_height_mean\": 1215.2824381432706, \"peak_height_max\": 1446.2145825665825, \"peak_locations\": [[0, 234], [41, 32], [41, 184], [142, 0], [142, 133], [193, 255], [243, 82], [243, 234]], \"peak_prominence\": 964.5713482702686, \"valleys_detected\": 0, \"valley_depth_mean\": 0.0, \"valley_depth_min\": 0.0, \"valley_locations\": [], \"valley_depth_relative\": 0.0, \"ridge_lines\": 0.097137451171875, \"ridge_strength_mean\": 4.295849076440194, \"ridge_area_fraction\": 0.097137451171875, \"flat_area_fraction\": 0.0, \"flat_regions_count\": 0, \"largest_flat_region\": 0, \"average_flat_region_size\": 0.0, \"water_body_fraction\": 0.0, \"water_bodies_count\": 0, \"largest_water_body\": 0, \"average_water_depth\": 0.0, \"caves_detected\": 0, \"cave_depth_mean\": 0.0, \"cave_depth_max\": 0.0, \"cave_area_fraction\": 0.0}, \"terrain_classification\": {\"primary_type\": \"plains\", \"confidence\": 0.5, \"characteristics\": [], \"complexity_score\": 136091.72284001528}, \"analysis_metadata\": {\"tile_size\": 256, \"heightmap_shape\": [256, 256], \"analysis_version\": \"1.0\"}}, \"grid_continuity\": {\"blend_edges\": true, \"overlap_size\": 16, \"tile_coordinates\": [3, -10]}}"
             }
           },
           {
@@ -755,13 +661,702 @@
       }
     ],
     "training_metadata": {
-      "sample_id": 15,
-      "validation_score": 0.81,
-      "heightmap_hash": "e0f43817e5421681",
-      "generation_time_ms": 10,
-      "terrain_template": "mountains",
+      "sample_id": 4,
+      "validation_score": 1.0,
+      "heightmap_hash": "3b627652de69b011",
+      "generation_time_ms": 1014,
+      "terrain_template": "valleys",
       "feature_count": 4,
-      "complexity_score": 0.8
+      "complexity_score": 0.6
+    }
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are a terrain generator"
+      },
+      {
+        "role": "user",
+        "content": "Expansive alpine meadows stretch across the landscape, interspersed with gently rolling prairies that lead the eye to numerous rugged peaks. These towering summits showcase intricate terrain features, including jagged ridges, steep slopes, and varied elevations"
+      },
+      {
+        "role": "assistant",
+        "content": null,
+        "tool_calls": [
+          {
+            "id": "call_0",
+            "type": "function",
+            "function": {
+              "name": "sample_terrain_config",
+              "arguments": "{\"features\": {\"terrain_type\": \"hills\", \"primary_features\": [\"rolling_hills\"], \"secondary_features\": [\"gentle_slopes\"], \"biome\": \"grassland\", \"complexity\": 0.4}, \"parameters\": {\"mountain_height\": 0.4065812100682564, \"mountain_steepness\": 0.40105255231330805, \"base_frequency\": 0.015253214983050007, \"detail_octaves\": 3, \"detail_persistence\": 0.5827393017000965, \"height_scale\": 1090.9357019367649}}"
+            }
+          },
+          {
+            "id": "call_1",
+            "type": "function",
+            "function": {
+              "name": "sample_world_coordinates",
+              "arguments": "{\"world_x\": -2560, \"world_y\": 2304}"
+            }
+          },
+          {
+            "id": "call_2",
+            "type": "function",
+            "function": {
+              "name": "generate_seeds",
+              "arguments": "{\"sample_id\": 5, \"num_features\": 2, \"seeds\": [50035, 51048]}"
+            }
+          },
+          {
+            "id": "call_3",
+            "type": "function",
+            "function": {
+              "name": "generate_heightmap",
+              "arguments": "{\"world_x\": -2560, \"world_y\": 2304, \"parameters\": {\"mountain_height\": 0.4065812100682564, \"mountain_steepness\": 0.40105255231330805, \"base_frequency\": 0.015253214983050007, \"detail_octaves\": 3, \"detail_persistence\": 0.5827393017000965, \"height_scale\": 1090.9357019367649}, \"seeds\": [50035, 51048], \"global_seed\": 241355}"
+            }
+          },
+          {
+            "id": "call_4",
+            "type": "function",
+            "function": {
+              "name": "analyze_heightmap",
+              "arguments": "{\"terrain_analysis\": {\"elevation_stats\": {\"min\": 0.0, \"max\": 1090.9357019367649, \"mean\": 256.94737704876945, \"median\": 138.50286507757772, \"std\": 294.26121208580946, \"range\": 1090.9357019367649, \"elevation_variance\": 86589.66093820974}, \"slope_analysis\": {\"max_slope\": 41.552112104324586, \"mean_slope\": 9.861892574448778, \"median_slope\": 8.640029716576745, \"slope_std\": 10.52357829463993, \"steep_area_fraction\": 0.1999969482421875, \"slope_variance\": 110.74570012341667, \"dominant_aspect\": 0.22168300364854324, \"slope_gradients\": {\"grad_x_mean\": 0.7396900354626428, \"grad_y_mean\": 0.16276085136353197}}, \"feature_detection\": {\"peaks_detected\": 5, \"peak_height_mean\": 869.797900529909, \"peak_height_max\": 1090.9357019367649, \"peak_locations\": [[69, 122], [200, 56], [200, 253], [255, 0], [255, 187]], \"peak_prominence\": 612.8505234811396, \"valleys_detected\": 0, \"valley_depth_mean\": 0.0, \"valley_depth_min\": 0.0, \"valley_locations\": [], \"valley_depth_relative\": 0.0, \"ridge_lines\": 0.09283447265625, \"ridge_strength_mean\": 1.5748818296357328, \"ridge_area_fraction\": 0.09283447265625, \"flat_area_fraction\": 0.0, \"flat_regions_count\": 0, \"largest_flat_region\": 0, \"average_flat_region_size\": 0.0, \"water_body_fraction\": 0.0, \"water_bodies_count\": 0, \"largest_water_body\": 0, \"average_water_depth\": 0.0, \"caves_detected\": 0, \"cave_depth_mean\": 0.0, \"cave_depth_max\": 0.0, \"cave_area_fraction\": 0.0}, \"terrain_classification\": {\"primary_type\": \"plains\", \"confidence\": 0.5, \"characteristics\": [], \"complexity_score\": 86700.90663833315}, \"analysis_metadata\": {\"tile_size\": 256, \"heightmap_shape\": [256, 256], \"analysis_version\": \"1.0\"}}}"
+            }
+          },
+          {
+            "id": "call_5",
+            "type": "function",
+            "function": {
+              "name": "generate_caption",
+              "arguments": "{\"terrain_analysis\": {\"elevation_stats\": {\"min\": 0.0, \"max\": 1090.9357019367649, \"mean\": 256.94737704876945, \"median\": 138.50286507757772, \"std\": 294.26121208580946, \"range\": 1090.9357019367649, \"elevation_variance\": 86589.66093820974}, \"slope_analysis\": {\"max_slope\": 41.552112104324586, \"mean_slope\": 9.861892574448778, \"median_slope\": 8.640029716576745, \"slope_std\": 10.52357829463993, \"steep_area_fraction\": 0.1999969482421875, \"slope_variance\": 110.74570012341667, \"dominant_aspect\": 0.22168300364854324, \"slope_gradients\": {\"grad_x_mean\": 0.7396900354626428, \"grad_y_mean\": 0.16276085136353197}}, \"feature_detection\": {\"peaks_detected\": 5, \"peak_height_mean\": 869.797900529909, \"peak_height_max\": 1090.9357019367649, \"peak_locations\": [[69, 122], [200, 56], [200, 253], [255, 0], [255, 187]], \"peak_prominence\": 612.8505234811396, \"valleys_detected\": 0, \"valley_depth_mean\": 0.0, \"valley_depth_min\": 0.0, \"valley_locations\": [], \"valley_depth_relative\": 0.0, \"ridge_lines\": 0.09283447265625, \"ridge_strength_mean\": 1.5748818296357328, \"ridge_area_fraction\": 0.09283447265625, \"flat_area_fraction\": 0.0, \"flat_regions_count\": 0, \"largest_flat_region\": 0, \"average_flat_region_size\": 0.0, \"water_body_fraction\": 0.0, \"water_bodies_count\": 0, \"largest_water_body\": 0, \"average_water_depth\": 0.0, \"caves_detected\": 0, \"cave_depth_mean\": 0.0, \"cave_depth_max\": 0.0, \"cave_area_fraction\": 0.0}, \"terrain_classification\": {\"primary_type\": \"plains\", \"confidence\": 0.5, \"characteristics\": [], \"complexity_score\": 86700.90663833315}, \"analysis_metadata\": {\"tile_size\": 256, \"heightmap_shape\": [256, 256], \"analysis_version\": \"1.0\"}}, \"features\": {\"terrain_type\": \"hills\", \"primary_features\": [\"rolling_hills\"], \"secondary_features\": [\"gentle_slopes\"], \"biome\": \"grassland\", \"complexity\": 0.4}, \"parameters\": {\"mountain_height\": 0.4065812100682564, \"mountain_steepness\": 0.40105255231330805, \"base_frequency\": 0.015253214983050007, \"detail_octaves\": 3, \"detail_persistence\": 0.5827393017000965, \"height_scale\": 1090.9357019367649}}"
+            }
+          },
+          {
+            "id": "call_7",
+            "type": "function",
+            "function": {
+              "name": "convert_to_legacy_format",
+              "arguments": "{\"features\": {\"terrain_type\": \"hills\", \"primary_features\": [\"rolling_hills\"], \"secondary_features\": [\"gentle_slopes\"], \"biome\": \"grassland\", \"complexity\": 0.4}, \"parameters\": {\"mountain_height\": 0.4065812100682564, \"mountain_steepness\": 0.40105255231330805, \"base_frequency\": 0.015253214983050007, \"detail_octaves\": 3, \"detail_persistence\": 0.5827393017000965, \"height_scale\": 1090.9357019367649}, \"world_x\": -2560, \"world_y\": 2304, \"seeds\": [50035, 51048, 241357], \"global_seed\": 241355, \"tile_size\": 256}"
+            },
+            "result": {
+              "tile_u": -10,
+              "tile_v": 9,
+              "world_x": -2560,
+              "world_y": 2304,
+              "global_seed": 241355,
+              "module_ids": [
+                0,
+                4,
+                8
+              ],
+              "parameters": {
+                "frequency": 0.015253214983050007,
+                "octaves": 3,
+                "persistence": 0.5827393017000965,
+                "lacunarity": 2.0,
+                "height_scale": 1090.9357019367649,
+                "ridge_sharpness": 0.40105255231330805
+              },
+              "seeds": [
+                50035,
+                51048,
+                241357
+              ]
+            }
+          },
+          {
+            "id": "call_8",
+            "type": "function",
+            "function": {
+              "name": "compute_grid_continuity",
+              "arguments": "{\"blend_edges\": true, \"overlap_size\": 16, \"tile_coordinates\": [-10, 9]}"
+            }
+          },
+          {
+            "id": "call_3",
+            "type": "function",
+            "function": {
+              "name": "generate_heightmap",
+              "arguments": "{\"tile_u\": -10, \"tile_v\": 9, \"world_x\": -2560, \"world_y\": 2304, \"global_seed\": 241355, \"module_ids\": [0, 4, 8], \"parameters\": {\"frequency\": 0.015253214983050007, \"octaves\": 3, \"persistence\": 0.5827393017000965, \"lacunarity\": 2.0, \"height_scale\": 1090.9357019367649, \"ridge_sharpness\": 0.40105255231330805}, \"seeds\": [50035, 51048, 241357], \"features\": {\"terrain_type\": \"hills\", \"primary_features\": [\"rolling_hills\"], \"secondary_features\": [\"gentle_slopes\"], \"biome\": \"grassland\", \"complexity\": 0.4}, \"terrain_analysis\": {\"elevation_stats\": {\"min\": 0.0, \"max\": 1090.9357019367649, \"mean\": 256.94737704876945, \"median\": 138.50286507757772, \"std\": 294.26121208580946, \"range\": 1090.9357019367649, \"elevation_variance\": 86589.66093820974}, \"slope_analysis\": {\"max_slope\": 41.552112104324586, \"mean_slope\": 9.861892574448778, \"median_slope\": 8.640029716576745, \"slope_std\": 10.52357829463993, \"steep_area_fraction\": 0.1999969482421875, \"slope_variance\": 110.74570012341667, \"dominant_aspect\": 0.22168300364854324, \"slope_gradients\": {\"grad_x_mean\": 0.7396900354626428, \"grad_y_mean\": 0.16276085136353197}}, \"feature_detection\": {\"peaks_detected\": 5, \"peak_height_mean\": 869.797900529909, \"peak_height_max\": 1090.9357019367649, \"peak_locations\": [[69, 122], [200, 56], [200, 253], [255, 0], [255, 187]], \"peak_prominence\": 612.8505234811396, \"valleys_detected\": 0, \"valley_depth_mean\": 0.0, \"valley_depth_min\": 0.0, \"valley_locations\": [], \"valley_depth_relative\": 0.0, \"ridge_lines\": 0.09283447265625, \"ridge_strength_mean\": 1.5748818296357328, \"ridge_area_fraction\": 0.09283447265625, \"flat_area_fraction\": 0.0, \"flat_regions_count\": 0, \"largest_flat_region\": 0, \"average_flat_region_size\": 0.0, \"water_body_fraction\": 0.0, \"water_bodies_count\": 0, \"largest_water_body\": 0, \"average_water_depth\": 0.0, \"caves_detected\": 0, \"cave_depth_mean\": 0.0, \"cave_depth_max\": 0.0, \"cave_area_fraction\": 0.0}, \"terrain_classification\": {\"primary_type\": \"plains\", \"confidence\": 0.5, \"characteristics\": [], \"complexity_score\": 86700.90663833315}, \"analysis_metadata\": {\"tile_size\": 256, \"heightmap_shape\": [256, 256], \"analysis_version\": \"1.0\"}}, \"grid_continuity\": {\"blend_edges\": true, \"overlap_size\": 16, \"tile_coordinates\": [-10, 9]}}"
+            }
+          },
+          {
+            "id": "call_10",
+            "type": "function",
+            "function": {
+              "name": "validate_enhanced_format",
+              "arguments": "{\"is_valid\": true, \"errors\": []}"
+            }
+          }
+        ]
+      }
+    ],
+    "training_metadata": {
+      "sample_id": 5,
+      "validation_score": 1.0,
+      "heightmap_hash": "5fbc31548efc6948",
+      "generation_time_ms": 1056,
+      "terrain_template": "hills",
+      "feature_count": 2,
+      "complexity_score": 0.4
+    }
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are a terrain generator"
+      },
+      {
+        "role": "user",
+        "content": "Expansive open fields stretch across the landscape, punctuated by numerous peaks that showcase intricate and varied terrain features. These elevations rise and fall with a mix of rugged slopes, sharp ridges, and gently undulating contours, creating a visually dynamic and"
+      },
+      {
+        "role": "assistant",
+        "content": null,
+        "tool_calls": [
+          {
+            "id": "call_0",
+            "type": "function",
+            "function": {
+              "name": "sample_terrain_config",
+              "arguments": "{\"features\": {\"terrain_type\": \"hills\", \"primary_features\": [\"cave_systems\"], \"secondary_features\": [\"underground\"], \"biome\": \"temperate\", \"complexity\": 0.7}, \"parameters\": {\"cave_density\": 0.40797913071371117, \"cave_size\": 0.7701564718484871, \"tunnel_width\": 0.40644858752999397, \"cave_depth\": 0.3658845521910807, \"base_frequency\": 0.009864241016229828, \"detail_octaves\": 3, \"detail_persistence\": 0.4687144215892313, \"height_scale\": 854.5704146368641}}"
+            }
+          },
+          {
+            "id": "call_1",
+            "type": "function",
+            "function": {
+              "name": "sample_world_coordinates",
+              "arguments": "{\"world_x\": -768, \"world_y\": -4096}"
+            }
+          },
+          {
+            "id": "call_2",
+            "type": "function",
+            "function": {
+              "name": "generate_seeds",
+              "arguments": "{\"sample_id\": 6, \"num_features\": 2, \"seeds\": [60042, 61055]}"
+            }
+          },
+          {
+            "id": "call_3",
+            "type": "function",
+            "function": {
+              "name": "generate_heightmap",
+              "arguments": "{\"world_x\": -768, \"world_y\": -4096, \"parameters\": {\"cave_density\": 0.40797913071371117, \"cave_size\": 0.7701564718484871, \"tunnel_width\": 0.40644858752999397, \"cave_depth\": 0.3658845521910807, \"base_frequency\": 0.009864241016229828, \"detail_octaves\": 3, \"detail_persistence\": 0.4687144215892313, \"height_scale\": 854.5704146368641}, \"seeds\": [60042, 61055], \"global_seed\": 289626}"
+            }
+          },
+          {
+            "id": "call_4",
+            "type": "function",
+            "function": {
+              "name": "analyze_heightmap",
+              "arguments": "{\"terrain_analysis\": {\"elevation_stats\": {\"min\": 0.0, \"max\": 854.5704146368641, \"mean\": 178.81389552685033, \"median\": 0.0, \"std\": 241.7937246802611, \"range\": 854.5704146368641, \"elevation_variance\": 58464.205294753905}, \"slope_analysis\": {\"max_slope\": 21.039258695253842, \"mean_slope\": 4.657710339366256, \"median_slope\": 0.8745747138122286, \"slope_std\": 5.911353372397765, \"steep_area_fraction\": 0.1999969482421875, \"slope_variance\": 34.94409869335843, \"dominant_aspect\": 0.21399995748577638, \"slope_gradients\": {\"grad_x_mean\": -0.8559894545009116, \"grad_y_mean\": -0.3248495227965077}}, \"feature_detection\": {\"peaks_detected\": 2, \"peak_height_mean\": 678.0217783867093, \"peak_height_max\": 854.5704146368641, \"peak_locations\": [[160, 41], [255, 244]], \"peak_prominence\": 499.207882859859, \"valleys_detected\": 0, \"valley_depth_mean\": 0.0, \"valley_depth_min\": 0.0, \"valley_locations\": [], \"valley_depth_relative\": 0.0, \"ridge_lines\": 0.0943450927734375, \"ridge_strength_mean\": 0.5291796522402055, \"ridge_area_fraction\": 0.0943450927734375, \"flat_area_fraction\": 0.0, \"flat_regions_count\": 0, \"largest_flat_region\": 0, \"average_flat_region_size\": 0.0, \"water_body_fraction\": 0.0, \"water_bodies_count\": 0, \"largest_water_body\": 0, \"average_water_depth\": 0.0, \"caves_detected\": 0, \"cave_depth_mean\": 0.0, \"cave_depth_max\": 0.0, \"cave_area_fraction\": 0.0}, \"terrain_classification\": {\"primary_type\": \"plains\", \"confidence\": 0.5, \"characteristics\": [], \"complexity_score\": 58499.34939344726}, \"analysis_metadata\": {\"tile_size\": 256, \"heightmap_shape\": [256, 256], \"analysis_version\": \"1.0\"}}}"
+            }
+          },
+          {
+            "id": "call_5",
+            "type": "function",
+            "function": {
+              "name": "generate_caption",
+              "arguments": "{\"terrain_analysis\": {\"elevation_stats\": {\"min\": 0.0, \"max\": 854.5704146368641, \"mean\": 178.81389552685033, \"median\": 0.0, \"std\": 241.7937246802611, \"range\": 854.5704146368641, \"elevation_variance\": 58464.205294753905}, \"slope_analysis\": {\"max_slope\": 21.039258695253842, \"mean_slope\": 4.657710339366256, \"median_slope\": 0.8745747138122286, \"slope_std\": 5.911353372397765, \"steep_area_fraction\": 0.1999969482421875, \"slope_variance\": 34.94409869335843, \"dominant_aspect\": 0.21399995748577638, \"slope_gradients\": {\"grad_x_mean\": -0.8559894545009116, \"grad_y_mean\": -0.3248495227965077}}, \"feature_detection\": {\"peaks_detected\": 2, \"peak_height_mean\": 678.0217783867093, \"peak_height_max\": 854.5704146368641, \"peak_locations\": [[160, 41], [255, 244]], \"peak_prominence\": 499.207882859859, \"valleys_detected\": 0, \"valley_depth_mean\": 0.0, \"valley_depth_min\": 0.0, \"valley_locations\": [], \"valley_depth_relative\": 0.0, \"ridge_lines\": 0.0943450927734375, \"ridge_strength_mean\": 0.5291796522402055, \"ridge_area_fraction\": 0.0943450927734375, \"flat_area_fraction\": 0.0, \"flat_regions_count\": 0, \"largest_flat_region\": 0, \"average_flat_region_size\": 0.0, \"water_body_fraction\": 0.0, \"water_bodies_count\": 0, \"largest_water_body\": 0, \"average_water_depth\": 0.0, \"caves_detected\": 0, \"cave_depth_mean\": 0.0, \"cave_depth_max\": 0.0, \"cave_area_fraction\": 0.0}, \"terrain_classification\": {\"primary_type\": \"plains\", \"confidence\": 0.5, \"characteristics\": [], \"complexity_score\": 58499.34939344726}, \"analysis_metadata\": {\"tile_size\": 256, \"heightmap_shape\": [256, 256], \"analysis_version\": \"1.0\"}}, \"features\": {\"terrain_type\": \"hills\", \"primary_features\": [\"cave_systems\"], \"secondary_features\": [\"underground\"], \"biome\": \"temperate\", \"complexity\": 0.7}, \"parameters\": {\"cave_density\": 0.40797913071371117, \"cave_size\": 0.7701564718484871, \"tunnel_width\": 0.40644858752999397, \"cave_depth\": 0.3658845521910807, \"base_frequency\": 0.009864241016229828, \"detail_octaves\": 3, \"detail_persistence\": 0.4687144215892313, \"height_scale\": 854.5704146368641}}"
+            }
+          },
+          {
+            "id": "call_7",
+            "type": "function",
+            "function": {
+              "name": "convert_to_legacy_format",
+              "arguments": "{\"features\": {\"terrain_type\": \"hills\", \"primary_features\": [\"cave_systems\"], \"secondary_features\": [\"underground\"], \"biome\": \"temperate\", \"complexity\": 0.7}, \"parameters\": {\"cave_density\": 0.40797913071371117, \"cave_size\": 0.7701564718484871, \"tunnel_width\": 0.40644858752999397, \"cave_depth\": 0.3658845521910807, \"base_frequency\": 0.009864241016229828, \"detail_octaves\": 3, \"detail_persistence\": 0.4687144215892313, \"height_scale\": 854.5704146368641}, \"world_x\": -768, \"world_y\": -4096, \"seeds\": [60042, 61055, 289628], \"global_seed\": 289626, \"tile_size\": 256}"
+            },
+            "result": {
+              "tile_u": -3,
+              "tile_v": -16,
+              "world_x": -768,
+              "world_y": -4096,
+              "global_seed": 289626,
+              "module_ids": [
+                0,
+                6,
+                8
+              ],
+              "parameters": {
+                "frequency": 0.009864241016229828,
+                "octaves": 3,
+                "persistence": 0.4687144215892313,
+                "lacunarity": 2.0,
+                "height_scale": 854.5704146368641,
+                "erosion_speed": 0.08159582614274224,
+                "iterations": 127,
+                "warp_amplitude": 140.0,
+                "warp_frequency": 0.005,
+                "warp_octaves": 2,
+                "rain_amount": 0.5,
+                "evaporation": 0.05,
+                "capacity": 0.3
+              },
+              "seeds": [
+                60042,
+                61055,
+                289628
+              ]
+            }
+          },
+          {
+            "id": "call_8",
+            "type": "function",
+            "function": {
+              "name": "compute_grid_continuity",
+              "arguments": "{\"blend_edges\": true, \"overlap_size\": 16, \"tile_coordinates\": [-3, -16]}"
+            }
+          },
+          {
+            "id": "call_3",
+            "type": "function",
+            "function": {
+              "name": "generate_heightmap",
+              "arguments": "{\"tile_u\": -3, \"tile_v\": -16, \"world_x\": -768, \"world_y\": -4096, \"global_seed\": 289626, \"module_ids\": [0, 6, 8], \"parameters\": {\"frequency\": 0.009864241016229828, \"octaves\": 3, \"persistence\": 0.4687144215892313, \"lacunarity\": 2.0, \"height_scale\": 854.5704146368641, \"erosion_speed\": 0.08159582614274224, \"iterations\": 127, \"warp_amplitude\": 140.0, \"warp_frequency\": 0.005, \"warp_octaves\": 2, \"rain_amount\": 0.5, \"evaporation\": 0.05, \"capacity\": 0.3}, \"seeds\": [60042, 61055, 289628], \"features\": {\"terrain_type\": \"hills\", \"primary_features\": [\"cave_systems\"], \"secondary_features\": [\"underground\"], \"biome\": \"temperate\", \"complexity\": 0.7}, \"terrain_analysis\": {\"elevation_stats\": {\"min\": 0.0, \"max\": 854.5704146368641, \"mean\": 178.81389552685033, \"median\": 0.0, \"std\": 241.7937246802611, \"range\": 854.5704146368641, \"elevation_variance\": 58464.205294753905}, \"slope_analysis\": {\"max_slope\": 21.039258695253842, \"mean_slope\": 4.657710339366256, \"median_slope\": 0.8745747138122286, \"slope_std\": 5.911353372397765, \"steep_area_fraction\": 0.1999969482421875, \"slope_variance\": 34.94409869335843, \"dominant_aspect\": 0.21399995748577638, \"slope_gradients\": {\"grad_x_mean\": -0.8559894545009116, \"grad_y_mean\": -0.3248495227965077}}, \"feature_detection\": {\"peaks_detected\": 2, \"peak_height_mean\": 678.0217783867093, \"peak_height_max\": 854.5704146368641, \"peak_locations\": [[160, 41], [255, 244]], \"peak_prominence\": 499.207882859859, \"valleys_detected\": 0, \"valley_depth_mean\": 0.0, \"valley_depth_min\": 0.0, \"valley_locations\": [], \"valley_depth_relative\": 0.0, \"ridge_lines\": 0.0943450927734375, \"ridge_strength_mean\": 0.5291796522402055, \"ridge_area_fraction\": 0.0943450927734375, \"flat_area_fraction\": 0.0, \"flat_regions_count\": 0, \"largest_flat_region\": 0, \"average_flat_region_size\": 0.0, \"water_body_fraction\": 0.0, \"water_bodies_count\": 0, \"largest_water_body\": 0, \"average_water_depth\": 0.0, \"caves_detected\": 0, \"cave_depth_mean\": 0.0, \"cave_depth_max\": 0.0, \"cave_area_fraction\": 0.0}, \"terrain_classification\": {\"primary_type\": \"plains\", \"confidence\": 0.5, \"characteristics\": [], \"complexity_score\": 58499.34939344726}, \"analysis_metadata\": {\"tile_size\": 256, \"heightmap_shape\": [256, 256], \"analysis_version\": \"1.0\"}}, \"grid_continuity\": {\"blend_edges\": true, \"overlap_size\": 16, \"tile_coordinates\": [-3, -16]}}"
+            }
+          },
+          {
+            "id": "call_10",
+            "type": "function",
+            "function": {
+              "name": "validate_enhanced_format",
+              "arguments": "{\"is_valid\": true, \"errors\": []}"
+            }
+          }
+        ]
+      }
+    ],
+    "training_metadata": {
+      "sample_id": 6,
+      "validation_score": 1.0,
+      "heightmap_hash": "d7e870581c3bfbe9",
+      "generation_time_ms": 994,
+      "terrain_template": "hills",
+      "feature_count": 2,
+      "complexity_score": 0.7
+    }
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are a terrain generator"
+      },
+      {
+        "role": "user",
+        "content": "This expansive landscape features broad fields interspersed with rugged rocky outcrops and dense forests. Multiple mountain peaks rise prominently throughout the area, creating a diverse and intricate terrain characterized by varying elevations, slopes, and natural formations. The combination of thick woodland"
+      },
+      {
+        "role": "assistant",
+        "content": null,
+        "tool_calls": [
+          {
+            "id": "call_0",
+            "type": "function",
+            "function": {
+              "name": "sample_terrain_config",
+              "arguments": "{\"features\": {\"terrain_type\": \"valleys\", \"primary_features\": [\"deep_valleys\", \"river_valleys\"], \"secondary_features\": [\"erosion\", \"water_features\", \"warping\"], \"biome\": \"temperate\", \"complexity\": 0.6}, \"parameters\": {\"valley_depth\": 0.7652544496742181, \"valley_width\": 0.4701540154435506, \"valley_count\": 3, \"river_depth\": 0.2629355761596956, \"base_frequency\": 0.0148315799794232, \"detail_octaves\": 6, \"detail_persistence\": 0.6654049461660108, \"height_scale\": 1892.8481793407211}}"
+            }
+          },
+          {
+            "id": "call_1",
+            "type": "function",
+            "function": {
+              "name": "sample_world_coordinates",
+              "arguments": "{\"world_x\": -1280, \"world_y\": 3840}"
+            }
+          },
+          {
+            "id": "call_2",
+            "type": "function",
+            "function": {
+              "name": "generate_seeds",
+              "arguments": "{\"sample_id\": 7, \"num_features\": 5, \"seeds\": [70049, 71062, 72075, 73088, 74101]}"
+            }
+          },
+          {
+            "id": "call_3",
+            "type": "function",
+            "function": {
+              "name": "generate_heightmap",
+              "arguments": "{\"world_x\": -1280, \"world_y\": 3840, \"parameters\": {\"valley_depth\": 0.7652544496742181, \"valley_width\": 0.4701540154435506, \"valley_count\": 3, \"river_depth\": 0.2629355761596956, \"base_frequency\": 0.0148315799794232, \"detail_octaves\": 6, \"detail_persistence\": 0.6654049461660108, \"height_scale\": 1892.8481793407211}, \"seeds\": [70049, 71062, 72075, 73088, 74101], \"global_seed\": 337897}"
+            }
+          },
+          {
+            "id": "call_4",
+            "type": "function",
+            "function": {
+              "name": "analyze_heightmap",
+              "arguments": "{\"terrain_analysis\": {\"elevation_stats\": {\"min\": 0.0, \"max\": 1892.8481793407211, \"mean\": 423.4210847593959, \"median\": 204.83624437218825, \"std\": 493.96752871466987, \"range\": 1892.8481793407211, \"elevation_variance\": 244003.9194244782}, \"slope_analysis\": {\"max_slope\": 71.27168459011007, \"mean_slope\": 17.04633010879523, \"median_slope\": 14.470077018773505, \"slope_std\": 18.384900809660373, \"steep_area_fraction\": 0.1999969482421875, \"slope_variance\": 338.00457778105067, \"dominant_aspect\": 0.17958696728793827, \"slope_gradients\": {\"grad_x_mean\": 0.2708282064061398, \"grad_y_mean\": -0.06891695123800623}}, \"feature_detection\": {\"peaks_detected\": 5, \"peak_height_mean\": 1627.089166272664, \"peak_height_max\": 1892.8481793407211, \"peak_locations\": [[0, 138], [134, 70], [134, 255], [201, 3], [255, 205]], \"peak_prominence\": 1203.6680815132681, \"valleys_detected\": 0, \"valley_depth_mean\": 0.0, \"valley_depth_min\": 0.0, \"valley_locations\": [], \"valley_depth_relative\": 0.0, \"ridge_lines\": 0.0909423828125, \"ridge_strength_mean\": 2.6779793063798536, \"ridge_area_fraction\": 0.0909423828125, \"flat_area_fraction\": 0.0, \"flat_regions_count\": 0, \"largest_flat_region\": 0, \"average_flat_region_size\": 0.0, \"water_body_fraction\": 0.0, \"water_bodies_count\": 0, \"largest_water_body\": 0, \"average_water_depth\": 0.0, \"caves_detected\": 0, \"cave_depth_mean\": 0.0, \"cave_depth_max\": 0.0, \"cave_area_fraction\": 0.0}, \"terrain_classification\": {\"primary_type\": \"plains\", \"confidence\": 0.5, \"characteristics\": [], \"complexity_score\": 244342.42400225924}, \"analysis_metadata\": {\"tile_size\": 256, \"heightmap_shape\": [256, 256], \"analysis_version\": \"1.0\"}}}"
+            }
+          },
+          {
+            "id": "call_5",
+            "type": "function",
+            "function": {
+              "name": "generate_caption",
+              "arguments": "{\"terrain_analysis\": {\"elevation_stats\": {\"min\": 0.0, \"max\": 1892.8481793407211, \"mean\": 423.4210847593959, \"median\": 204.83624437218825, \"std\": 493.96752871466987, \"range\": 1892.8481793407211, \"elevation_variance\": 244003.9194244782}, \"slope_analysis\": {\"max_slope\": 71.27168459011007, \"mean_slope\": 17.04633010879523, \"median_slope\": 14.470077018773505, \"slope_std\": 18.384900809660373, \"steep_area_fraction\": 0.1999969482421875, \"slope_variance\": 338.00457778105067, \"dominant_aspect\": 0.17958696728793827, \"slope_gradients\": {\"grad_x_mean\": 0.2708282064061398, \"grad_y_mean\": -0.06891695123800623}}, \"feature_detection\": {\"peaks_detected\": 5, \"peak_height_mean\": 1627.089166272664, \"peak_height_max\": 1892.8481793407211, \"peak_locations\": [[0, 138], [134, 70], [134, 255], [201, 3], [255, 205]], \"peak_prominence\": 1203.6680815132681, \"valleys_detected\": 0, \"valley_depth_mean\": 0.0, \"valley_depth_min\": 0.0, \"valley_locations\": [], \"valley_depth_relative\": 0.0, \"ridge_lines\": 0.0909423828125, \"ridge_strength_mean\": 2.6779793063798536, \"ridge_area_fraction\": 0.0909423828125, \"flat_area_fraction\": 0.0, \"flat_regions_count\": 0, \"largest_flat_region\": 0, \"average_flat_region_size\": 0.0, \"water_body_fraction\": 0.0, \"water_bodies_count\": 0, \"largest_water_body\": 0, \"average_water_depth\": 0.0, \"caves_detected\": 0, \"cave_depth_mean\": 0.0, \"cave_depth_max\": 0.0, \"cave_area_fraction\": 0.0}, \"terrain_classification\": {\"primary_type\": \"plains\", \"confidence\": 0.5, \"characteristics\": [], \"complexity_score\": 244342.42400225924}, \"analysis_metadata\": {\"tile_size\": 256, \"heightmap_shape\": [256, 256], \"analysis_version\": \"1.0\"}}, \"features\": {\"terrain_type\": \"valleys\", \"primary_features\": [\"deep_valleys\", \"river_valleys\"], \"secondary_features\": [\"erosion\", \"water_features\", \"warping\"], \"biome\": \"temperate\", \"complexity\": 0.6}, \"parameters\": {\"valley_depth\": 0.7652544496742181, \"valley_width\": 0.4701540154435506, \"valley_count\": 3, \"river_depth\": 0.2629355761596956, \"base_frequency\": 0.0148315799794232, \"detail_octaves\": 6, \"detail_persistence\": 0.6654049461660108, \"height_scale\": 1892.8481793407211}}"
+            }
+          },
+          {
+            "id": "call_7",
+            "type": "function",
+            "function": {
+              "name": "convert_to_legacy_format",
+              "arguments": "{\"features\": {\"terrain_type\": \"valleys\", \"primary_features\": [\"deep_valleys\", \"river_valleys\"], \"secondary_features\": [\"erosion\", \"water_features\", \"warping\"], \"biome\": \"temperate\", \"complexity\": 0.6}, \"parameters\": {\"valley_depth\": 0.7652544496742181, \"valley_width\": 0.4701540154435506, \"valley_count\": 3, \"river_depth\": 0.2629355761596956, \"base_frequency\": 0.0148315799794232, \"detail_octaves\": 6, \"detail_persistence\": 0.6654049461660108, \"height_scale\": 1892.8481793407211}, \"world_x\": -1280, \"world_y\": 3840, \"seeds\": [70049, 71062, 72075, 73088, 74101], \"global_seed\": 337897, \"tile_size\": 256}"
+            },
+            "result": {
+              "tile_u": -5,
+              "tile_v": 15,
+              "world_x": -1280,
+              "world_y": 3840,
+              "global_seed": 337897,
+              "module_ids": [
+                0,
+                5,
+                7,
+                3,
+                8
+              ],
+              "parameters": {
+                "frequency": 0.0148315799794232,
+                "octaves": 6,
+                "persistence": 0.6654049461660108,
+                "lacunarity": 2.0,
+                "height_scale": 1892.8481793407211,
+                "erosion_speed": 0.22957633490226542,
+                "rain_amount": 0.36,
+                "evaporation": 0.05,
+                "capacity": 0.3,
+                "iterations": 100
+              },
+              "seeds": [
+                70049,
+                71062,
+                72075,
+                73088,
+                74101
+              ]
+            }
+          },
+          {
+            "id": "call_8",
+            "type": "function",
+            "function": {
+              "name": "compute_grid_continuity",
+              "arguments": "{\"blend_edges\": true, \"overlap_size\": 16, \"tile_coordinates\": [-5, 15]}"
+            }
+          },
+          {
+            "id": "call_3",
+            "type": "function",
+            "function": {
+              "name": "generate_heightmap",
+              "arguments": "{\"tile_u\": -5, \"tile_v\": 15, \"world_x\": -1280, \"world_y\": 3840, \"global_seed\": 337897, \"module_ids\": [0, 5, 7, 3, 8], \"parameters\": {\"frequency\": 0.0148315799794232, \"octaves\": 6, \"persistence\": 0.6654049461660108, \"lacunarity\": 2.0, \"height_scale\": 1892.8481793407211, \"erosion_speed\": 0.22957633490226542, \"rain_amount\": 0.36, \"evaporation\": 0.05, \"capacity\": 0.3, \"iterations\": 100}, \"seeds\": [70049, 71062, 72075, 73088, 74101], \"features\": {\"terrain_type\": \"valleys\", \"primary_features\": [\"deep_valleys\", \"river_valleys\"], \"secondary_features\": [\"erosion\", \"water_features\", \"warping\"], \"biome\": \"temperate\", \"complexity\": 0.6}, \"terrain_analysis\": {\"elevation_stats\": {\"min\": 0.0, \"max\": 1892.8481793407211, \"mean\": 423.4210847593959, \"median\": 204.83624437218825, \"std\": 493.96752871466987, \"range\": 1892.8481793407211, \"elevation_variance\": 244003.9194244782}, \"slope_analysis\": {\"max_slope\": 71.27168459011007, \"mean_slope\": 17.04633010879523, \"median_slope\": 14.470077018773505, \"slope_std\": 18.384900809660373, \"steep_area_fraction\": 0.1999969482421875, \"slope_variance\": 338.00457778105067, \"dominant_aspect\": 0.17958696728793827, \"slope_gradients\": {\"grad_x_mean\": 0.2708282064061398, \"grad_y_mean\": -0.06891695123800623}}, \"feature_detection\": {\"peaks_detected\": 5, \"peak_height_mean\": 1627.089166272664, \"peak_height_max\": 1892.8481793407211, \"peak_locations\": [[0, 138], [134, 70], [134, 255], [201, 3], [255, 205]], \"peak_prominence\": 1203.6680815132681, \"valleys_detected\": 0, \"valley_depth_mean\": 0.0, \"valley_depth_min\": 0.0, \"valley_locations\": [], \"valley_depth_relative\": 0.0, \"ridge_lines\": 0.0909423828125, \"ridge_strength_mean\": 2.6779793063798536, \"ridge_area_fraction\": 0.0909423828125, \"flat_area_fraction\": 0.0, \"flat_regions_count\": 0, \"largest_flat_region\": 0, \"average_flat_region_size\": 0.0, \"water_body_fraction\": 0.0, \"water_bodies_count\": 0, \"largest_water_body\": 0, \"average_water_depth\": 0.0, \"caves_detected\": 0, \"cave_depth_mean\": 0.0, \"cave_depth_max\": 0.0, \"cave_area_fraction\": 0.0}, \"terrain_classification\": {\"primary_type\": \"plains\", \"confidence\": 0.5, \"characteristics\": [], \"complexity_score\": 244342.42400225924}, \"analysis_metadata\": {\"tile_size\": 256, \"heightmap_shape\": [256, 256], \"analysis_version\": \"1.0\"}}, \"grid_continuity\": {\"blend_edges\": true, \"overlap_size\": 16, \"tile_coordinates\": [-5, 15]}}"
+            }
+          },
+          {
+            "id": "call_10",
+            "type": "function",
+            "function": {
+              "name": "validate_enhanced_format",
+              "arguments": "{\"is_valid\": true, \"errors\": []}"
+            }
+          }
+        ]
+      }
+    ],
+    "training_metadata": {
+      "sample_id": 7,
+      "validation_score": 1.0,
+      "heightmap_hash": "12813a51705b5cc8",
+      "generation_time_ms": 1097,
+      "terrain_template": "valleys",
+      "feature_count": 5,
+      "complexity_score": 0.6
+    }
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are a terrain generator"
+      },
+      {
+        "role": "user",
+        "content": "Expansive, gently rolling plains stretch across the landscape, punctuated by numerous prominent peaks that rise dramatically from the flat surroundings. These peaks exhibit intricate and varied terrain features, including sharp ridges, rugged cliffs, and undulating slopes, creating a"
+      },
+      {
+        "role": "assistant",
+        "content": null,
+        "tool_calls": [
+          {
+            "id": "call_0",
+            "type": "function",
+            "function": {
+              "name": "sample_terrain_config",
+              "arguments": "{\"features\": {\"terrain_type\": \"plains\", \"primary_features\": [\"water_features\"], \"secondary_features\": [\"erosion\", \"warping\"], \"biome\": \"wetlands\", \"complexity\": 0.5}, \"parameters\": {\"river_depth\": 0.37882248255688056, \"river_width\": 0.37537579706706214, \"river_count\": 3, \"lake_count\": 1, \"base_frequency\": 0.010429946655704164, \"detail_octaves\": 4, \"detail_persistence\": 0.5528578881029393, \"height_scale\": 954.5460006954496}}"
+            }
+          },
+          {
+            "id": "call_1",
+            "type": "function",
+            "function": {
+              "name": "sample_world_coordinates",
+              "arguments": "{\"world_x\": -2816, \"world_y\": 5120}"
+            }
+          },
+          {
+            "id": "call_2",
+            "type": "function",
+            "function": {
+              "name": "generate_seeds",
+              "arguments": "{\"sample_id\": 8, \"num_features\": 3, \"seeds\": [80056, 81069, 82082]}"
+            }
+          },
+          {
+            "id": "call_3",
+            "type": "function",
+            "function": {
+              "name": "generate_heightmap",
+              "arguments": "{\"world_x\": -2816, \"world_y\": 5120, \"parameters\": {\"river_depth\": 0.37882248255688056, \"river_width\": 0.37537579706706214, \"river_count\": 3, \"lake_count\": 1, \"base_frequency\": 0.010429946655704164, \"detail_octaves\": 4, \"detail_persistence\": 0.5528578881029393, \"height_scale\": 954.5460006954496}, \"seeds\": [80056, 81069, 82082], \"global_seed\": 386168}"
+            }
+          },
+          {
+            "id": "call_4",
+            "type": "function",
+            "function": {
+              "name": "analyze_heightmap",
+              "arguments": "{\"terrain_analysis\": {\"elevation_stats\": {\"min\": 0.0, \"max\": 954.5460006954496, \"mean\": 140.9053889684889, \"median\": 0.0, \"std\": 226.29914151922, \"range\": 954.5460006954496, \"elevation_variance\": 51211.30145233596}, \"slope_analysis\": {\"max_slope\": 33.74264165981705, \"mean_slope\": 4.866201818230768, \"median_slope\": 0.0, \"slope_std\": 7.215421923554686, \"steep_area_fraction\": 0.1999969482421875, \"slope_variance\": 52.06231353491361, \"dominant_aspect\": 0.18499183827111576, \"slope_gradients\": {\"grad_x_mean\": 1.0490684628801392, \"grad_y_mean\": 0.5128295312672329}}, \"feature_detection\": {\"peaks_detected\": 3, \"peak_height_mean\": 708.6949075875291, \"peak_height_max\": 954.5460006954496, \"peak_locations\": [[131, 0], [131, 249], [255, 153]], \"peak_prominence\": 567.7895186190402, \"valleys_detected\": 0, \"valley_depth_mean\": 0.0, \"valley_depth_min\": 0.0, \"valley_locations\": [], \"valley_depth_relative\": 0.0, \"ridge_lines\": 0.09710693359375, \"ridge_strength_mean\": 0.7535211500042976, \"ridge_area_fraction\": 0.09710693359375, \"flat_area_fraction\": 0.0, \"flat_regions_count\": 0, \"largest_flat_region\": 0, \"average_flat_region_size\": 0.0, \"water_body_fraction\": 0.0, \"water_bodies_count\": 0, \"largest_water_body\": 0, \"average_water_depth\": 0.0, \"caves_detected\": 0, \"cave_depth_mean\": 0.0, \"cave_depth_max\": 0.0, \"cave_area_fraction\": 0.0}, \"terrain_classification\": {\"primary_type\": \"plains\", \"confidence\": 0.5, \"characteristics\": [], \"complexity_score\": 51263.66376587088}, \"analysis_metadata\": {\"tile_size\": 256, \"heightmap_shape\": [256, 256], \"analysis_version\": \"1.0\"}}}"
+            }
+          },
+          {
+            "id": "call_5",
+            "type": "function",
+            "function": {
+              "name": "generate_caption",
+              "arguments": "{\"terrain_analysis\": {\"elevation_stats\": {\"min\": 0.0, \"max\": 954.5460006954496, \"mean\": 140.9053889684889, \"median\": 0.0, \"std\": 226.29914151922, \"range\": 954.5460006954496, \"elevation_variance\": 51211.30145233596}, \"slope_analysis\": {\"max_slope\": 33.74264165981705, \"mean_slope\": 4.866201818230768, \"median_slope\": 0.0, \"slope_std\": 7.215421923554686, \"steep_area_fraction\": 0.1999969482421875, \"slope_variance\": 52.06231353491361, \"dominant_aspect\": 0.18499183827111576, \"slope_gradients\": {\"grad_x_mean\": 1.0490684628801392, \"grad_y_mean\": 0.5128295312672329}}, \"feature_detection\": {\"peaks_detected\": 3, \"peak_height_mean\": 708.6949075875291, \"peak_height_max\": 954.5460006954496, \"peak_locations\": [[131, 0], [131, 249], [255, 153]], \"peak_prominence\": 567.7895186190402, \"valleys_detected\": 0, \"valley_depth_mean\": 0.0, \"valley_depth_min\": 0.0, \"valley_locations\": [], \"valley_depth_relative\": 0.0, \"ridge_lines\": 0.09710693359375, \"ridge_strength_mean\": 0.7535211500042976, \"ridge_area_fraction\": 0.09710693359375, \"flat_area_fraction\": 0.0, \"flat_regions_count\": 0, \"largest_flat_region\": 0, \"average_flat_region_size\": 0.0, \"water_body_fraction\": 0.0, \"water_bodies_count\": 0, \"largest_water_body\": 0, \"average_water_depth\": 0.0, \"caves_detected\": 0, \"cave_depth_mean\": 0.0, \"cave_depth_max\": 0.0, \"cave_area_fraction\": 0.0}, \"terrain_classification\": {\"primary_type\": \"plains\", \"confidence\": 0.5, \"characteristics\": [], \"complexity_score\": 51263.66376587088}, \"analysis_metadata\": {\"tile_size\": 256, \"heightmap_shape\": [256, 256], \"analysis_version\": \"1.0\"}}, \"features\": {\"terrain_type\": \"plains\", \"primary_features\": [\"water_features\"], \"secondary_features\": [\"erosion\", \"warping\"], \"biome\": \"wetlands\", \"complexity\": 0.5}, \"parameters\": {\"river_depth\": 0.37882248255688056, \"river_width\": 0.37537579706706214, \"river_count\": 3, \"lake_count\": 1, \"base_frequency\": 0.010429946655704164, \"detail_octaves\": 4, \"detail_persistence\": 0.5528578881029393, \"height_scale\": 954.5460006954496}}"
+            }
+          },
+          {
+            "id": "call_7",
+            "type": "function",
+            "function": {
+              "name": "convert_to_legacy_format",
+              "arguments": "{\"features\": {\"terrain_type\": \"plains\", \"primary_features\": [\"water_features\"], \"secondary_features\": [\"erosion\", \"warping\"], \"biome\": \"wetlands\", \"complexity\": 0.5}, \"parameters\": {\"river_depth\": 0.37882248255688056, \"river_width\": 0.37537579706706214, \"river_count\": 3, \"lake_count\": 1, \"base_frequency\": 0.010429946655704164, \"detail_octaves\": 4, \"detail_persistence\": 0.5528578881029393, \"height_scale\": 954.5460006954496}, \"world_x\": -2816, \"world_y\": 5120, \"seeds\": [80056, 81069, 82082, 386171], \"global_seed\": 386168, \"tile_size\": 256}"
+            },
+            "result": {
+              "tile_u": -11,
+              "tile_v": 20,
+              "world_x": -2816,
+              "world_y": 5120,
+              "global_seed": 386168,
+              "module_ids": [
+                0,
+                7,
+                3,
+                8
+              ],
+              "parameters": {
+                "frequency": 0.010429946655704164,
+                "octaves": 4,
+                "persistence": 0.5528578881029393,
+                "lacunarity": 2.0,
+                "height_scale": 954.5460006954496,
+                "erosion_speed": 0.15152899302275225,
+                "rain_amount": 0.45045095648047456,
+                "evaporation": 0.05,
+                "capacity": 0.3,
+                "iterations": 100
+              },
+              "seeds": [
+                80056,
+                81069,
+                82082,
+                386171
+              ]
+            }
+          },
+          {
+            "id": "call_8",
+            "type": "function",
+            "function": {
+              "name": "compute_grid_continuity",
+              "arguments": "{\"blend_edges\": true, \"overlap_size\": 16, \"tile_coordinates\": [-11, 20]}"
+            }
+          },
+          {
+            "id": "call_3",
+            "type": "function",
+            "function": {
+              "name": "generate_heightmap",
+              "arguments": "{\"tile_u\": -11, \"tile_v\": 20, \"world_x\": -2816, \"world_y\": 5120, \"global_seed\": 386168, \"module_ids\": [0, 7, 3, 8], \"parameters\": {\"frequency\": 0.010429946655704164, \"octaves\": 4, \"persistence\": 0.5528578881029393, \"lacunarity\": 2.0, \"height_scale\": 954.5460006954496, \"erosion_speed\": 0.15152899302275225, \"rain_amount\": 0.45045095648047456, \"evaporation\": 0.05, \"capacity\": 0.3, \"iterations\": 100}, \"seeds\": [80056, 81069, 82082, 386171], \"features\": {\"terrain_type\": \"plains\", \"primary_features\": [\"water_features\"], \"secondary_features\": [\"erosion\", \"warping\"], \"biome\": \"wetlands\", \"complexity\": 0.5}, \"terrain_analysis\": {\"elevation_stats\": {\"min\": 0.0, \"max\": 954.5460006954496, \"mean\": 140.9053889684889, \"median\": 0.0, \"std\": 226.29914151922, \"range\": 954.5460006954496, \"elevation_variance\": 51211.30145233596}, \"slope_analysis\": {\"max_slope\": 33.74264165981705, \"mean_slope\": 4.866201818230768, \"median_slope\": 0.0, \"slope_std\": 7.215421923554686, \"steep_area_fraction\": 0.1999969482421875, \"slope_variance\": 52.06231353491361, \"dominant_aspect\": 0.18499183827111576, \"slope_gradients\": {\"grad_x_mean\": 1.0490684628801392, \"grad_y_mean\": 0.5128295312672329}}, \"feature_detection\": {\"peaks_detected\": 3, \"peak_height_mean\": 708.6949075875291, \"peak_height_max\": 954.5460006954496, \"peak_locations\": [[131, 0], [131, 249], [255, 153]], \"peak_prominence\": 567.7895186190402, \"valleys_detected\": 0, \"valley_depth_mean\": 0.0, \"valley_depth_min\": 0.0, \"valley_locations\": [], \"valley_depth_relative\": 0.0, \"ridge_lines\": 0.09710693359375, \"ridge_strength_mean\": 0.7535211500042976, \"ridge_area_fraction\": 0.09710693359375, \"flat_area_fraction\": 0.0, \"flat_regions_count\": 0, \"largest_flat_region\": 0, \"average_flat_region_size\": 0.0, \"water_body_fraction\": 0.0, \"water_bodies_count\": 0, \"largest_water_body\": 0, \"average_water_depth\": 0.0, \"caves_detected\": 0, \"cave_depth_mean\": 0.0, \"cave_depth_max\": 0.0, \"cave_area_fraction\": 0.0}, \"terrain_classification\": {\"primary_type\": \"plains\", \"confidence\": 0.5, \"characteristics\": [], \"complexity_score\": 51263.66376587088}, \"analysis_metadata\": {\"tile_size\": 256, \"heightmap_shape\": [256, 256], \"analysis_version\": \"1.0\"}}, \"grid_continuity\": {\"blend_edges\": true, \"overlap_size\": 16, \"tile_coordinates\": [-11, 20]}}"
+            }
+          },
+          {
+            "id": "call_10",
+            "type": "function",
+            "function": {
+              "name": "validate_enhanced_format",
+              "arguments": "{\"is_valid\": true, \"errors\": []}"
+            }
+          }
+        ]
+      }
+    ],
+    "training_metadata": {
+      "sample_id": 8,
+      "validation_score": 1.0,
+      "heightmap_hash": "b2c25d330941d1d5",
+      "generation_time_ms": 1025,
+      "terrain_template": "plains",
+      "feature_count": 3,
+      "complexity_score": 0.5
+    }
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are a terrain generator"
+      },
+      {
+        "role": "user",
+        "content": "Expansive open fields stretch across the landscape, interspersed with multiple mountain peaks that showcase intricate and diverse terrain features, including rugged slopes, sharp ridges, and varied elevations. The interplay of gentle plains and dramatic highlands creates a dynamic and"
+      },
+      {
+        "role": "assistant",
+        "content": null,
+        "tool_calls": [
+          {
+            "id": "call_0",
+            "type": "function",
+            "function": {
+              "name": "sample_terrain_config",
+              "arguments": "{\"features\": {\"terrain_type\": \"valleys\", \"primary_features\": [\"deep_valleys\", \"river_valleys\"], \"secondary_features\": [\"erosion\", \"water_features\", \"warping\"], \"biome\": \"temperate\", \"complexity\": 0.6}, \"parameters\": {\"valley_depth\": 0.7168317457451857, \"valley_width\": 0.42664799003990517, \"valley_count\": 1, \"river_depth\": 0.27695346233490004, \"base_frequency\": 0.013938326425416921, \"detail_octaves\": 6, \"detail_persistence\": 0.5587343035297411, \"height_scale\": 2450.833241943151}}"
+            }
+          },
+          {
+            "id": "call_1",
+            "type": "function",
+            "function": {
+              "name": "sample_world_coordinates",
+              "arguments": "{\"world_x\": -5120, \"world_y\": -3328}"
+            }
+          },
+          {
+            "id": "call_2",
+            "type": "function",
+            "function": {
+              "name": "generate_seeds",
+              "arguments": "{\"sample_id\": 9, \"num_features\": 5, \"seeds\": [90063, 91076, 92089, 93102, 94115]}"
+            }
+          },
+          {
+            "id": "call_3",
+            "type": "function",
+            "function": {
+              "name": "generate_heightmap",
+              "arguments": "{\"world_x\": -5120, \"world_y\": -3328, \"parameters\": {\"valley_depth\": 0.7168317457451857, \"valley_width\": 0.42664799003990517, \"valley_count\": 1, \"river_depth\": 0.27695346233490004, \"base_frequency\": 0.013938326425416921, \"detail_octaves\": 6, \"detail_persistence\": 0.5587343035297411, \"height_scale\": 2450.833241943151}, \"seeds\": [90063, 91076, 92089, 93102, 94115], \"global_seed\": 434439}"
+            }
+          },
+          {
+            "id": "call_4",
+            "type": "function",
+            "function": {
+              "name": "analyze_heightmap",
+              "arguments": "{\"terrain_analysis\": {\"elevation_stats\": {\"min\": 0.0, \"max\": 2450.833241943151, \"mean\": 357.80758974430734, \"median\": 0.0, \"std\": 573.8595703882239, \"range\": 2450.833241943151, \"elevation_variance\": 329314.80652615696}, \"slope_analysis\": {\"max_slope\": 91.04747149195147, \"mean_slope\": 13.766125857553575, \"median_slope\": 0.0, \"slope_std\": 20.194212051062067, \"steep_area_fraction\": 0.1999969482421875, \"slope_variance\": 407.8062003632604, \"dominant_aspect\": 0.11943949264670073, \"slope_gradients\": {\"grad_x_mean\": 1.646527741160514, \"grad_y_mean\": -0.3812994724614751}}, \"feature_detection\": {\"peaks_detected\": 3, \"peak_height_mean\": 2036.4761301937126, \"peak_height_max\": 2450.833241943151, \"peak_locations\": [[26, 243], [98, 171], [241, 99]], \"peak_prominence\": 1678.6685404494053, \"valleys_detected\": 0, \"valley_depth_mean\": 0.0, \"valley_depth_min\": 0.0, \"valley_locations\": [], \"valley_depth_relative\": 0.0, \"ridge_lines\": 0.0979461669921875, \"ridge_strength_mean\": 3.139972558922781, \"ridge_area_fraction\": 0.0979461669921875, \"flat_area_fraction\": 0.0, \"flat_regions_count\": 0, \"largest_flat_region\": 0, \"average_flat_region_size\": 0.0, \"water_body_fraction\": 0.0, \"water_bodies_count\": 0, \"largest_water_body\": 0, \"average_water_depth\": 0.0, \"caves_detected\": 0, \"cave_depth_mean\": 0.0, \"cave_depth_max\": 0.0, \"cave_area_fraction\": 0.0}, \"terrain_classification\": {\"primary_type\": \"plains\", \"confidence\": 0.5, \"characteristics\": [], \"complexity_score\": 329722.9127265202}, \"analysis_metadata\": {\"tile_size\": 256, \"heightmap_shape\": [256, 256], \"analysis_version\": \"1.0\"}}}"
+            }
+          },
+          {
+            "id": "call_5",
+            "type": "function",
+            "function": {
+              "name": "generate_caption",
+              "arguments": "{\"terrain_analysis\": {\"elevation_stats\": {\"min\": 0.0, \"max\": 2450.833241943151, \"mean\": 357.80758974430734, \"median\": 0.0, \"std\": 573.8595703882239, \"range\": 2450.833241943151, \"elevation_variance\": 329314.80652615696}, \"slope_analysis\": {\"max_slope\": 91.04747149195147, \"mean_slope\": 13.766125857553575, \"median_slope\": 0.0, \"slope_std\": 20.194212051062067, \"steep_area_fraction\": 0.1999969482421875, \"slope_variance\": 407.8062003632604, \"dominant_aspect\": 0.11943949264670073, \"slope_gradients\": {\"grad_x_mean\": 1.646527741160514, \"grad_y_mean\": -0.3812994724614751}}, \"feature_detection\": {\"peaks_detected\": 3, \"peak_height_mean\": 2036.4761301937126, \"peak_height_max\": 2450.833241943151, \"peak_locations\": [[26, 243], [98, 171], [241, 99]], \"peak_prominence\": 1678.6685404494053, \"valleys_detected\": 0, \"valley_depth_mean\": 0.0, \"valley_depth_min\": 0.0, \"valley_locations\": [], \"valley_depth_relative\": 0.0, \"ridge_lines\": 0.0979461669921875, \"ridge_strength_mean\": 3.139972558922781, \"ridge_area_fraction\": 0.0979461669921875, \"flat_area_fraction\": 0.0, \"flat_regions_count\": 0, \"largest_flat_region\": 0, \"average_flat_region_size\": 0.0, \"water_body_fraction\": 0.0, \"water_bodies_count\": 0, \"largest_water_body\": 0, \"average_water_depth\": 0.0, \"caves_detected\": 0, \"cave_depth_mean\": 0.0, \"cave_depth_max\": 0.0, \"cave_area_fraction\": 0.0}, \"terrain_classification\": {\"primary_type\": \"plains\", \"confidence\": 0.5, \"characteristics\": [], \"complexity_score\": 329722.9127265202}, \"analysis_metadata\": {\"tile_size\": 256, \"heightmap_shape\": [256, 256], \"analysis_version\": \"1.0\"}}, \"features\": {\"terrain_type\": \"valleys\", \"primary_features\": [\"deep_valleys\", \"river_valleys\"], \"secondary_features\": [\"erosion\", \"water_features\", \"warping\"], \"biome\": \"temperate\", \"complexity\": 0.6}, \"parameters\": {\"valley_depth\": 0.7168317457451857, \"valley_width\": 0.42664799003990517, \"valley_count\": 1, \"river_depth\": 0.27695346233490004, \"base_frequency\": 0.013938326425416921, \"detail_octaves\": 6, \"detail_persistence\": 0.5587343035297411, \"height_scale\": 2450.833241943151}}"
+            }
+          },
+          {
+            "id": "call_7",
+            "type": "function",
+            "function": {
+              "name": "convert_to_legacy_format",
+              "arguments": "{\"features\": {\"terrain_type\": \"valleys\", \"primary_features\": [\"deep_valleys\", \"river_valleys\"], \"secondary_features\": [\"erosion\", \"water_features\", \"warping\"], \"biome\": \"temperate\", \"complexity\": 0.6}, \"parameters\": {\"valley_depth\": 0.7168317457451857, \"valley_width\": 0.42664799003990517, \"valley_count\": 1, \"river_depth\": 0.27695346233490004, \"base_frequency\": 0.013938326425416921, \"detail_octaves\": 6, \"detail_persistence\": 0.5587343035297411, \"height_scale\": 2450.833241943151}, \"world_x\": -5120, \"world_y\": -3328, \"seeds\": [90063, 91076, 92089, 93102, 94115], \"global_seed\": 434439, \"tile_size\": 256}"
+            },
+            "result": {
+              "tile_u": -20,
+              "tile_v": -13,
+              "world_x": -5120,
+              "world_y": -3328,
+              "global_seed": 434439,
+              "module_ids": [
+                0,
+                5,
+                7,
+                3,
+                8
+              ],
+              "parameters": {
+                "frequency": 0.013938326425416921,
+                "octaves": 6,
+                "persistence": 0.5587343035297411,
+                "lacunarity": 2.0,
+                "height_scale": 2450.833241943151,
+                "erosion_speed": 0.2150495237235557,
+                "rain_amount": 0.36,
+                "evaporation": 0.05,
+                "capacity": 0.3,
+                "iterations": 100
+              },
+              "seeds": [
+                90063,
+                91076,
+                92089,
+                93102,
+                94115
+              ]
+            }
+          },
+          {
+            "id": "call_8",
+            "type": "function",
+            "function": {
+              "name": "compute_grid_continuity",
+              "arguments": "{\"blend_edges\": true, \"overlap_size\": 16, \"tile_coordinates\": [-20, -13]}"
+            }
+          },
+          {
+            "id": "call_3",
+            "type": "function",
+            "function": {
+              "name": "generate_heightmap",
+              "arguments": "{\"tile_u\": -20, \"tile_v\": -13, \"world_x\": -5120, \"world_y\": -3328, \"global_seed\": 434439, \"module_ids\": [0, 5, 7, 3, 8], \"parameters\": {\"frequency\": 0.013938326425416921, \"octaves\": 6, \"persistence\": 0.5587343035297411, \"lacunarity\": 2.0, \"height_scale\": 2450.833241943151, \"erosion_speed\": 0.2150495237235557, \"rain_amount\": 0.36, \"evaporation\": 0.05, \"capacity\": 0.3, \"iterations\": 100}, \"seeds\": [90063, 91076, 92089, 93102, 94115], \"features\": {\"terrain_type\": \"valleys\", \"primary_features\": [\"deep_valleys\", \"river_valleys\"], \"secondary_features\": [\"erosion\", \"water_features\", \"warping\"], \"biome\": \"temperate\", \"complexity\": 0.6}, \"terrain_analysis\": {\"elevation_stats\": {\"min\": 0.0, \"max\": 2450.833241943151, \"mean\": 357.80758974430734, \"median\": 0.0, \"std\": 573.8595703882239, \"range\": 2450.833241943151, \"elevation_variance\": 329314.80652615696}, \"slope_analysis\": {\"max_slope\": 91.04747149195147, \"mean_slope\": 13.766125857553575, \"median_slope\": 0.0, \"slope_std\": 20.194212051062067, \"steep_area_fraction\": 0.1999969482421875, \"slope_variance\": 407.8062003632604, \"dominant_aspect\": 0.11943949264670073, \"slope_gradients\": {\"grad_x_mean\": 1.646527741160514, \"grad_y_mean\": -0.3812994724614751}}, \"feature_detection\": {\"peaks_detected\": 3, \"peak_height_mean\": 2036.4761301937126, \"peak_height_max\": 2450.833241943151, \"peak_locations\": [[26, 243], [98, 171], [241, 99]], \"peak_prominence\": 1678.6685404494053, \"valleys_detected\": 0, \"valley_depth_mean\": 0.0, \"valley_depth_min\": 0.0, \"valley_locations\": [], \"valley_depth_relative\": 0.0, \"ridge_lines\": 0.0979461669921875, \"ridge_strength_mean\": 3.139972558922781, \"ridge_area_fraction\": 0.0979461669921875, \"flat_area_fraction\": 0.0, \"flat_regions_count\": 0, \"largest_flat_region\": 0, \"average_flat_region_size\": 0.0, \"water_body_fraction\": 0.0, \"water_bodies_count\": 0, \"largest_water_body\": 0, \"average_water_depth\": 0.0, \"caves_detected\": 0, \"cave_depth_mean\": 0.0, \"cave_depth_max\": 0.0, \"cave_area_fraction\": 0.0}, \"terrain_classification\": {\"primary_type\": \"plains\", \"confidence\": 0.5, \"characteristics\": [], \"complexity_score\": 329722.9127265202}, \"analysis_metadata\": {\"tile_size\": 256, \"heightmap_shape\": [256, 256], \"analysis_version\": \"1.0\"}}, \"grid_continuity\": {\"blend_edges\": true, \"overlap_size\": 16, \"tile_coordinates\": [-20, -13]}}"
+            }
+          },
+          {
+            "id": "call_10",
+            "type": "function",
+            "function": {
+              "name": "validate_enhanced_format",
+              "arguments": "{\"is_valid\": true, \"errors\": []}"
+            }
+          }
+        ]
+      }
+    ],
+    "training_metadata": {
+      "sample_id": 9,
+      "validation_score": 1.0,
+      "heightmap_hash": "f0ed99eb904975ad",
+      "generation_time_ms": 929,
+      "terrain_template": "valleys",
+      "feature_count": 5,
+      "complexity_score": 0.6
     }
   }
 ]
