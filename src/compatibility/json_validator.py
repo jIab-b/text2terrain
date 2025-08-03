@@ -28,12 +28,13 @@ class JSONValidator:
         
         self.valid_module_ids = list(range(0, 9))  # 0-8 are valid
     
-    def validate_legacy_format(self, data: Dict[str, Any]) -> tuple[bool, List[str]]:
+    def validate_legacy_format(self, data: Dict[str, Any], tile_size: int = 256) -> tuple[bool, List[str]]:
         """
         Validate legacy JSON format compatibility.
         
         Args:
             data: JSON data to validate
+            tile_size: Actual tile size used by the generator
             
         Returns:
             Tuple of (is_valid, error_messages)
@@ -51,7 +52,7 @@ class JSONValidator:
         
         # Validate field types and values
         errors.extend(self._validate_field_types(data))
-        errors.extend(self._validate_field_values(data))
+        errors.extend(self._validate_field_values(data, tile_size))
         errors.extend(self._validate_parameters(data.get("parameters", {})))
         
         return len(errors) == 0, errors
@@ -80,7 +81,7 @@ class JSONValidator:
         
         return errors
     
-    def _validate_field_values(self, data: Dict[str, Any]) -> List[str]:
+    def _validate_field_values(self, data: Dict[str, Any], tile_size: int) -> List[str]:
         """Validate field values are reasonable."""
         
         errors = []
@@ -112,15 +113,6 @@ class JSONValidator:
         # Validate world coordinates are multiples of tile size
         world_x = data.get("world_x", 0)
         world_y = data.get("world_y", 0)
-        
-        # Try to infer tile size from coordinates, default to 256
-        tile_size = 256
-        if world_x != 0 or world_y != 0:
-            # Check common tile sizes
-            for size in [64, 128, 256, 512]:
-                if world_x % size == 0 and world_y % size == 0:
-                    tile_size = size
-                    break
         
         if world_x % tile_size != 0:
             errors.append(f"world_x ({world_x}) must be multiple of tile size (detected: {tile_size})")
@@ -186,12 +178,13 @@ class JSONValidator:
         
         return errors
     
-    def validate_enhanced_format(self, data: Dict[str, Any]) -> tuple[bool, List[str]]:
+    def validate_enhanced_format(self, data: Dict[str, Any], tile_size: int = 256) -> tuple[bool, List[str]]:
         """
         Validate enhanced JSON format with new features.
         
         Args:
             data: Enhanced JSON data to validate
+            tile_size: Actual tile size used by the generator
             
         Returns:
             Tuple of (is_valid, error_messages)
@@ -200,7 +193,7 @@ class JSONValidator:
         errors = []
         
         # First validate legacy compatibility
-        legacy_valid, legacy_errors = self.validate_legacy_format(data)
+        legacy_valid, legacy_errors = self.validate_legacy_format(data, tile_size)
         errors.extend(legacy_errors)
         
         # Validate enhanced fields if present

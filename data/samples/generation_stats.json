@@ -1,0 +1,29 @@
+{
+  "total_generated": 4,
+  "total_valid": 4,
+  "validation_failures": 16,
+  "feature_usage": {
+    "sand_dunes": 3,
+    "rocky_outcrops": 3,
+    "mountain_peaks": 1,
+    "steep_peaks": 1,
+    "ridges": 1,
+    "erosion": 1
+  },
+  "terrain_types": {
+    "plains": 3,
+    "mountains": 1
+  },
+  "generation_times": [
+    0.020638704299926758,
+    0.010086536407470703,
+    0.011790037155151367,
+    0.010188579559326172
+  ],
+  "validation_scores": [
+    0.747,
+    0.747,
+    0.741,
+    0.81
+  ]
+}

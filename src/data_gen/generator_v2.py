@@ -248,16 +248,20 @@ class DatasetGeneratorV2:
         
         start_time = time.time()
         
+        calls = []
         try:
             # 1. Sample feature-based configuration
             features, parameters = self.sample_terrain_config()
+            calls.append({"id":"call_0","type":"function","function":{"name":"sample_terrain_config","arguments":json.dumps({"features":features,"parameters":parameters})}})
             
             # 2. Sample world coordinates
             world_x, world_y = self.sample_world_coordinates()
+            calls.append({"id":"call_1","type":"function","function":{"name":"sample_world_coordinates","arguments":json.dumps({"world_x":world_x,"world_y":world_y})}})
             
             # 3. Generate seeds
             num_features = len(features.get("primary_features", [])) + len(features.get("secondary_features", []))
             seeds = self.generate_seeds(sample_id, max(1, num_features))
+            calls.append({"id":"call_2","type":"function","function":{"name":"generate_seeds","arguments":json.dumps({"sample_id":sample_id,"num_features":num_features,"seeds":seeds})}})
             global_seed = (sample_id * 48271) % (2**31 - 1)
             
             # 4. Generate ACTUAL heightmap
@@ -270,19 +274,23 @@ class DatasetGeneratorV2:
                 global_seed=global_seed,
                 legacy_mode=False
             )
+            calls.append({"id":"call_3","type":"function","function":{"name":"generate_heightmap","arguments":json.dumps({"world_x":world_x,"world_y":world_y,"parameters":parameters,"seeds":seeds,"global_seed":global_seed})}})
             
             # 5. Analyze generated terrain
             terrain_analysis = self.heightmap_analyzer.analyze(heightmap)
+            calls.append({"id":"call_4","type":"function","function":{"name":"analyze_heightmap","arguments":json.dumps({"terrain_analysis":terrain_analysis})}})
             
             # 6. Generate caption from ACTUAL terrain features
             caption = self.caption_generator.generate_from_analysis(
                 terrain_analysis, features, parameters
             )
+            calls.append({"id":"call_5","type":"function","function":{"name":"generate_caption","arguments":json.dumps({"terrain_analysis":terrain_analysis,"features":features,"parameters":parameters})}})
             
             # 7. Validate terrain matches caption
             validation_result = self.terrain_validator.validate_consistency(
                 heightmap, caption, features, terrain_analysis
             )
+            calls.append({"id":"call_6","type":"function","function":{"name":"validate_consistency","arguments":json.dumps({"caption":caption,"features":features,"terrain_analysis":terrain_analysis})},"result":validation_result})
             
             if not validation_result["is_valid"] or validation_result["score"] < 0.6:
                 self.stats["validation_failures"] += 1
@@ -292,6 +300,7 @@ class DatasetGeneratorV2:
             legacy_data = self.legacy_adapter.convert_to_legacy_format(
                 features, parameters, world_x, world_y, seeds, global_seed, self.tile_size
             )
+            calls.append({"id":"call_7","type":"function","function":{"name":"convert_to_legacy_format","arguments":json.dumps({"features":features,"parameters":parameters,"world_x":world_x,"world_y":world_y,"seeds":seeds,"global_seed":global_seed,"tile_size":self.tile_size})},"result":legacy_data})
             
             # 9. Create grid continuity info
             grid_continuity = {
@@ -299,14 +308,17 @@ class DatasetGeneratorV2:
                 "overlap_size": 16,
                 "tile_coordinates": (world_x // self.tile_size, world_y // self.tile_size)
             }
+            calls.append({"id":"call_8","type":"function","function":{"name":"compute_grid_continuity","arguments":json.dumps(grid_continuity)}})
             
             # 10. Create enhanced JSON with backward compatibility
             enhanced_json = self.legacy_adapter.create_enhanced_json(
                 legacy_data, features, terrain_analysis, grid_continuity
             )
+            calls.append({"id":"call_3","type":"function","function":{"name":"generate_heightmap","arguments":json.dumps(enhanced_json)}})
             
             # 11. Validate JSON format
             is_valid, validation_errors = self.json_validator.validate_enhanced_format(enhanced_json)
+            calls.append({"id":"call_10","type":"function","function":{"name":"validate_enhanced_format","arguments":json.dumps({"is_valid":is_valid,"errors":validation_errors})}})
             if not is_valid:
                 print(f"JSON validation failed for sample {sample_id}: {validation_errors}")
                 return None
@@ -319,14 +331,7 @@ class DatasetGeneratorV2:
                 "messages": [
                     {"role": "system", "content": "You are a terrain generator"},
                     {"role": "user", "content": caption},
-                    {"role": "assistant", "content": None, "tool_calls": [{
-                        "id": "call_0",
-                        "type": "function",
-                        "function": {
-                            "name": "generate_heightmap",
-                            "arguments": json.dumps(enhanced_json)
-                        }
-                    }]}
+                    {"role": "assistant", "content": None, "tool_calls": calls}
                 ],
                 "training_metadata": {
                     "sample_id": sample_id,

@@ -245,7 +245,7 @@ class HeightmapAnalyzer:
         }
     
     def _detect_flat_areas(self, heightmap: np.ndarray) -> Dict[str, Any]:
-        """Detect flat terrain areas."""
+        """Detect flat areas in the terrain."""
         
         # Calculate slope magnitude
         grad_y, grad_x = np.gradient(heightmap)
@@ -260,12 +260,13 @@ class HeightmapAnalyzer:
         # Find connected flat regions
         labeled_flat, num_regions = label(flat_areas)
         
+        region_sizes = []
+        largest_flat_region = 0
+        
         if num_regions > 0:
             # Analyze size of flat regions
             region_sizes = [np.sum(labeled_flat == i) for i in range(1, num_regions + 1)]
             largest_flat_region = max(region_sizes) if region_sizes else 0
-        else:
-            largest_flat_region = 0
         
         return {
             "flat_area_fraction": float(flat_fraction),
@@ -297,11 +298,12 @@ class HeightmapAnalyzer:
         
         water_fraction = np.sum(water_areas) / water_areas.size
         
+        water_sizes = []
+        largest_water_body = 0
+        
         if num_water_bodies > 0:
             water_sizes = [np.sum(labeled_water == i) for i in range(1, num_water_bodies + 1)]
             largest_water_body = max(water_sizes)
-        else:
-            largest_water_body = 0
         
         return {
             "water_body_fraction": float(water_fraction),
